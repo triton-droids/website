@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-main-bg text-main-text font-sans;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-10 py-4 bg-accent text-button-text text-xl rounded-button;
+  }
+  
+  .card {
+    @apply bg-card-bg rounded-card;
+  }
+}
