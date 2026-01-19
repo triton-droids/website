@@ -12,7 +12,7 @@
   .btn-primary {
     @apply px-10 py-4 bg-accent text-button-text text-xl rounded-button;
   }
-  
+
   .card {
     @apply bg-card-bg rounded-card;
   }
