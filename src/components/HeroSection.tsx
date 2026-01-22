@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import heroBackground from '../assets/hero-background.png'
+import heroBackground from '../assets/hero-background.png';
 
 export default function HeroSection() {
   return (
@@ -21,7 +21,7 @@ export default function HeroSection() {
             Engineering What Comes Next
           </h1>
           <p className="text-[32px] leading-normal max-w-[792px]">
-            We're building autonomous humanoid robots to expand global access to
+            We&apos;re building autonomous humanoid robots to expand global access to
             robotics—powered by students, experts, and industry partners working
             toward a more equitable future.
           </p>
@@ -43,5 +43,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
