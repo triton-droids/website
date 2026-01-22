@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="inline-flex justify-start items-start gap-6">
         <div className="w-24 inline-flex flex-col justify-start items-start gap-16">
           <h4 className="text-main-text font-semibold text-base mb-1">
-            Organization
+            Explore
           </h4>
           <div className="w-20 flex flex-col justify-start items-start gap-6">
             <Link
