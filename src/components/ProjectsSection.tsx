@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import humanoidIcon from '../assets/projects/humanoid-icon.svg';
-import pupperIcon from '../assets/projects/pupper-icon.svg';
-import robocupIcon from '../assets/projects/robocup-icon.svg';
+import humanoidIconBlue from '../assets/projects/humanoid-icon-blue.svg';
+import humanoidIconGray from '../assets/projects/humanoid-icon-gray.svg';
+import pupperIconBlue from '../assets/projects/pupper-icon-blue.svg';
+import pupperIconGray from '../assets/projects/pupper-icon-gray.svg';
+import robocupIconBlue from '../assets/projects/robocup-icon-blue.svg';
+import robocupIconGray from '../assets/projects/robocup-icon-gray.svg';
 import humanoidImage from '../assets/projects/humanoid-image.jpg';
 import pupperImage from '../assets/projects/pupper-image.jpg';
 import robocupImage from '../assets/projects/robocup-image.png';
 
 interface ProjectData {
   id: string;
-  icon: string;
+  iconBlue: string;
+  iconGray: string;
   title: string;
   description: string;
   image: string;
@@ -19,7 +23,8 @@ interface ProjectData {
 const projects: ProjectData[] = [
   {
     id: 'humanoid',
-    icon: humanoidIcon,
+    iconBlue: humanoidIconBlue,
+    iconGray: humanoidIconGray,
     title: 'Humanoid Robot',
     description:
       'Humanoid robots represent a rapidly emerging industry with an enormous growth potential. Unlike specialized robots, general-purpose humanoid bots can operate in spaces designed for the human form factor—our homes, workplaces, and cities. This flexibility makes them well-suited for various applications, from caregiving to labor-intensive tasks. According to ARK Invest, this market is estimated to be worth $24 billion...',
@@ -28,7 +33,8 @@ const projects: ProjectData[] = [
   },
   {
     id: 'pupper',
-    icon: pupperIcon,
+    iconBlue: pupperIconBlue,
+    iconGray: pupperIconGray,
     title: 'Triton Pupper',
     description:
       "The Triton Pupper Project is Triton Droids' newest initiative at inspiring undergraduate students to break boundaries with modern innovation. Next to developing a humanoid robot, the Triton Pupper Team is aiming to develop a robotic dog at the undergraduate level. The goals of this initiative include building a proof-of-concept out of the Petoi Bittle Dog, and then graduating to an industry-grade robotic dog that matches the sophistication of...",
@@ -37,7 +43,8 @@ const projects: ProjectData[] = [
   },
   {
     id: 'robocup',
-    icon: robocupIcon,
+    iconBlue: robocupIconBlue,
+    iconGray: robocupIconGray,
     title: 'RoboCup',
     description:
       'In collaboration with the Institute of Electrical and Electronics Engineers (IEEE), Triton Droids is proud to announce our participation in RoboCup 2027, an international competition taking place in June 2027. RoboCup brings together brilliant minds from all over the world, including both PhD laboratories and industry grade robotics companies, to compete in a thrilling showcase of autonomous humanoid soccer.',
@@ -68,13 +75,11 @@ export default function ProjectsSection() {
               onClick={() => setActiveProject(index)}
               className="flex flex-col gap-[14px] items-center justify-center p-4 w-[142px] cursor-pointer"
             >
-              <div className="h-[90px] flex items-center justify-center">
+              <div className="w-[110px] h-[90px] flex items-center justify-center">
                 <img
-                  src={proj.icon}
+                  src={index === activeProject ? proj.iconBlue : proj.iconGray}
                   alt={proj.title}
-                  className={`h-full w-auto transition-opacity ${
-                    index === activeProject ? 'opacity-100' : 'opacity-50'
-                  }`}
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
               <div
