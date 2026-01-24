@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import slide1Image from '../assets/carousel/slide-1.jpg';
 import slide2Image from '../assets/carousel/slide-2.jpg';
 import slide3Image from '../assets/carousel/slide-3.jpg';
@@ -82,6 +83,52 @@ const slides: SlideData[] = [
   },
 ];
 
+// Animation variants
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 100 : -100,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 100 : -100,
+    opacity: 0,
+  }),
+};
+
+const imageVariants = {
+  enter: {
+    y: 20,
+    opacity: 0,
+  },
+  center: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    y: -20,
+    opacity: 0,
+  },
+};
+
+const textVariants = {
+  enter: {
+    y: 30,
+    opacity: 0,
+  },
+  center: {
+    y: 0,
+    opacity: 1,
+  },
+  exit: {
+    y: -30,
+    opacity: 0,
+  },
+};
+
 function ArrowButton({
   direction,
   onClick,
@@ -90,8 +137,10 @@ function ArrowButton({
   onClick: () => void;
 }) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
+      whileHover={{ scale: 1.1, rotate: direction === 'left' ? -10 : 10 }}
+      whileTap={{ scale: 0.95 }}
       className={`size-[66px] rounded-full border-4 border-muted-text flex items-center justify-center hover:border-main-text transition-colors ${
         direction === 'left' ? '' : 'rotate-180'
       }`}
@@ -113,32 +162,59 @@ function ArrowButton({
           strokeLinejoin="round"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 }
 
 export default function AchieveSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [[currentSlide, direction], setSlide] = useState([0, 0]);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  const paginate = useCallback((newDirection: number) => {
+    setSlide(([prev]) => {
+      const next = prev + newDirection;
+      if (next < 0) return [slides.length - 1, newDirection];
+      if (next >= slides.length) return [0, newDirection];
+      return [next, newDirection];
+    });
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  const nextSlide = useCallback(() => paginate(1), [paginate]);
+  const prevSlide = useCallback(() => paginate(-1), [paginate]);
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+    const newDirection = index > currentSlide ? 1 : -1;
+    setSlide([index, newDirection]);
   };
+
+  // Auto-play with 4s interval
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
 
   const slide = slides[currentSlide];
 
   return (
-    <section className="bg-main-bg py-20 flex flex-col gap-20 items-center justify-center">
-      <h2 className="text-[64px] font-bold text-main-text text-center px-[100px]">
+    <section
+      className="bg-main-bg py-20 flex flex-col gap-20 items-center justify-center"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-[64px] font-bold text-main-text text-center px-[100px]"
+      >
         How We Aim to Achieve Our Mission
-      </h2>
+      </motion.h2>
 
       <div className="flex gap-12 items-center justify-center w-full">
         {/* Left side panel */}
@@ -150,45 +226,95 @@ export default function AchieveSection() {
         {/* Main carousel content */}
         <div className="flex flex-col gap-[72px] items-center w-[1050px]">
           {/* Slide content */}
-          <div className="bg-[#2A2B2D] rounded-[40px] flex gap-6 items-center w-full overflow-hidden">
-            {/* Image */}
-            <div className="w-[513px] h-[595px] shrink-0 p-10 pr-4 flex items-center justify-center">
-              <div className="w-[457px] h-[416px] rounded-[32px] overflow-hidden">
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+          <div className="bg-[#2A2B2D] rounded-[40px] flex gap-6 items-center w-full overflow-hidden relative">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={currentSlide}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.3 },
+                }}
+                className="flex gap-6 items-center w-full"
+              >
+                {/* Image with parallax */}
+                <motion.div
+                  variants={imageVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="w-[513px] h-[595px] shrink-0 p-10 pr-4 flex items-center justify-center"
+                >
+                  <div className="w-[457px] h-[416px] rounded-[32px] overflow-hidden">
+                    <motion.img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </motion.div>
 
-            {/* Text content */}
-            <div className="flex flex-col gap-10 px-8 py-10 flex-1">
-              <h3 className="text-[40px] font-normal text-main-text leading-tight w-[449px]">
-                {slide.title}
-              </h3>
-              <ul className="flex flex-col gap-6 list-disc ml-9">
-                {slide.points.map((point, index) => (
-                  <li key={index} className="text-2xl text-main-text leading-[1.4]">
-                    <span className="text-accent">{point.highlight}</span>
-                    {point.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                {/* Text content with stagger */}
+                <motion.div
+                  variants={textVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="flex flex-col gap-10 px-8 py-10 flex-1"
+                >
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    className="text-[40px] font-normal text-main-text leading-tight w-[449px]"
+                  >
+                    {slide.title}
+                  </motion.h3>
+                  <ul className="flex flex-col gap-6 list-disc ml-9">
+                    {slide.points.map((point, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                        className="text-2xl text-main-text leading-[1.4]"
+                      >
+                        <span className="text-accent">{point.highlight}</span>
+                        {point.text}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Pagination dots */}
           <div className="flex gap-[18px] items-center">
             {slides.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`rounded-full transition-all ${
+                animate={{
+                  scale: index === currentSlide ? 1.1 : 1,
+                  width: index === currentSlide ? 55 : 18,
+                }}
+                whileHover={{ scale: 1.2 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className={`h-[18px] rounded-full transition-colors ${
                   index === currentSlide
-                    ? 'bg-main-text w-[55px] h-[18px]'
-                    : 'border-2 border-muted-text size-[18px] hover:border-main-text'
+                    ? 'bg-main-text shadow-[0_0_10px_rgba(255,255,255,0.5)]'
+                    : 'border-2 border-muted-text hover:border-main-text'
                 }`}
+                style={{ width: index === currentSlide ? 55 : 18 }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
