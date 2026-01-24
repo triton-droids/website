@@ -141,9 +141,7 @@ function ArrowButton({
       onClick={onClick}
       whileHover={{ scale: 1.1, rotate: direction === 'left' ? -10 : 10 }}
       whileTap={{ scale: 0.95 }}
-      className={`size-[66px] rounded-full border-4 border-muted-text flex items-center justify-center hover:border-main-text transition-colors ${
-        direction === 'left' ? '' : 'rotate-180'
-      }`}
+      className="size-[66px] rounded-full border-4 border-muted-text flex items-center justify-center hover:border-main-text transition-colors"
       aria-label={direction === 'left' ? 'Previous slide' : 'Next slide'}
     >
       <svg
@@ -155,7 +153,7 @@ function ArrowButton({
         className="text-muted-text"
       >
         <path
-          d="M15 18L9 12L15 6"
+          d={direction === 'left' ? 'M15 18L9 12L15 6' : 'M9 18L15 12L9 6'}
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
