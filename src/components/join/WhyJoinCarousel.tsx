@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 // Slide images from Figma
 const slide1Image = 'https://www.figma.com/api/mcp/asset/e5765e1e-d063-4905-a164-dbf2388ca35a';
@@ -47,14 +48,21 @@ const slides: Slide[] = [
 function ArrowButton({
   direction,
   onClick,
+  disabled,
 }: {
   direction: 'left' | 'right';
   onClick: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       onClick={onClick}
-      className="w-[50px] h-[50px] md:w-[66px] md:h-[66px] rounded-full border-[3px] md:border-4 border-main-text flex items-center justify-center hover:bg-main-text/10 transition-colors cursor-pointer shrink-0"
+      disabled={disabled}
+      className={`w-[50px] h-[50px] md:w-[66px] md:h-[66px] rounded-full border-[3px] md:border-4 border-main-text flex items-center justify-center transition-colors shrink-0 ${
+        disabled
+          ? 'opacity-40 cursor-not-allowed'
+          : 'hover:bg-main-text/10 cursor-pointer'
+      }`}
       aria-label={direction === 'left' ? 'Previous slide' : 'Next slide'}
     >
       <svg
@@ -78,17 +86,48 @@ function ArrowButton({
 }
 
 export default function WhyJoinCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: 'center',
+    skipSnaps: false,
+  });
 
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  }, []);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  const slide = slides[currentSlide];
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   return (
     <section className="flex flex-col gap-10 lg:gap-20 items-center w-full">
@@ -105,38 +144,47 @@ export default function WhyJoinCarousel() {
         <div className="w-6 md:w-10 h-[300px] md:h-[400px] lg:h-[456px] bg-[#2A2B2D] rounded-r-[24px] md:rounded-r-[40px] shrink-0" />
 
         {/* Left arrow */}
-        <ArrowButton direction="left" onClick={prevSlide} />
+        <ArrowButton direction="left" onClick={scrollPrev} disabled={!canScrollPrev && !emblaApi} />
 
-        {/* Slide content - centered, fixed width */}
-        <div className="flex-1 flex justify-center">
-          <div className="w-full max-w-[1050px] bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-            {/* Image container - Figma: 513px x 595px with pl-40 pr-16 py-40 */}
-            <div className="w-full md:w-[320px] lg:w-[420px] xl:w-[513px] h-[250px] md:h-[380px] lg:h-[480px] xl:h-[595px] pl-4 md:pl-6 lg:pl-10 pr-2 md:pr-3 lg:pr-4 py-4 md:py-6 lg:py-10 shrink-0">
-              <div className="w-full h-full rounded-[16px] lg:rounded-[32px] overflow-hidden">
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="w-full h-full object-cover"
-                />
+        {/* Embla Carousel container */}
+        <div className="flex-1 overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {slides.map((slide) => (
+              <div
+                key={slide.id}
+                className="flex-[0_0_100%] min-w-0 flex justify-center px-2"
+              >
+                <div className="w-full max-w-[1050px] bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                  {/* Image container */}
+                  <div className="w-full md:w-[320px] lg:w-[420px] xl:w-[513px] h-[250px] md:h-[380px] lg:h-[480px] xl:h-[595px] pl-4 md:pl-6 lg:pl-10 pr-2 md:pr-3 lg:pr-4 py-4 md:py-6 lg:py-10 shrink-0">
+                    <div className="w-full h-full rounded-[16px] lg:rounded-[32px] overflow-hidden">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Text content */}
+                  <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
+                    {/* Title */}
+                    <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-main-text leading-tight">
+                      {slide.title}
+                    </h3>
+                    {/* Description */}
+                    <p className="text-sm md:text-base lg:text-lg xl:text-xl text-main-text leading-relaxed">
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Text content */}
-            <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-main-text leading-tight">
-                {slide.title}
-              </h3>
-              {/* Description */}
-              <p className="text-sm md:text-base lg:text-lg xl:text-xl text-main-text leading-relaxed">
-                {slide.description}
-              </p>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Right arrow */}
-        <ArrowButton direction="right" onClick={nextSlide} />
+        <ArrowButton direction="right" onClick={scrollNext} disabled={!canScrollNext && !emblaApi} />
 
         {/* Right decorative bar - touches right edge */}
         <div className="w-6 md:w-10 h-[300px] md:h-[400px] lg:h-[456px] bg-[#2A2B2D] rounded-l-[24px] md:rounded-l-[40px] shrink-0" />
@@ -147,9 +195,9 @@ export default function WhyJoinCarousel() {
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-2 rounded-full transition-all cursor-pointer ${
-              index === currentSlide
+            onClick={() => scrollTo(index)}
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              index === selectedIndex
                 ? 'bg-accent w-6'
                 : 'bg-main-text/40 hover:bg-main-text/60 w-2'
             }`}
