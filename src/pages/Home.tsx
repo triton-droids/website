@@ -1,6 +1,7 @@
 import HeroSection from '../components/HeroSection';
 import VisionSection from '../components/VisionSection';
 import AchieveSection from '../components/AchieveSection';
+import ProjectsSection from '../components/ProjectsSection';
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <VisionSection />
 
       <AchieveSection />
+
+      <ProjectsSection />
 
       <hr className="border-muted-text/20 my-8" />
 
