@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import humanoidIconBlue from '../../../assets/projects/humanoid-icon-blue.svg';
+import humanoidIconBlue from '../../assets/projects/humanoid-icon-blue.svg';
 import {
   SectionHeading,
   CardTitle,
   BodyText,
-} from '../../../components/Typography';
-import humanoidIconGray from '../../../assets/projects/humanoid-icon-gray.svg';
-import pupperIconBlue from '../../../assets/projects/pupper-icon-blue.svg';
-import pupperIconGray from '../../../assets/projects/pupper-icon-gray.svg';
-import robocupIconBlue from '../../../assets/projects/robocup-icon-blue.svg';
-import robocupIconGray from '../../../assets/projects/robocup-icon-gray.svg';
-import humanoidImage from '../../../assets/projects/humanoid-image.jpg';
-import pupperImage from '../../../assets/projects/pupper-image.jpg';
-import robocupImage from '../../../assets/projects/robocup-image.png';
+} from '../../components/Typography';
+import humanoidIconGray from '../../assets/projects/humanoid-icon-gray.svg';
+import pupperIconBlue from '../../assets/projects/pupper-icon-blue.svg';
+import pupperIconGray from '../../assets/projects/pupper-icon-gray.svg';
+import robocupIconBlue from '../../assets/projects/robocup-icon-blue.svg';
+import robocupIconGray from '../../assets/projects/robocup-icon-gray.svg';
+import humanoidImage from '../../assets/projects/humanoid-image.jpg';
+import pupperImage from '../../assets/projects/pupper-image.jpg';
+import robocupImage from '../../assets/projects/robocup-image.png';
 
 interface ProjectData {
   id: string;
