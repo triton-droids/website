@@ -32,30 +32,29 @@ export default function Sponsorship() {
               form of parts or mentorship. Please refer to the sponsorship
               package for details!
             </p>
+            <div className="mt-20 self-stretch inline-flex justify-start items-center gap-6">
+              <button className="h-20 px-10 bg-accent text-button-text text-xl rounded-button font-normal flex justify-center items-center hover:bg-slate-400 hover:text-stone-950 hover:outline-slate-400 transition-colors">
+                Donate Now
+              </button>
+              <button className="h-20 px-10 rounded-button outline outline-1 outline-offset-[-1px] outline-accent flex justify-center items-center text-yellow-400 text-xl font-normal hover:bg-slate-400 hover:text-stone-950 hover:outline-slate-400 transition-colors">
+                Sponsorship Package
+              </button>
+            </div>
           </div>
 
           <div className="flex flex-col gap-6 items-start">
             <img
               src={buildCostImage}
               alt="Estimated Build Cost"
-              className="w-full h-auto rounded-xl"
+              className="w-auto h-96 rounded-xl"
             />
           </div>
-        </div>
-
-        <div className="mt-12 grid grid-cols-2 gap-16">
-          <button className="w-full px-20 py-4 bg-blue-500 text-stone-950 text-xl rounded-button font-bold border-2 border-transparent hover:bg-stone-950 hover:text-blue-500 hover:border-blue-500 transition-colors">
-            Sponsorship Package
-          </button>
-          <button className="w-full px-20 py-4 bg-yellow-400 text-stone-950 text-xl rounded-button font-bold border-2 border-transparent hover:bg-stone-950 hover:text-yellow-400 hover:border-yellow-400 transition-colors">
-            Donate Now
-          </button>
         </div>
       </section>
 
       <section className="py-16 px-20">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-5xl font-bold">Current Sponsors</h2>
+          <h2 className="text-5xl font-bold">We are Proud to be Trusted By</h2>
           <a
             href="#"
             className="text-white text-lg underline hover:text-accent transition-colors"
