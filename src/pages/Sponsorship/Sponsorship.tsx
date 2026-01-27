@@ -1,12 +1,12 @@
-import buildCostImage from '../assets/build-cost.png';
-import heidenhainLogo from '../assets/heidenhain.png';
-import ansysLogo from '../assets/ansys.png';
-import onshapeLogo from '../assets/onshape.png';
+import buildCostImage from '../../assets/build-cost.png';
+import heidenhainLogo from '../../assets/heidenhain.png';
+import ansysLogo from '../../assets/ansys.png';
+import onshapeLogo from '../../assets/onshape.png';
 import {
   HeroHeading,
   SectionHeading,
   BodyText,
-} from '../components/Typography';
+} from '../../components/Typography';
 
 export default function Sponsorship() {
   return (

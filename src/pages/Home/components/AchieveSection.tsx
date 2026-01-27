@@ -1,10 +1,10 @@
-import Carousel from './Carousel';
+import Carousel from '../../../components/Carousel';
 
-import slide1Image from '../assets/carousel/slide-1.jpg';
-import { SectionHeading, CardTitle } from './Typography';
-import slide2Image from '../assets/carousel/slide-2.jpg';
-import slide3Image from '../assets/carousel/slide-3.jpg';
-import slide4Image from '../assets/carousel/slide-4.jpg';
+import slide1Image from '../../../assets/carousel/slide-1.jpg';
+import { SectionHeading, CardTitle } from '../../../components/Typography';
+import slide2Image from '../../../assets/carousel/slide-2.jpg';
+import slide3Image from '../../../assets/carousel/slide-3.jpg';
+import slide4Image from '../../../assets/carousel/slide-4.jpg';
 
 interface SlideData {
   image: string;

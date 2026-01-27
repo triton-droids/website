@@ -1,8 +1,8 @@
-import mechanicalIcon from '../../assets/pupper/mechanical-icon.svg';
-import electricalIcon from '../../assets/pupper/electrical-icon.svg';
-import embeddedSystemsIcon from '../../assets/pupper/embedded-systems-icon.svg';
-import machineLearningIcon from '../../assets/pupper/machine-learning-icon.svg';
-import { SectionHeading, BodyText } from '../Typography';
+import mechanicalIcon from '../../../assets/humanoid/mechanical-icon.svg';
+import electricalIcon from '../../../assets/humanoid/electrical-icon.svg';
+import embeddedSystemsIcon from '../../../assets/humanoid/embedded-systems-icon.svg';
+import machineLearningIcon from '../../../assets/humanoid/machine-learning-icon.svg';
+import { SectionHeading, BodyText } from '../../../components/Typography';
 
 interface TeamCardProps {
   icon: string;
@@ -39,12 +39,12 @@ const teams = [
   },
 ];
 
-export default function PupperTeamsSection() {
+export default function HumanoidTeamsSection() {
   return (
     <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center justify-center py-12 md:py-16 lg:py-20 px-6 lg:px-[148px] w-full">
       <div className="flex flex-col w-full max-w-[1216px]">
         <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
-          Triton Pupper
+          Humanoid Droid Project
         </SectionHeading>
         <BodyText size="lg" className="text-slate-400">
           Main Engineering Teams

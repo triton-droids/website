@@ -1,4 +1,4 @@
-import { HeroHeading } from '../Typography';
+import { HeroHeading } from '../../../components/Typography';
 
 // Hero image from Figma - team presentation photo
 const heroImage =

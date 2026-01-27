@@ -1,7 +1,7 @@
 import HumanoidTeamsSection from './HumanoidTeamsSection';
 import InternalOpsSection from './InternalOpsSection';
-import PupperTeamsSection from '../pupper/PupperTeamsSection';
-import { SectionHeading } from '../Typography';
+import PupperTeamsSection from './PupperTeamsSection';
+import { SectionHeading } from '../../../components/Typography';
 
 export default function OurTeamsSection() {
   return (
