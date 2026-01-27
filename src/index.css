@@ -16,4 +16,13 @@
   .card {
     @apply bg-card-bg rounded-card;
   }
+
+  /* Hide scrollbar but keep content scrollable */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

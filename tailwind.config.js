@@ -13,6 +13,7 @@ export default {
         'accent': '#FECE00',
         'card-bg': '#2A2B2D',
         'button-text': '#101010',
+        'role-blue': '#007bff',
       },
       fontFamily: {
         sans: ['"Proxima Nova"', 'system-ui', 'sans-serif'],
