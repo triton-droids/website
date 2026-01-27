@@ -3,7 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home/Home';
 import Join from './pages/Join/Join';
 import Team from './pages/Team/Team';
-import Projects from './pages/Projects/Projects';
+import Projects from './pages/Projects/components/Projects';
 import Sponsorship from './pages/Sponsorship/Sponsorship';
 import Advisor from './pages/Advisor/Advisor';
 import Alumni from './pages/Alumni/Alumni';
