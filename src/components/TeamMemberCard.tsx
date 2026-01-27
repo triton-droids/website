@@ -28,6 +28,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
   const modalId = `member-modal-${member.id}`
   const nameId = `member-name-${member.id}`
   const bioId = `member-bio-${member.id}`
+  const isExecutive = member.category === 'executive'
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -41,9 +42,13 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
     return (
       <button
         type="button"
-        className="rounded-card cursor-pointer flex flex-col bg-[#0f0f0f] w-full text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-main-bg overflow-hidden"
+        className={`rounded-card cursor-pointer flex flex-col bg-main-bg w-full text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-main-bg overflow-hidden ${
+          isExecutive ? 'border-2 border-gray-600' : ''
+        }`}
         style={{
-          boxShadow: '0 0 40px rgba(254, 206, 0, 0.2), 0 0 80px rgba(0, 0, 0, 0.5)',
+          boxShadow: isExecutive
+            ? '0 0 40px rgba(254, 206, 0, 0.2), 0 0 80px rgba(0, 0, 0, 0.5), 0 0 20px rgba(75, 85, 99, 0.4), 0 0 40px rgba(75, 85, 99, 0.2)'
+            : '0 0 40px rgba(254, 206, 0, 0.2), 0 0 80px rgba(0, 0, 0, 0.5)',
         }}
         onClick={onClick}
         onKeyDown={handleKeyDown}
@@ -55,7 +60,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       >
         {/* Top Section - fixed size, same as collapsed card */}
         <section
-          className="w-full rounded-t-card overflow-hidden bg-[#0f0f0f] flex flex-col p-4"
+          className="w-full rounded-t-card overflow-hidden bg-main-bg flex flex-col p-4"
           style={{ aspectRatio: '13 / 14' }}
         >
           {/* Name - Bold White */}
@@ -85,7 +90,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
         </section>
 
         {/* Bottom Section - Same as text section in collapsed card */}
-        <section className="w-full bg-[#0f0f0f] rounded-b-card px-6 py-4">
+        <section className="w-full bg-main-bg rounded-b-card px-6 py-4">
           {/* Spacer to match collapsed card's text section height */}
         </section>
       </button>
@@ -96,7 +101,16 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
   return (
     <button
       type="button"
-      className="rounded-card cursor-pointer hover:scale-105 transition-transform flex flex-col bg-black w-full text-left focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-main-bg"
+      className={`rounded-card cursor-pointer hover:scale-105 transition-transform flex flex-col bg-main-bg w-full text-left focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-main-bg ${
+        isExecutive ? 'border-2 border-gray-600' : ''
+      }`}
+      style={
+        isExecutive
+          ? {
+              boxShadow: '0 0 20px rgba(75, 85, 99, 0.4), 0 0 40px rgba(75, 85, 99, 0.2)',
+            }
+          : undefined
+      }
       onClick={onClick}
       onKeyDown={handleKeyDown}
       aria-haspopup="dialog"
@@ -104,7 +118,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       aria-label={`View ${member.name}'s profile`}
     >
       {/* Picture Section - Separate and on top */}
-      <section className="w-full rounded-t-card overflow-hidden bg-black relative" style={{ aspectRatio: '13 / 14' }}>
+      <section className="w-full rounded-t-card overflow-hidden bg-main-bg relative" style={{ aspectRatio: '13 / 14' }}>
         {member.image ? (
           <img
             src={member.image}
@@ -112,7 +126,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
             className="w-full h-full object-cover block rounded-3xl"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-black to-black/50">
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-main-bg to-main-bg/50">
             <div className="text-6xl font-bold text-accent">
               {member.name
                 .split(' ')
@@ -124,7 +138,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       </section>
 
       {/* Text Section - Separate and below picture */}
-      <section className="w-full bg-black rounded-b-card px-6 py-4 text-center">
+      <section className="w-full bg-main-bg rounded-b-card px-6 py-4 text-center">
         {/* Blue Role Text */}
         <p 
           className="text-sm font-bold uppercase mb-0"
