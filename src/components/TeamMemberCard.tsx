@@ -1,10 +1,10 @@
-import type { KeyboardEvent } from 'react'
-import { TeamMember } from '../types/team'
+import type { KeyboardEvent } from 'react';
+import { TeamMember } from '../types/team';
 
 interface TeamMemberCardProps {
-  member: TeamMember
-  onClick: () => void
-  isExpanded?: boolean
+  member: TeamMember;
+  onClick: () => void;
+  isExpanded?: boolean;
 }
 
 // LinkedIn icon SVG - square with 'in' logo
@@ -22,20 +22,24 @@ const LinkedInIcon = () => (
       fill="#fff"
     />
   </svg>
-)
+);
 
-export default function TeamMemberCard({ member, onClick, isExpanded = false }: TeamMemberCardProps) {
-  const modalId = `member-modal-${member.id}`
-  const nameId = `member-name-${member.id}`
-  const bioId = `member-bio-${member.id}`
-  const isExecutive = member.category === 'executive'
+export default function TeamMemberCard({
+  member,
+  onClick,
+  isExpanded = false,
+}: TeamMemberCardProps) {
+  const modalId = `member-modal-${member.id}`;
+  const nameId = `member-name-${member.id}`;
+  const bioId = `member-bio-${member.id}`;
+  const isExecutive = member.category === 'executive';
 
   const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      onClick()
+      e.preventDefault();
+      onClick();
     }
-  }
+  };
 
   // Expanded profile view
   if (isExpanded) {
@@ -94,7 +98,7 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
           {/* Spacer to match collapsed card's text section height */}
         </section>
       </button>
-    )
+    );
   }
 
   // Collapsed card view
@@ -107,7 +111,8 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       style={
         isExecutive
           ? {
-              boxShadow: '0 0 20px rgba(75, 85, 99, 0.4), 0 0 40px rgba(75, 85, 99, 0.2)',
+              boxShadow:
+                '0 0 20px rgba(75, 85, 99, 0.4), 0 0 40px rgba(75, 85, 99, 0.2)',
             }
           : undefined
       }
@@ -118,7 +123,10 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       aria-label={`View ${member.name}'s profile`}
     >
       {/* Picture Section - Separate and on top */}
-      <section className="w-full rounded-t-card overflow-hidden bg-main-bg relative" style={{ aspectRatio: '13 / 14' }}>
+      <section
+        className="w-full rounded-t-card overflow-hidden bg-main-bg relative"
+        style={{ aspectRatio: '13 / 14' }}
+      >
         {member.image ? (
           <img
             src={member.image}
@@ -140,13 +148,13 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
       {/* Text Section - Separate and below picture */}
       <section className="w-full bg-main-bg rounded-b-card px-6 py-4 text-center">
         {/* Blue Role Text */}
-        <p 
+        <p
           className="text-sm font-bold uppercase mb-0"
           style={{ color: '#007BFF' }}
         >
           {member.role}
         </p>
-        
+
         {/* White Name Text with LinkedIn Icon */}
         <div className="flex items-center justify-center gap-2">
           <h3 className="text-xl font-bold text-main-text">{member.name}</h3>
@@ -158,5 +166,5 @@ export default function TeamMemberCard({ member, onClick, isExpanded = false }: 
         </div>
       </section>
     </button>
-  )
+  );
 }

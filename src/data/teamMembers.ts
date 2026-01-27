@@ -1,20 +1,20 @@
-import { TeamMember } from '../types/team'
+import { TeamMember } from '../types/team';
 
 // Executive images
-import abhinavSwarupImg from '../imgs/executives/abhinav.png'
-import darinImg from '../imgs/executives/darin.png'
-import jenniferImg from '../imgs/executives/jennifer.png'
+import abhinavSwarupImg from '../imgs/executives/abhinav.png';
+import darinImg from '../imgs/executives/darin.png';
+import jenniferImg from '../imgs/executives/jennifer.png';
 
 // Team lead images
-import helenaImg from '../imgs/team leads/helena.png'
-import arnavImg from '../imgs/team leads/arnav.png'
-import danielImg from '../imgs/team leads/daniel.png'
-import bryceImg from '../imgs/team leads/bryce.png'
-import roxanaImg from '../imgs/team leads/roxana.png'
-import martinaImg from '../imgs/team leads/martina.png'
-import sylvieImg from '../imgs/team leads/sylvie.png'
-import aadiImg from '../imgs/team leads/aadi.png'
-import arjunImg from '../imgs/team leads/arjun.png'
+import helenaImg from '../imgs/team leads/helena.png';
+import arnavImg from '../imgs/team leads/arnav.png';
+import danielImg from '../imgs/team leads/daniel.png';
+import bryceImg from '../imgs/team leads/bryce.png';
+import roxanaImg from '../imgs/team leads/roxana.png';
+import martinaImg from '../imgs/team leads/martina.png';
+import sylvieImg from '../imgs/team leads/sylvie.png';
+import aadiImg from '../imgs/team leads/aadi.png';
+import arjunImg from '../imgs/team leads/arjun.png';
 
 export const teamMembers: TeamMember[] = [
   // Executive Board
@@ -152,14 +152,4 @@ export const teamMembers: TeamMember[] = [
     email: 'oliviamartinez@ucsd.edu',
     image: arjunImg,
   },
-
-
-
-
-
-
-
-
-
-
-]
+];
