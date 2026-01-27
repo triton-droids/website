@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import heroBackground from '../assets/hero-background.png';
-import { HeroHeading, BodyText } from './Typography';
+import heroBackground from '../../../assets/hero-background.png';
+import { HeroHeading, BodyText } from '../../../components/Typography';
 
 export default function HeroSection() {
   return (

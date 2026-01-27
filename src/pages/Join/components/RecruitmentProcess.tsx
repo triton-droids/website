@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SectionHeading } from '../Typography';
+import { SectionHeading } from '../../../components/Typography';
 
 interface Step {
   number: number;

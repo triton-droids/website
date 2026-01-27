@@ -1,4 +1,4 @@
-import { SectionHeading, BodyText } from '../Typography';
+import { SectionHeading, BodyText } from '../../../components/Typography';
 
 export default function JoinCTASection() {
   return (

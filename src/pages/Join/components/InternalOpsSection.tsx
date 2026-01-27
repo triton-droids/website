@@ -1,8 +1,8 @@
-import mechanicalIcon from '../../assets/humanoid/mechanical-icon.svg';
-import electricalIcon from '../../assets/humanoid/electrical-icon.svg';
-import embeddedSystemsIcon from '../../assets/humanoid/embedded-systems-icon.svg';
-import machineLearningIcon from '../../assets/humanoid/machine-learning-icon.svg';
-import { SectionHeading, BodyText } from '../Typography';
+import designIcon from '../../../assets/join/design-icon-new.svg';
+import businessIcon from '../../../assets/join/business-icon-new.svg';
+import webdevIcon from '../../../assets/join/webdev-icon.svg';
+import marketingIcon from '../../../assets/join/marketing-icon-new.svg';
+import { SectionHeading, BodyText } from '../../../components/Typography';
 
 interface TeamCardProps {
   icon: string;
@@ -24,34 +24,26 @@ function TeamCard({ icon, name }: TeamCardProps) {
   );
 }
 
-const teams = [
-  { id: 'mechanical', name: 'Mechanical', icon: mechanicalIcon },
-  { id: 'electrical', name: 'Electrical', icon: electricalIcon },
-  {
-    id: 'software-embedded',
-    name: 'Software: Embedded Systems',
-    icon: embeddedSystemsIcon,
-  },
-  {
-    id: 'software-ml',
-    name: 'Software: Machine Learning',
-    icon: machineLearningIcon,
-  },
+const internalOpsTeams = [
+  { id: 'design', name: 'Design', icon: designIcon },
+  { id: 'business', name: 'Business', icon: businessIcon },
+  { id: 'webdev', name: 'Web Development', icon: webdevIcon },
+  { id: 'marketing', name: 'Marketing', icon: marketingIcon },
 ];
 
-export default function HumanoidTeamsSection() {
+export default function InternalOpsSection() {
   return (
     <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center justify-center py-12 md:py-16 lg:py-20 px-6 lg:px-[148px] w-full">
       <div className="flex flex-col w-full max-w-[1216px]">
         <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
-          Humanoid Droid Project
+          Internal
         </SectionHeading>
         <BodyText size="lg" className="text-slate-400">
-          Main Engineering Teams
+          Operations Teams
         </BodyText>
       </div>
       <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-10 items-center justify-center w-full max-w-[1216px]">
-        {teams.map((team) => (
+        {internalOpsTeams.map((team) => (
           <TeamCard key={team.id} icon={team.icon} name={team.name} />
         ))}
       </div>
