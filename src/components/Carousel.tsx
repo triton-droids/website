@@ -200,10 +200,7 @@ export default function Carousel<T = unknown>({
                 !canScrollPrev && !emblaApi
               ))}
 
-        <div
-          className="flex-1 overflow-hidden min-w-0"
-          ref={emblaRef}
-        >
+        <div className="flex-1 overflow-hidden min-w-0" ref={emblaRef}>
           <div className="flex">
             {slides.map((slide, index) => {
               const tweenValue = tweenValues[index] ?? 0;
