@@ -14,7 +14,7 @@ const LinkedInIcon = () => (
     height="18"
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="inline-block"
+    className="inline-block align-middle"
   >
     <rect width="24" height="24" fill="#000" rx="2" />
     <path
@@ -67,13 +67,21 @@ export default function TeamMemberCard({
           className="w-full rounded-t-card overflow-hidden bg-main-bg flex flex-col p-4"
           style={{ aspectRatio: '13 / 14' }}
         >
-          {/* Name - Bold White */}
-          <h2
-            id={nameId}
-            className="text-lg font-bold text-main-text leading-tight mb-0"
-          >
-            {member.name}
-          </h2>
+          {/* Name - Bold White with LinkedIn icon (no link) */}
+          <div className="flex items-baseline gap-2">
+            <h2
+              id={nameId}
+              className="text-lg font-bold text-main-text leading-tight mb-0"
+            >
+              {member.name}
+            </h2>
+            <span
+              className="text-main-text inline-flex shrink-0 align-middle"
+              aria-hidden
+            >
+              <LinkedInIcon />
+            </span>
+          </div>
 
           {/* Role - Yellow */}
           <p
@@ -155,14 +163,15 @@ export default function TeamMemberCard({
           {member.role}
         </p>
 
-        {/* White Name Text with LinkedIn Icon */}
-        <div className="flex items-center justify-center gap-2">
+        {/* White Name Text with LinkedIn icon (no link) */}
+        <div className="flex items-baseline justify-center gap-2">
           <h3 className="text-xl font-bold text-main-text">{member.name}</h3>
-          {member.linkedin && (
-            <span className="text-main-text inline-flex items-center">
-              <LinkedInIcon />
-            </span>
-          )}
+          <span
+            className="text-main-text inline-flex shrink-0 align-middle"
+            aria-hidden
+          >
+            <LinkedInIcon />
+          </span>
         </div>
       </section>
     </button>
