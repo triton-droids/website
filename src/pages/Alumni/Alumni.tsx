@@ -37,9 +37,7 @@ export default function Alumni() {
 
       <section className={SECTION_WRAPPER}>
         <div className={CONTAINER}>
-          <SectionHeading className="mb-8 text-left">
-            Executives
-          </SectionHeading>
+          <SectionHeading className="mb-8 text-left">Executives</SectionHeading>
           <div className={GRID}>
             {executives.map((member) => (
               <AlumniMemberCard key={member.id} member={member} />
@@ -50,9 +48,7 @@ export default function Alumni() {
 
       <section className={`${SECTION_WRAPPER} mt-12`}>
         <div className={CONTAINER}>
-          <SectionHeading className="mb-8 text-left">
-            Team Leads
-          </SectionHeading>
+          <SectionHeading className="mb-8 text-left">Team Leads</SectionHeading>
           <div className={GRID}>
             {teamLeads.map((member) => (
               <AlumniMemberCard key={member.id} member={member} />
