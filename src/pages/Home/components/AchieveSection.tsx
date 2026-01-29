@@ -82,11 +82,12 @@ const slides: SlideData[] = [
 export default function AchieveSection() {
   return (
     <section className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center overflow-hidden">
-      <SectionHeading className="w-full text-left px-6 md:px-12 lg:px-20 xl:px-[100px]">
+      {/* Heading uses same padding as other sections */}
+      <SectionHeading className="w-full max-w-7xl mx-auto text-left px-6 md:px-12 lg:px-16 xl:px-20">
         How We Aim to Achieve Our Mission
       </SectionHeading>
 
-      <div className="flex flex-col gap-12 md:gap-16 lg:gap-[72px] items-center w-full">
+      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center w-full">
         <Carousel
           renderSlide={(slide, _index, tweenValue) => {
             const scale = 0.85 + tweenValue * 0.15;
@@ -100,8 +101,10 @@ export default function AchieveSection() {
                   opacity: opacity,
                 }}
               >
-                <div className="bg-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col lg:flex-row gap-4 md:gap-6 items-center w-full overflow-hidden">
-                  <div className="w-full lg:w-[513px] h-[300px] md:h-[400px] lg:h-[595px] shrink-0 p-4 md:p-6 lg:p-10 lg:pr-4">
+                {/* Card uses percentage-based widths instead of fixed pixels */}
+              <div className="bg-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col lg:flex-row gap-4 md:gap-6 items-center w-full overflow-hidden">
+                  {/* Image takes ~40% on desktop, uses aspect ratio for height */}
+                  <div className="w-full lg:w-2/5 aspect-[4/3] lg:aspect-auto lg:h-auto lg:min-h-[400px] xl:min-h-[500px] shrink-0 p-4 md:p-6 lg:p-8 lg:pr-4">
                     <div className="w-full h-full rounded-[16px] md:rounded-[24px] lg:rounded-[32px] overflow-hidden">
                       <img
                         src={slide.image}

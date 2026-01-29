@@ -6,12 +6,12 @@ const heroImage =
 
 export default function JoinHeroSection() {
   return (
-    <section className="flex flex-col gap-12 lg:gap-20 items-start py-12 lg:py-20 w-full max-w-[1228px] mx-auto px-6">
+    <section className="flex flex-col gap-12 lg:gap-16 xl:gap-20 items-start py-12 lg:py-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
       {/* Title */}
       <HeroHeading className="w-full">Join the Team</HeroHeading>
 
-      {/* Image container - Figma: 530px height, rounded-40px */}
-      <div className="w-full h-[280px] md:h-[380px] lg:h-[450px] xl:h-[530px] rounded-[24px] lg:rounded-[40px] overflow-hidden relative">
+      {/* Image container - uses aspect ratio for consistent proportions */}
+      <div className="w-full aspect-[21/9] rounded-[24px] lg:rounded-[40px] overflow-hidden relative">
         <img
           src={heroImage}
           alt="Triton Droids team presentation"

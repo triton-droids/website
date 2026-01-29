@@ -54,14 +54,15 @@ const slides: Slide[] = [
 
 export default function WhyJoinCarousel() {
   return (
-    <section className="flex flex-col gap-10 lg:gap-20 items-center w-full">
-      <div className="w-full max-w-[1228px] mx-auto px-6">
+    <section className="flex flex-col gap-10 lg:gap-16 xl:gap-20 items-center w-full">
+      {/* Heading matches standard container width */}
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
         <SectionHeading>Why join Triton Droids?</SectionHeading>
       </div>
 
       <Carousel
         slides={slides}
-        slideClassName="flex-[0_0_75%] min-w-0 pl-4 pr-4"
+        slideClassName="flex-[0_0_80%] lg:flex-[0_0_75%] min-w-0 pl-4 pr-4"
         renderSlide={(slide, _index, tweenValue) => {
           const scale = 0.85 + tweenValue * 0.15;
           const opacity = 0.3 + tweenValue * 0.7;
@@ -74,8 +75,10 @@ export default function WhyJoinCarousel() {
                 opacity: opacity,
               }}
             >
-              <div className="w-full max-w-[1050px] bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                <div className="w-full md:w-[320px] lg:w-[420px] xl:w-[513px] h-[250px] md:h-[380px] lg:h-[480px] xl:h-[595px] pl-4 md:pl-6 lg:pl-10 pr-2 md:pr-3 lg:pr-4 py-4 md:py-6 lg:py-10 shrink-0">
+              {/* Card uses percentage widths for image section */}
+              <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                {/* Image section: 40% of card width on desktop */}
+                <div className="w-full md:w-2/5 aspect-[4/3] md:aspect-auto md:min-h-[350px] lg:min-h-[450px] xl:min-h-[500px] pl-4 md:pl-6 lg:pl-8 pr-2 md:pr-3 lg:pr-4 py-4 md:py-6 lg:py-8 shrink-0">
                   <div className="w-full h-full rounded-[16px] lg:rounded-[32px] overflow-hidden">
                     <img
                       src={slide.image}
