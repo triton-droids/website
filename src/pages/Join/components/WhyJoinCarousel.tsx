@@ -17,7 +17,7 @@ const slide4Image =
 interface Slide {
   id: number;
   title: string;
-  description: string;
+  description: JSX.Element;
   image: string;
 }
 
@@ -25,29 +25,49 @@ const slides: Slide[] = [
   {
     id: 1,
     title: 'Real world impact',
-    description:
-      "Here, you won't just be tinkering in a lab. You'll be working on projects that have the potential to make a global difference. Imagine seeing something you helped build in action—whether it's improving agricultural practices in developing countries or disaster response capabilities.",
+    description: (
+      <>
+        Here, you won't just be tinkering in a lab. You'll be working on projects
+        that have the <span className="text-accent">potential to make a global difference</span>. Imagine seeing something you helped build in action—whether it's{' '}
+        <span className="text-accent">improving agricultural practices</span> in developing countries or{' '}
+        <span className="text-accent">disaster response capabilities</span>.
+      </>
+    ),
     image: slide1Image,
   },
   {
     id: 2,
     title: 'Hands-on experience',
-    description:
-      "As an engineering or science student, you want to get your hands dirty. At Triton Droids, you'll dive into the nitty-gritty of robotics, AI, and engineering design. You'll collaborate with fellow students and experts, turning theories into working prototypes.",
+    description: (
+      <>
+        As an engineering or science student, you want to get your hands dirty. At Triton Droids, you'll{' '}
+        <span className="text-accent">dive into the nitty-gritty</span> of robotics, AI, and engineering design. You'll{' '}
+        <span className="text-accent">collaborate</span> with fellow students and experts, turning theories into working prototypes.
+      </>
+    ),
     image: slide2Image,
   },
   {
     id: 3,
     title: 'Jobs, internships, and more',
-    description:
-      "Whether you're looking to beef up your resume, gain practical skills, or start a career in robotics and AI, Triton Droids gives you the platform to do it. The projects you work on here can set you apart in job interviews, graduate school applications, or even your startup ambitions.",
+    description: (
+      <>
+        Whether you're looking to beef up your resume, gain practical skills, or start a career in robotics and AI, Triton Droids gives you the platform to do it. The projects you work on here can{' '}
+        <span className="text-accent">set you apart</span> in job interviews, graduate school applications, or even your startup ambitions.
+      </>
+    ),
     image: slide3Image,
   },
   {
     id: 4,
     title: 'Life long connections',
-    description:
-      "Joining Triton Droids isn't just about the robots—it's about the people. You'll form connections with like-minded students, industry professionals, and mentors that will last well beyond your college years.",
+    description: (
+      <>
+        Joining Triton Droids isn't just about the robots—it's about the people. You'll{' '}
+        <span className="text-accent">form connections</span> with like-minded students, industry professionals, and mentors that will{' '}
+        <span className="text-accent">last well beyond your college years</span>.
+      </>
+    ),
     image: slide4Image,
   },
 ];
@@ -62,7 +82,6 @@ export default function WhyJoinCarousel() {
 
       <Carousel
         slides={slides}
-        slideClassName="flex-[0_0_80%] lg:flex-[0_0_75%] min-w-0 pl-4 pr-4"
         renderSlide={(slide, _index, tweenValue) => {
           const scale = 0.85 + tweenValue * 0.15;
           const opacity = 0.3 + tweenValue * 0.7;
@@ -75,11 +94,10 @@ export default function WhyJoinCarousel() {
                 opacity: opacity,
               }}
             >
-              {/* Card uses percentage widths for image section */}
-              <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                {/* Image section: 40% of card width on desktop */}
-                <div className="w-full md:w-2/5 aspect-[4/3] md:aspect-auto md:min-h-[350px] lg:min-h-[450px] xl:min-h-[500px] pl-4 md:pl-6 lg:pl-8 pr-2 md:pr-3 lg:pr-4 py-4 md:py-6 lg:py-8 shrink-0">
-                  <div className="w-full h-full rounded-[16px] lg:rounded-[32px] overflow-hidden">
+              <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-0 lg:gap-6 items-stretch max-w-[1050px] md:h-[595px] mx-auto">
+                {/* Image section: Reduced from 513px to 420px for more text space */}
+                <div className="w-full md:w-[420px] h-full shrink-0 p-4 md:pt-10 md:pb-10 md:pl-10 md:pr-4 flex items-center justify-center">
+                  <div className="w-full h-full md:w-[360px] md:h-[360px] rounded-[16px] lg:rounded-[32px] overflow-hidden">
                     <img
                       src={slide.image}
                       alt={slide.title}
@@ -88,11 +106,14 @@ export default function WhyJoinCarousel() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
-                  <CardTitle className="font-bold leading-tight">
+                {/* Content section: More space with reduced image, added horizontal padding */}
+                <div className="flex flex-col gap-8 px-8 md:px-10 py-10 flex-1 justify-center">
+                  <h3 className="text-[24px] md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-[449px]">
                     {slide.title}
-                  </CardTitle>
-                  <BodyText>{slide.description}</BodyText>
+                  </h3>
+                  <p className="text-[16px] md:text-[18px] lg:text-[20px] text-main-text leading-[140%] font-normal max-w-[480px]">
+                    {slide.description}
+                  </p>
                 </div>
               </div>
             </div>

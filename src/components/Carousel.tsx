@@ -140,18 +140,18 @@ export default function Carousel<T = unknown>({
       <button
         onClick={onClick}
         disabled={!enabled}
-        className={`size-[66px] rounded-full border-4 border-muted-text flex items-center justify-center transition-all cursor-pointer shrink-0 ${
+        className={`size-12 lg:size-14 xl:size-[66px] rounded-full border-2 lg:border-3 xl:border-4 border-muted-text flex items-center justify-center transition-all cursor-pointer shrink-0 ${
           direction === 'left' ? '' : 'rotate-180'
         } ${enabled ? 'hover:border-main-text hover:bg-main-text/10' : 'opacity-50'}`}
         aria-label={direction === 'left' ? 'Previous slide' : 'Next slide'}
       >
         <svg
-          width="24"
-          height="24"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="text-muted-text"
+          className="text-muted-text lg:w-6 lg:h-6"
         >
           <path
             d="M15 18L9 12L15 6"
@@ -189,7 +189,7 @@ export default function Carousel<T = unknown>({
   return (
     <div className={className}>
       <div
-        className={`flex gap-8 items-center w-full ${containerClassName}`.trim()}
+        className={`flex gap-4 lg:gap-6 xl:gap-8 items-center w-full ${containerClassName}`.trim()}
       >
         {showArrows &&
           (renderArrowButton
@@ -201,7 +201,7 @@ export default function Carousel<T = unknown>({
               ))}
 
         <div
-          className="flex-1 overflow-hidden max-w-[1400px] -ml-4 pl-4"
+          className="flex-1 overflow-hidden max-w-full lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] -ml-4 pl-4"
           ref={emblaRef}
         >
           <div className="flex">
@@ -211,7 +211,7 @@ export default function Carousel<T = unknown>({
                 <div
                   key={index}
                   className={
-                    slideClassName || 'flex-[0_0_85%] min-w-0 pl-4 pr-4'
+                    slideClassName || 'flex-[0_0_90%] md:flex-[0_0_85%] lg:flex-[0_0_80%] xl:flex-[0_0_70%] min-w-0 pl-4 pr-4'
                   }
                 >
                   {renderSlide(slide, index, tweenValue)}

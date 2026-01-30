@@ -3,7 +3,10 @@
     "allow": [
       "mcp__figma__get_design_context",
       "Bash(curl:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx playwright install chromium)",
+      "Bash(npx playwright test:*)"
     ]
   }
 }
