@@ -1,7 +1,7 @@
 import Carousel from '../../../components/Carousel';
 
 import slide1Image from '../../../assets/carousel/slide-1.jpg';
-import { SectionHeading, CardTitle } from '../../../components/Typography';
+import { SectionHeading } from '../../../components/Typography';
 import slide2Image from '../../../assets/carousel/slide-2.jpg';
 import slide3Image from '../../../assets/carousel/slide-3.jpg';
 import slide4Image from '../../../assets/carousel/slide-4.jpg';
@@ -82,11 +82,12 @@ const slides: SlideData[] = [
 export default function AchieveSection() {
   return (
     <section className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center overflow-hidden">
-      <SectionHeading className="w-full text-left px-6 md:px-12 lg:px-20 xl:px-[100px]">
+      {/* Heading uses same padding as other sections */}
+      <SectionHeading className="w-full max-w-7xl mx-auto text-left px-6 md:px-12 lg:px-16 xl:px-20">
         How We Aim to Achieve Our Mission
       </SectionHeading>
 
-      <div className="flex flex-col gap-12 md:gap-16 lg:gap-[72px] items-center w-full">
+      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center w-full">
         <Carousel
           renderSlide={(slide, _index, tweenValue) => {
             const scale = 0.85 + tweenValue * 0.15;
@@ -100,9 +101,10 @@ export default function AchieveSection() {
                   opacity: opacity,
                 }}
               >
-                <div className="bg-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col lg:flex-row gap-4 md:gap-6 items-center w-full overflow-hidden">
-                  <div className="w-full lg:w-[513px] h-[300px] md:h-[400px] lg:h-[595px] shrink-0 p-4 md:p-6 lg:p-10 lg:pr-4">
-                    <div className="w-full h-full rounded-[16px] md:rounded-[24px] lg:rounded-[32px] overflow-hidden">
+                <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-0 lg:gap-6 items-stretch max-w-[1050px] md:h-[595px] mx-auto">
+                  {/* Image section: Reduced from 513px to 420px for more text space */}
+                  <div className="w-full md:w-[420px] h-full shrink-0 p-4 md:pt-10 md:pb-10 md:pl-10 md:pr-4 flex items-center justify-center">
+                    <div className="w-full h-full md:w-[360px] md:h-[360px] rounded-[16px] lg:rounded-[32px] overflow-hidden">
                       <img
                         src={slide.image}
                         alt={slide.title}
@@ -111,13 +113,16 @@ export default function AchieveSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-10 flex-1">
-                    <CardTitle>{slide.title}</CardTitle>
-                    <ul className="flex flex-col gap-4 md:gap-5 lg:gap-6 list-disc ml-6 md:ml-8 lg:ml-9">
+                  {/* Content section: More space with reduced image, added horizontal padding */}
+                  <div className="flex flex-col gap-8 px-8 md:px-10 py-10 flex-1 justify-center">
+                    <h3 className="text-[24px] md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-[449px]">
+                      {slide.title}
+                    </h3>
+                    <ul className="flex flex-col gap-6 list-disc ml-9 max-w-[449px]">
                       {slide.points.map((point, pointIndex) => (
                         <li
                           key={pointIndex}
-                          className="text-base font-light md:text-lg lg:text-xl xl:text-2xl text-main-text leading-relaxed"
+                          className="text-[16px] md:text-[18px] lg:text-[20px] text-main-text leading-[140%] font-normal"
                         >
                           <span className="text-accent">{point.highlight}</span>
                           {point.text}

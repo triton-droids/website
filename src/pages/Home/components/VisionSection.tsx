@@ -22,7 +22,8 @@ function VisionCard({ icon, title, children }: VisionCardProps) {
       <CardTitle className="text-center mb-4 md:mb-5 lg:mb-6 font-normal">
         {title}
       </CardTitle>
-      <BodyText size="lg" className="text-center max-w-[280px] mx-auto">
+      {/* Let card text flow naturally within the flex container */}
+      <BodyText size="lg" className="text-center mx-auto">
         {children}
       </BodyText>
     </div>

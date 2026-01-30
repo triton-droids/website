@@ -17,7 +17,7 @@ export default function RecruitmentProcess() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
   return (
-    <section className="flex flex-col gap-4 md:gap-6 items-start py-12 lg:py-20 w-full max-w-[1158px] mx-auto px-6">
+    <section className="flex flex-col gap-4 md:gap-6 items-start py-12 lg:py-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
       {/* Title */}
       <SectionHeading>Recruitment Process</SectionHeading>
 

@@ -5,7 +5,7 @@ import { HeroHeading, BodyText } from '../../../components/Typography';
 
 export default function HeroSection() {
   return (
-    <section className="relative flex items-center justify-center w-full min-h-[500px] md:min-h-[600px] lg:min-h-[700px] px-6 md:px-12 lg:px-20 xl:px-[100px] bg-main-bg">
+    <section className="relative flex items-center justify-center w-full min-h-[50vh] lg:min-h-[70vh] px-6 md:px-12 lg:px-16 xl:px-20 bg-main-bg">
       {/* Background image */}
       <div className="absolute inset-0 mix-blend-lighten overflow-hidden pointer-events-none">
         <img
@@ -15,20 +15,22 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Content */}
-      <div className="relative flex flex-col gap-8 md:gap-12 lg:gap-16 xl:gap-[80px] items-start w-full max-w-[1400px]">
-        <div className="flex flex-col gap-4 md:gap-6 lg:gap-[24px] items-start text-main-text">
-          <HeroHeading className="max-w-full xl:max-w-[1031px]">
+      {/* Content - max-w-7xl = 1280px, consistent with other sections */}
+      <div className="relative flex flex-col gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-start w-full max-w-7xl">
+        <div className="flex flex-col gap-4 md:gap-6 items-start text-main-text">
+          {/* max-w-4xl = 896px, fits comfortably on 13" laptops */}
+          <HeroHeading className="max-w-full xl:max-w-4xl">
             Engineering What Comes Next
           </HeroHeading>
-          <BodyText size="lg" className="max-w-full lg:max-w-[792px]">
+          {/* max-w-3xl = 768px, good for readability */}
+          <BodyText size="lg" className="max-w-full lg:max-w-3xl">
             We&apos;re building autonomous humanoid robots to expand global
             access to robotics—powered by students, experts, and industry
             partners working toward a more equitable future.
           </BodyText>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 lg:gap-[24px] items-start">
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 items-start">
           <a
             href="#projects"
             onClick={(event) => {

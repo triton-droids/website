@@ -121,7 +121,7 @@ export default function ProjectsSection() {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="rotate-[-90deg] group-hover:translate-x-1 transition-transform"
+                className="rotate-90 group-hover:translate-x-1 transition-transform"
               >
                 <path
                   d="M12 5L12 19M12 5L6 11M12 5L18 11"

@@ -12,11 +12,11 @@ export default function ProjectDetailCard({
   description,
 }: ProjectDetailCardProps) {
   return (
-    <div className="border-[6px] border-[#2A2B2D] rounded-[40px] flex flex-col lg:flex-row gap-10 lg:gap-[80px] items-center px-8 md:px-16 lg:px-[97px] py-8 md:py-10 lg:py-[48px] bg-main-bg">
-      {/* Icon and Title Section - Figma: column layout, centered, fixed width for alignment */}
-      <div className="flex flex-col gap-4 lg:gap-[24px] items-center justify-center w-full lg:w-[200px] shrink-0">
-        {/* Icon - Figma: 88px */}
-        <div className="w-[60px] h-[60px] md:w-[74px] md:h-[74px] lg:w-[88px] lg:h-[88px] flex items-center justify-center shrink-0">
+    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-center px-6 md:px-10 lg:px-12 xl:px-16 py-6 md:py-8 lg:py-10 xl:py-12 bg-main-bg">
+      {/* Icon and Title Section - uses min-width for alignment consistency */}
+      <div className="flex flex-col gap-4 lg:gap-6 items-center justify-center w-full lg:w-auto lg:min-w-[160px] xl:min-w-[180px] shrink-0">
+        {/* Icon - responsive sizing */}
+        <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-[88px] xl:h-[88px] flex items-center justify-center shrink-0">
           <img
             src={icon}
             alt={title}
@@ -24,14 +24,14 @@ export default function ProjectDetailCard({
           />
         </div>
 
-        {/* Title - aligned with other CardTitle usage */}
+        {/* Title */}
         <CardTitle className="font-normal text-slate-400 leading-none text-center">
           {title}
         </CardTitle>
       </div>
 
-      {/* Description - aligned with other card body text */}
-      <BodyText className="lg:w-[676px] text-center lg:text-left">
+      {/* Description - flex-1 to fill remaining space */}
+      <BodyText className="flex-1 text-center lg:text-left">
         {description}
       </BodyText>
     </div>

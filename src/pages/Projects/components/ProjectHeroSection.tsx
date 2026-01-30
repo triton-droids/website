@@ -14,10 +14,12 @@ export default function ProjectHeroSection({
   asciiArtText,
 }: ProjectHeroSectionProps) {
   return (
-    <section className="flex flex-col gap-10 items-start px-6 md:px-20 lg:px-[148px] w-full">
-      <div className="flex flex-col gap-4 lg:gap-6 items-start w-full max-w-[1228px]">
+    <section className="flex flex-col gap-10 items-start px-6 md:px-12 lg:px-16 xl:px-20 w-full max-w-7xl mx-auto">
+      <div className="flex flex-col gap-4 lg:gap-6 items-start w-full">
         <HeroHeading>{title}</HeroHeading>
-        <BodyText size="base">{description}</BodyText>
+        <BodyText size="lg" className="max-w-4xl">
+          {description}
+        </BodyText>
       </div>
 
       <div className="w-full rounded-[40px] overflow-hidden bg-[#1A1A1A]">

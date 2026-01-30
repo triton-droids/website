@@ -11,7 +11,8 @@ interface TeamCardProps {
 
 function TeamCard({ icon, name }: TeamCardProps) {
   return (
-    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] w-full sm:w-[240px] md:w-[260px] lg:w-[274px] h-[300px] md:h-[340px] lg:h-[375px] flex flex-col items-center justify-center gap-4 shrink-0">
+    // Use aspect ratio instead of fixed height
+    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] w-full sm:w-56 md:w-60 lg:w-64 xl:w-[274px] aspect-[3/4] flex flex-col items-center justify-center gap-4 shrink-0">
       <img
         src={icon}
         alt={name}
@@ -33,8 +34,8 @@ const internalOpsTeams = [
 
 export default function InternalOpsSection() {
   return (
-    <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center justify-center py-12 md:py-16 lg:py-20 px-6 lg:px-[148px] w-full">
-      <div className="flex flex-col w-full max-w-[1216px]">
+    <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center justify-center py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-16 xl:px-20 w-full">
+      <div className="flex flex-col w-full max-w-7xl">
         <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
           Internal
         </SectionHeading>
@@ -42,7 +43,7 @@ export default function InternalOpsSection() {
           Operations Teams
         </BodyText>
       </div>
-      <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-10 items-center justify-center w-full max-w-[1216px]">
+      <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full max-w-7xl">
         {internalOpsTeams.map((team) => (
           <TeamCard key={team.id} icon={team.icon} name={team.name} />
         ))}
