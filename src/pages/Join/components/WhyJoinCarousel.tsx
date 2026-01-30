@@ -1,9 +1,5 @@
 import Carousel from '../../../components/Carousel';
-import {
-  SectionHeading,
-  CardTitle,
-  BodyText,
-} from '../../../components/Typography';
+import { SectionHeading } from '../../../components/Typography';
 
 const slide1Image =
   'https://www.figma.com/api/mcp/asset/e5765e1e-d063-4905-a164-dbf2388ca35a';
@@ -27,9 +23,14 @@ const slides: Slide[] = [
     title: 'Real world impact',
     description: (
       <>
-        Here, you won't just be tinkering in a lab. You'll be working on projects
-        that have the <span className="text-accent">potential to make a global difference</span>. Imagine seeing something you helped build in action—whether it's{' '}
-        <span className="text-accent">improving agricultural practices</span> in developing countries or{' '}
+        Here, you won&apos;t just be tinkering in a lab. You&apos;ll be working
+        on projects that have the{' '}
+        <span className="text-accent">
+          potential to make a global difference
+        </span>
+        . Imagine seeing something you helped build in action—whether it&apos;s{' '}
+        <span className="text-accent">improving agricultural practices</span> in
+        developing countries or{' '}
         <span className="text-accent">disaster response capabilities</span>.
       </>
     ),
@@ -40,9 +41,12 @@ const slides: Slide[] = [
     title: 'Hands-on experience',
     description: (
       <>
-        As an engineering or science student, you want to get your hands dirty. At Triton Droids, you'll{' '}
-        <span className="text-accent">dive into the nitty-gritty</span> of robotics, AI, and engineering design. You'll{' '}
-        <span className="text-accent">collaborate</span> with fellow students and experts, turning theories into working prototypes.
+        As an engineering or science student, you want to get your hands dirty.
+        At Triton Droids, you&apos;ll{' '}
+        <span className="text-accent">dive into the nitty-gritty</span> of
+        robotics, AI, and engineering design. You&apos;ll{' '}
+        <span className="text-accent">collaborate</span> with fellow students
+        and experts, turning theories into working prototypes.
       </>
     ),
     image: slide2Image,
@@ -52,8 +56,11 @@ const slides: Slide[] = [
     title: 'Jobs, internships, and more',
     description: (
       <>
-        Whether you're looking to beef up your resume, gain practical skills, or start a career in robotics and AI, Triton Droids gives you the platform to do it. The projects you work on here can{' '}
-        <span className="text-accent">set you apart</span> in job interviews, graduate school applications, or even your startup ambitions.
+        Whether you&apos;re looking to beef up your resume, gain practical
+        skills, or start a career in robotics and AI, Triton Droids gives you
+        the platform to do it. The projects you work on here can{' '}
+        <span className="text-accent">set you apart</span> in job interviews,
+        graduate school applications, or even your startup ambitions.
       </>
     ),
     image: slide3Image,
@@ -63,9 +70,12 @@ const slides: Slide[] = [
     title: 'Life long connections',
     description: (
       <>
-        Joining Triton Droids isn't just about the robots—it's about the people. You'll{' '}
-        <span className="text-accent">form connections</span> with like-minded students, industry professionals, and mentors that will{' '}
-        <span className="text-accent">last well beyond your college years</span>.
+        Joining Triton Droids isn&apos;t just about the robots—it&apos;s about
+        the people. You&apos;ll{' '}
+        <span className="text-accent">form connections</span> with like-minded
+        students, industry professionals, and mentors that will{' '}
+        <span className="text-accent">last well beyond your college years</span>
+        .
       </>
     ),
     image: slide4Image,

@@ -211,7 +211,8 @@ export default function Carousel<T = unknown>({
                 <div
                   key={index}
                   className={
-                    slideClassName || 'flex-[0_0_90%] md:flex-[0_0_85%] lg:flex-[0_0_80%] xl:flex-[0_0_70%] min-w-0 pl-4 pr-4'
+                    slideClassName ||
+                    'flex-[0_0_90%] md:flex-[0_0_85%] lg:flex-[0_0_80%] xl:flex-[0_0_70%] min-w-0 pl-4 pr-4'
                   }
                 >
                   {renderSlide(slide, index, tweenValue)}

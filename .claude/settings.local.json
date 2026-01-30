@@ -6,7 +6,8 @@
       "Bash(npm install:*)",
       "Bash(npm run dev:*)",
       "Bash(npx playwright install chromium)",
-      "Bash(npx playwright test:*)"
+      "Bash(npx playwright test:*)",
+      "Bash(npm run lint)"
     ]
   }
 }

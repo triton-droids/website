@@ -17,7 +17,9 @@ export default function ProjectHeroSection({
     <section className="flex flex-col gap-10 items-start px-6 md:px-12 lg:px-16 xl:px-20 w-full max-w-7xl mx-auto">
       <div className="flex flex-col gap-4 lg:gap-6 items-start w-full">
         <HeroHeading>{title}</HeroHeading>
-        <BodyText size="lg" className="max-w-4xl">{description}</BodyText>
+        <BodyText size="lg" className="max-w-4xl">
+          {description}
+        </BodyText>
       </div>
 
       <div className="w-full rounded-[40px] overflow-hidden bg-[#1A1A1A]">
