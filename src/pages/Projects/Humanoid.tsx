@@ -86,7 +86,7 @@ export default function Humanoid() {
                     <ModelViewer
                       modelUrl={humanoidProject.modelUrl}
                       alt={`${humanoidProject.title} Lower Body Model`}
-                      className="rounded-[32px] lg:rounded-[40px] bg-[#E0E0E0] h-[360px] md:h-[420px] lg:h-[480px]"
+                      className="rounded-[32px] lg:rounded-[40px] bg-black h-[360px] md:h-[420px] lg:h-[480px]"
                     />
                   </div>
                 </div>

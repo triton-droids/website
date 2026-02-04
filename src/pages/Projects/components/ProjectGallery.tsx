@@ -34,7 +34,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
     <section className="flex flex-col items-center py-20 w-full">
       <div className="w-full">
         <div
-          className="h-[670px] overflow-hidden"
+          className="h-[500px] overflow-hidden"
           ref={emblaRef}
           aria-label="Humanoid project gallery"
           onClick={() => autoScrollPlugin.stop()}
@@ -43,7 +43,7 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             {images.map((image, index) => (
               <div
                 key={`${image}-${index}`}
-                className={`flex-[0_0_auto] w-[420px] sm:w-[460px] md:w-[520px] lg:w-[552px] h-[670px] pr-8 ${
+                className={`flex-[0_0_auto] w-[320px] sm:w-[350px] md:w-[400px] lg:w-[420px] h-[500px] pr-8 ${
                   index === 0 ? 'pl' : ''
                 }`}
               >
