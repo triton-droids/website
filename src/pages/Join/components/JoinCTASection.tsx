@@ -17,8 +17,8 @@ export default function JoinCTASection() {
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <BodyText size="lg" className="text-white w-full">
           Thanks for your interest!{' '}
-          <span className="text-accent">Applications are currently closed</span>.
-          Check back at the end of next quarter to see what teams we&apos;re
+          <span className="text-accent">Applications are currently closed</span>
+          . Check back at the end of next quarter to see what teams we&apos;re
           accepting new members for.
         </BodyText>
       </div>
