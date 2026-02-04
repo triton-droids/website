@@ -7,6 +7,8 @@ interface ProjectHeroSectionProps {
   asciiArtAsset?: string;
   asciiArtText?: string;
   modelViewerUrl?: string;
+  mediaWrapperClassName?: string;
+  mediaClassName?: string;
 }
 
 export default function ProjectHeroSection({
@@ -15,7 +17,16 @@ export default function ProjectHeroSection({
   asciiArtAsset,
   asciiArtText,
   modelViewerUrl,
+  mediaWrapperClassName = '',
+  mediaClassName = '',
 }: ProjectHeroSectionProps) {
+  const wrapperClassName = [
+    'w-full rounded-[40px] overflow-hidden',
+    mediaWrapperClassName || 'bg-[#1A1A1A]',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <section className="flex flex-col gap-10 items-start px-6 md:px-12 lg:px-16 xl:px-20 w-full max-w-7xl mx-auto">
       <div className="flex flex-col gap-4 lg:gap-6 items-start w-full">
@@ -25,14 +36,14 @@ export default function ProjectHeroSection({
         </BodyText>
       </div>
 
-      <div className="w-full rounded-[40px] overflow-hidden bg-[#1A1A1A]">
+      <div className={wrapperClassName}>
         {modelViewerUrl ? (
           <ModelViewer modelUrl={modelViewerUrl} alt={`${title} 3D Model`} />
         ) : asciiArtAsset ? (
           <img
             src={asciiArtAsset}
             alt="ASCII Art"
-            className="w-full h-auto object-cover"
+            className={`w-full h-auto object-cover ${mediaClassName}`.trim()}
           />
         ) : asciiArtText ? (
           <pre className="text-xs md:text-sm lg:text-base text-main-text font-mono whitespace-pre overflow-x-auto p-8 md:p-12">

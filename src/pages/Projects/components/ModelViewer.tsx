@@ -5,17 +5,27 @@ interface ModelViewerProps {
   modelUrl?: string;
   fallbackImage?: string;
   alt?: string;
+  className?: string;
 }
 
 export default function ModelViewer({
   modelUrl,
   fallbackImage,
   alt = '3D Model',
+  className = '',
 }: ModelViewerProps) {
+  const containerClassName = [
+    'w-full rounded-[24px] overflow-hidden shadow-xl ring-1 ring-white/[0.06]',
+    modelUrl
+      ? 'p-0 flex items-center justify-center h-[500px] md:h-[600px] bg-[#141416]'
+      : 'p-8 md:p-12 bg-[#2A2B2D]',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div
-      className={`w-full rounded-[24px] overflow-hidden shadow-xl ring-1 ring-white/[0.06] ${modelUrl ? 'p-0 flex items-center justify-center h-[500px] md:h-[600px] bg-[#141416]' : 'p-8 md:p-12 bg-[#2A2B2D]'}`}
-    >
+    <div className={containerClassName}>
       {modelUrl ? (
         <model-viewer
           src={modelUrl}
