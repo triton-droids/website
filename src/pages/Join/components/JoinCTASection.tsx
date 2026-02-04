@@ -5,21 +5,23 @@ export default function JoinCTASection() {
   const isApplicationOpen = false;
 
   return (
-    <section className="flex flex-col gap-6 lg:gap-10 items-center px-6 md:px-12 lg:px-16 xl:px-20 py-12 lg:py-20 w-full max-w-7xl mx-auto">
+    <section className="flex flex-col gap-6 lg:gap-10 items-center py-12 lg:py-20 w-full">
       {/* Title */}
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <SectionHeading className="flex-1">
           Ready to build an amazing future?
         </SectionHeading>
       </div>
 
       {/* Description with highlighted text */}
-      <BodyText size="lg" className="text-white w-full">
-        Thanks for your interest!{' '}
-        <span className="text-accent">Applications are currently closed</span>.
-        Check back at the end of next quarter to see what teams we&apos;re
-        accepting new members for.
-      </BodyText>
+      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+        <BodyText size="lg" className="text-white w-full">
+          Thanks for your interest!{' '}
+          <span className="text-accent">Applications are currently closed</span>.
+          Check back at the end of next quarter to see what teams we&apos;re
+          accepting new members for.
+        </BodyText>
+      </div>
 
       {/* Button - disabled when applications closed */}
       <button

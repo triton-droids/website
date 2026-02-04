@@ -17,13 +17,15 @@ export default function RecruitmentProcess() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
   return (
-    <section className="flex flex-col gap-4 md:gap-6 items-start py-12 lg:py-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
-      {/* Title */}
-      <SectionHeading>Recruitment Process</SectionHeading>
+    <section className="flex flex-col gap-10 md:gap-14 lg:gap-20 items-start py-12 lg:py-20 w-full">
+      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+        {/* Title */}
+        <SectionHeading>Your Path to the team</SectionHeading>
+      </div>
 
       {/* Steps container */}
       <div
-        className="relative w-full h-[100px]"
+        className="relative w-full h-[100px] max-w-[1158px] mx-auto px-6 md:px-12 lg:px-[148px]"
         onMouseLeave={() => setHoveredStep(null)}
       >
         {/* Default state - all steps in a row */}

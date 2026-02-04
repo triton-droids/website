@@ -34,19 +34,23 @@ const internalOpsTeams = [
 
 export default function InternalOpsSection() {
   return (
-    <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center justify-center py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-16 xl:px-20 w-full">
-      <div className="flex flex-col w-full max-w-7xl">
-        <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
-          Internal
-        </SectionHeading>
-        <BodyText size="lg" className="text-slate-400">
-          Operations Teams
-        </BodyText>
+    <section className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-start justify-center py-12 md:py-16 lg:py-20 w-full">
+      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+        <div className="flex flex-col w-full">
+          <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
+            Internal
+          </SectionHeading>
+          <BodyText size="lg" className="text-slate-400">
+            Operations Teams
+          </BodyText>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full max-w-7xl">
-        {internalOpsTeams.map((team) => (
-          <TeamCard key={team.id} icon={team.icon} name={team.name} />
-        ))}
+      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+        <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
+          {internalOpsTeams.map((team) => (
+            <TeamCard key={team.id} icon={team.icon} name={team.name} />
+          ))}
+        </div>
       </div>
     </section>
   );
