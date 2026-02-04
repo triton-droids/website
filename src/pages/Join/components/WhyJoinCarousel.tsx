@@ -1,14 +1,9 @@
 import Carousel from '../../../components/Carousel';
 import { SectionHeading } from '../../../components/Typography';
-
-const slide1Image =
-  'https://www.figma.com/api/mcp/asset/e5765e1e-d063-4905-a164-dbf2388ca35a';
-const slide2Image =
-  'https://www.figma.com/api/mcp/asset/707c4e7c-5ab3-4893-a606-7c1fa1e9eb21';
-const slide3Image =
-  'https://www.figma.com/api/mcp/asset/7df99e02-f063-40d1-bde6-861e40bc7be3';
-const slide4Image =
-  'https://www.figma.com/api/mcp/asset/499b1824-7e2f-4e6a-b8de-d5e77760d2d9';
+import slide1Image from '../../../assets/join/join-carousel-1.png';
+import slide2Image from '../../../assets/join/join-carousel-2.jpg';
+import slide3Image from '../../../assets/join/join-carousel-3.png';
+import slide4Image from '../../../assets/join/join-carousel-4.png';
 
 interface Slide {
   id: number;

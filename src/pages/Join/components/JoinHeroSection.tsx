@@ -1,8 +1,5 @@
 import { HeroHeading } from '../../../components/Typography';
-
-// Hero image from Figma - team presentation photo
-const heroImage =
-  'https://www.figma.com/api/mcp/asset/1a82298a-e33b-4c2b-a896-e3e3944414bd';
+import heroImage from '../../../assets/join/join-hero.png';
 
 export default function JoinHeroSection() {
   return (
