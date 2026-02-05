@@ -11,19 +11,25 @@ interface VisionCardProps {
   icon: string;
   title: string;
   children: React.ReactNode;
+  bodyWidthClass?: string;
 }
 
-function VisionCard({ icon, title, children }: VisionCardProps) {
+function VisionCard({ icon, title, children, bodyWidthClass }: VisionCardProps) {
   return (
-    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col items-center px-4 md:px-6 pt-6 md:pt-8 lg:pt-10 pb-8 md:pb-12 lg:pb-16 flex-1 basis-0 min-w-0">
-      <div className="size-16 md:size-20 lg:size-[88px] flex items-center justify-center shrink-0 mb-6 md:mb-8 lg:mb-10">
+    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col items-center justify-center gap-6 md:gap-8 lg:gap-10 px-6 md:px-8 lg:px-[70px] py-6 md:py-8 lg:py-[40px] flex-1 basis-0 min-w-0 lg:h-[558px]">
+      <div className="size-16 md:size-20 lg:size-[88px] flex items-center justify-center shrink-0">
         <img alt="" className="max-w-full max-h-full" src={icon} />
       </div>
-      <CardTitle className="text-center mb-4 md:mb-5 lg:mb-6 font-normal">
+      <CardTitle className="text-center font-normal text-2xl md:text-3xl lg:text-[32px] xl:text-[32px] leading-none">
         {title}
       </CardTitle>
       {/* Let card text flow naturally within the flex container */}
-      <BodyText size="lg" className="text-center mx-auto">
+      <BodyText
+        size="sm"
+        className={`text-center mx-auto font-normal leading-normal ${
+          bodyWidthClass ?? 'max-w-[254px]'
+        }`}
+      >
         {children}
       </BodyText>
     </div>
@@ -32,12 +38,16 @@ function VisionCard({ icon, title, children }: VisionCardProps) {
 
 export default function VisionSection() {
   return (
-    <section className="flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center pb-12 md:pb-16 lg:pb-20 pt-6 md:pt-8 lg:pt-10 px-6 md:px-12 lg:px-20 xl:px-[100px] bg-main-bg">
-      <SectionHeading className="w-full text-left">
+    <section className="flex flex-col gap-10 md:gap-16 lg:gap-[80px] items-center justify-center pb-12 md:pb-16 lg:pb-20 pt-6 md:pt-8 lg:pt-10 px-6 md:px-12 lg:px-[100px] xl:px-[148px] bg-main-bg">
+      <SectionHeading className="w-full text-left font-bold text-3xl md:text-4xl lg:text-[64px]">
         A Future Worth Building
       </SectionHeading>
       <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-9 items-stretch w-full max-w-[1400px]">
-        <VisionCard icon={challengeIcon} title="Our Challenge">
+        <VisionCard
+          icon={challengeIcon}
+          title="Our Challenge"
+          bodyWidthClass="max-w-[254px]"
+        >
           At Triton Droids, we&apos;re taking on one of the biggest challenges
           of our time:{' '}
           <span className="text-accent">
@@ -46,7 +56,11 @@ export default function VisionSection() {
           that can level the playing field in global production.
         </VisionCard>
 
-        <VisionCard icon={missionIcon} title="Our Mission">
+        <VisionCard
+          icon={missionIcon}
+          title="Our Mission"
+          bodyWidthClass="max-w-[237px]"
+        >
           To{' '}
           <span className="text-accent">
             design robots that can work in any environment
@@ -56,7 +70,11 @@ export default function VisionSection() {
           been left behind by technology.
         </VisionCard>
 
-        <VisionCard icon={focusIcon} title="Our Focus">
+        <VisionCard
+          icon={focusIcon}
+          title="Our Focus"
+          bodyWidthClass="max-w-[244px]"
+        >
           <span className="text-accent">Bridging the tech gap</span> between the
           rich and poor countries can make an incremental difference in value
           creation by <span className="text-accent">over $2 trillion</span>.
