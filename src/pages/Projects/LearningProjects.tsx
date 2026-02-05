@@ -21,7 +21,7 @@ const projects = [
       'The ARCTOS Arm is an industrial-scale, six degree of freedom (6 DoF) robotic arm designed to advance research in classical control, learning-based control, and computer vision. As an open source project, Triton Droids aims to expand its capabilities by developing and sharing new software packages and 3D printable components with the broader robotics community. The arm will integrate with cutting-edge technologies such as the Amazing Hand by Pollen Robotics and Vision-Language-Action (VLA) models, enabling intelligent, general-purpose task performance and pushing the limits of autonomous manipulation.',
   },
   {
-    title: 'Telearm Project',
+    title: 'SO101 Robot Arms',
     description:
       'TThe SO101 - SO100 Robot Arms are compact, five degree of freedom (5 DoF) robotic systems designed as the primary testbed for reinforcement learning and Vision Language Action (VLA) model development. Their small form factor enables rapid experimentation and scalable testing, allowing the Simulations Team to prototype and refine intelligent control algorithms before deploying them onto the main humanoid robot.',
   },
