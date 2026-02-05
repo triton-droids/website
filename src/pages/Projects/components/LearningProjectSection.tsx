@@ -12,10 +12,12 @@ export default function LearningProjectSection({
 }: LearningProjectSectionProps) {
   return (
     <div className="flex flex-col gap-20 md:gap-32 w-full max-w-[1228px]">
-      <div className="rounded-[40px] bg-[#1A1A1A] p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row gap-8 lg:gap-12 items-start lg:items-center">
-        <SectionHeading className="!text-accent !font-light shrink-0 lg:max-w-[280px]">
-          {title}
-        </SectionHeading>
+      <div className="rounded-[40px] bg-[#1A1A1A] p-8 md:p-10 lg:p-12 flex flex-col lg:flex-row gap-8 lg:gap-12 items-center lg:items-center">
+        <div className="w-full lg:w-[280px] lg:max-w-[280px] shrink-0">
+          <SectionHeading className="!text-accent !font-light text-center">
+            {title}
+          </SectionHeading>
+        </div>
         <BodyText size="base" className="flex-1">
           {description}
         </BodyText>
