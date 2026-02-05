@@ -11,7 +11,7 @@ const ieeeRobocupProject = {
   sections: [
     {
       icon: whatIsRobocupIcon,
-      title: 'What is RoboCup',
+      title: 'What is\nRoboCup',
       description:
         'RoboCup brings together brilliant minds from all over the world, including both PhD laboratories and industry grade robotics companies, to compete in a thrilling showcase of autonomous humanoid soccer.',
     },
