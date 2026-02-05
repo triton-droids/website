@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home/Home';
 import Join from './pages/Join/Join';
 import Team from './pages/Team/Team';
@@ -14,6 +15,7 @@ import Alumni from './pages/Alumni/Alumni';
 function App() {
   return (
     <Layout>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<Join />} />
