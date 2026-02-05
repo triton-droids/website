@@ -14,7 +14,12 @@ interface VisionCardProps {
   bodyWidthClass?: string;
 }
 
-function VisionCard({ icon, title, children, bodyWidthClass }: VisionCardProps) {
+function VisionCard({
+  icon,
+  title,
+  children,
+  bodyWidthClass,
+}: VisionCardProps) {
   return (
     <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] flex flex-col items-center justify-center gap-6 md:gap-8 lg:gap-10 px-6 md:px-8 lg:px-[70px] py-6 md:py-8 lg:py-[40px] flex-1 basis-0 min-w-0 lg:h-[558px]">
       <div className="size-16 md:size-20 lg:size-[88px] flex items-center justify-center shrink-0">

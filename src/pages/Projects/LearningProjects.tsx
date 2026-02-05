@@ -2,7 +2,6 @@ import ProjectHeroSection from './components/ProjectHeroSection';
 import LearningProjectSection from './components/LearningProjectSection';
 import ProjectGallery from './components/ProjectGallery';
 import learningAsciiArt from '../../assets/projects/hero/learning-ascii-art.svg';
-import arctosModel from '../../assets/models/Arctos 0.glb';
 import so101Model from '../../assets/models/SO101.glb';
 import galleryImage1 from '../../assets/projects/humanoid-gallery/gallery-1.jpg';
 import galleryImage2 from '../../assets/projects/humanoid-gallery/gallery-2.jpg';
@@ -28,7 +27,7 @@ const projects = [
     title: 'ARCTOS Robot Arm',
     description:
       'The ARCTOS Arm is an industrial-scale, six degree of freedom (6 DoF) robotic arm designed to advance research in classical control, learning-based control, and computer vision. As an open source project, Triton Droids aims to expand its capabilities by developing and sharing new software packages and 3D printable components with the broader robotics community. The arm will integrate with cutting-edge technologies such as the Amazing Hand by Pollen Robotics and Vision-Language-Action (VLA) models, enabling intelligent, general-purpose task performance and pushing the limits of autonomous manipulation.',
-    modelUrl: arctosModel,
+    modelUrl: undefined as string | undefined,
   },
   {
     title: 'SO101 Robot Arms',
