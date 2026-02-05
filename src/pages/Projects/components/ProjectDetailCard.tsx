@@ -13,8 +13,8 @@ export default function ProjectDetailCard({
 }: ProjectDetailCardProps) {
   return (
     <div className="border-[6px] border-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-center px-6 md:px-10 lg:px-12 xl:px-16 py-6 md:py-8 lg:py-10 xl:py-12 bg-main-bg">
-      {/* Icon and Title Section - uses min-width for alignment consistency */}
-      <div className="flex flex-col gap-4 lg:gap-6 items-center justify-center w-full lg:w-auto lg:min-w-[160px] xl:min-w-[180px] shrink-0">
+      {/* Icon and Title Section - fixed width keeps description aligned across cards */}
+      <div className="flex flex-col gap-4 lg:gap-6 items-center justify-center w-full lg:w-[260px] xl:w-[291px] shrink-0">
         {/* Icon - responsive sizing */}
         <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-[88px] xl:h-[88px] flex items-center justify-center shrink-0">
           <img
@@ -25,7 +25,7 @@ export default function ProjectDetailCard({
         </div>
 
         {/* Title */}
-        <CardTitle className="font-normal text-slate-400 leading-none text-center">
+        <CardTitle className="w-fit font-normal text-slate-400 leading-none text-center lg:text-left whitespace-pre-line">
           {title}
         </CardTitle>
       </div>
