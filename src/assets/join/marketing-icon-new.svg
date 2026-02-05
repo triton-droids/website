@@ -1,7 +1,7 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 45.8182 43.7352" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 80.6416 76.9738" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Group">
-<path id="Vector" d="M35.4848 35.3333C40.0872 35.3333 43.8182 27.8714 43.8182 18.6667C43.8182 9.46192 40.0872 2 35.4848 2C30.8825 2 27.1515 9.46192 27.1515 18.6667C27.1515 27.8714 30.8825 35.3333 35.4848 35.3333Z" stroke="var(--stroke-0, #F5F5F5)" stroke-width="4"/>
-<path id="Vector_2" d="M35.3333 2C28.8688 2 15.4688 6.95417 7.77292 10.0292C4.24792 11.4375 2 14.8708 2 18.6667C2 22.4625 4.25 25.8958 7.77292 27.3042C15.4688 30.3792 28.8688 35.3333 35.3333 35.3333" stroke="var(--stroke-0, #F5F5F5)" stroke-width="4"/>
-<path id="Vector_3" d="M17.799 41.7348L13.7511 39.5057C11.59 38.3097 9.83704 36.4933 8.7185 34.2912C7.59996 32.089 7.16719 29.6021 7.47608 27.1515" stroke="var(--stroke-0, #F5F5F5)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector" d="M62.4549 62.1867C70.5551 62.1867 77.1216 49.0537 77.1216 32.8534C77.1216 16.653 70.5551 3.52004 62.4549 3.52004C54.3548 3.52004 47.7883 16.653 47.7883 32.8534C47.7883 49.0537 54.3548 62.1867 62.4549 62.1867Z" stroke="var(--stroke-0, #3C92DD)" stroke-width="7.04"/>
+<path id="Vector_2" d="M62.1867 3.52C50.809 3.52 27.225 12.2393 13.6803 17.6513C7.47633 20.13 3.52 26.1727 3.52 32.8533C3.52 39.534 7.48 45.5767 13.6803 48.0553C27.225 53.4673 50.809 62.1867 62.1867 62.1867" stroke="var(--stroke-0, #3C92DD)" stroke-width="7.04"/>
+<path id="Vector_3" d="M31.3261 73.4531L24.2017 69.5298C20.3982 67.4248 17.313 64.228 15.3444 60.3522C13.3758 56.4764 12.6141 52.0994 13.1577 47.7864" stroke="var(--stroke-0, #3C92DD)" stroke-width="7.04" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </svg>

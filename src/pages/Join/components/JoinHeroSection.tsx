@@ -3,7 +3,7 @@ import heroImage from '../../../assets/join/join-hero.png';
 
 export default function JoinHeroSection() {
   return (
-    <section className="flex flex-col gap-12 lg:gap-16 xl:gap-20 items-start py-12 lg:py-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
+    <section className="flex flex-col gap-12 lg:gap-16 xl:gap-20 items-start py-12 lg:py-20 w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
       {/* Title */}
       <HeroHeading className="w-full">Join the Team</HeroHeading>
 

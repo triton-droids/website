@@ -81,7 +81,7 @@ export default function WhyJoinCarousel() {
   return (
     <section className="flex flex-col gap-10 lg:gap-16 xl:gap-20 items-center w-full">
       {/* Heading matches standard container width */}
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
+      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <SectionHeading>Why join Triton Droids?</SectionHeading>
       </div>
 
