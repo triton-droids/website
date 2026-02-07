@@ -103,7 +103,7 @@ export default function Header() {
 
           <Link
             to="/donate"
-            className="px-6 py-2 bg-accent text-button-text font-bold rounded-full hover:bg-accent/90 active:bg-accent/80 transition-all duration-200 ease-out z-10"
+            className="px-6 py-2 bg-accent text-button-text font-bold rounded-full hover:bg-slate-400 active:bg-accent/80 transition-all duration-200 ease-out z-10"
           >
             DONATE
           </Link>
