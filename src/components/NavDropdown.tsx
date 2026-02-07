@@ -9,7 +9,7 @@ interface NavDropdownProps {
   label: string;
   dropdown: DropdownItem[];
   isOpen: boolean;
-  onMouseEnter: () => void;
+  onToggle: () => void;
   onItemClick: () => void;
 }
 
@@ -17,7 +17,7 @@ export default function NavDropdown({
   label,
   dropdown,
   isOpen,
-  onMouseEnter,
+  onToggle,
 }: NavDropdownProps) {
   const location = useLocation();
 
@@ -29,8 +29,10 @@ export default function NavDropdown({
   };
 
   return (
-    <div className="relative" onMouseEnter={onMouseEnter}>
+    <div className="relative">
       <button
+        type="button"
+        onClick={onToggle}
         className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-200 ease-out ${
           isOpen
             ? 'bg-zinc-800 text-main-text'
@@ -89,23 +91,23 @@ export function DropdownMenu({
           <Link
             key={`${label}-${dropdownItem.label}`}
             to={dropdownItem.to}
-            className={`group w-96 flex items-center px-4 py-2 bg-zinc-800 rounded-full no-underline transition-all duration-200 ease-out whitespace-nowrap ${
-              isActive(dropdownItem.to) ? 'text-accent' : 'text-main-text'
+            className={`group w-96 px-10 py-4 rounded-lg outline outline-2 outline-offset-[-2px] outline-zinc-800 inline-flex justify-start items-center gap-6 no-underline transition-all duration-200 ease-out whitespace-nowrap font-normal ${
+              isActive(dropdownItem.to) ? 'text-accent' : 'text-neutral-100'
             } hover:bg-white/10`}
             onClick={onItemClick}
           >
             <span className="flex-shrink-0">{dropdownItem.label}</span>
-            <span className="spacer flex-shrink w-0 transition-all duration-700 ease-in-out"></span>
+            <span className="spacer flex-shrink w-0 transition-all duration-700 ease-in-out" />
             <svg
-              className="w-4 h-4 ml-2 flex-shrink-0"
+              className="w-4 h-4 ml-2 flex-shrink-0 transition-all duration-700 ease-in-out"
               fill="none"
               stroke="currentColor"
+              strokeWidth={2}
               viewBox="0 0 24 24"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
                 d="M9 5l7 7-7 7"
               />
             </svg>

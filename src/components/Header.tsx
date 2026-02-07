@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import NavDropdown, { DropdownMenu } from './NavDropdown';
 
@@ -17,6 +17,17 @@ interface NavItem {
 export default function Header() {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const isActive = (path: string): boolean => {
     if (path === '/') {
@@ -50,10 +61,10 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-50 w-full bg-main-bg shadow-lg transition-all duration-300 ease-in-out ${
         openDropdown ? 'pb-8' : ''
       }`}
-      onMouseLeave={() => setOpenDropdown(null)}
     >
       <nav className="relative flex items-center justify-between px-8 py-6">
         <Link to="/" className="flex items-center gap-3 no-underline z-10">
@@ -68,7 +79,11 @@ export default function Header() {
                   label={item.label}
                   dropdown={item.dropdown}
                   isOpen={openDropdown === item.label}
-                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onToggle={() =>
+                    setOpenDropdown((prev) =>
+                      prev === item.label ? null : item.label
+                    )
+                  }
                   onItemClick={() => setOpenDropdown(null)}
                 />
               ) : (
