@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import NavDropdown, { DropdownMenu } from './NavDropdown';
 
@@ -17,6 +17,17 @@ interface NavItem {
 export default function Header() {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const isActive = (path: string): boolean => {
     if (path === '/') {
@@ -50,10 +61,10 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-50 w-full bg-main-bg shadow-lg transition-all duration-300 ease-in-out ${
         openDropdown ? 'pb-8' : ''
       }`}
-      onMouseLeave={() => setOpenDropdown(null)}
     >
       <nav className="relative flex items-center justify-between px-8 py-6">
         <Link to="/" className="flex items-center gap-3 no-underline z-10">
@@ -68,16 +79,20 @@ export default function Header() {
                   label={item.label}
                   dropdown={item.dropdown}
                   isOpen={openDropdown === item.label}
-                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onToggle={() =>
+                    setOpenDropdown((prev) =>
+                      prev === item.label ? null : item.label
+                    )
+                  }
                   onItemClick={() => setOpenDropdown(null)}
                 />
               ) : (
                 <Link
                   to={item.to || '#'}
-                  className={`flex items-center px-4 py-2 rounded-lg no-underline transition-colors ${
+                  className={`flex items-center px-4 py-2 rounded-full no-underline transition-all duration-200 ease-out ${
                     isActive(item.to || '')
-                      ? 'text-yellow-400'
-                      : 'text-main-text hover:text-yellow-400'
+                      ? 'text-accent'
+                      : 'text-main-text hover:bg-white/10'
                   }`}
                 >
                   {item.label}
@@ -88,7 +103,7 @@ export default function Header() {
 
           <Link
             to="/donate"
-            className="px-6 py-2 bg-yellow-400 text-button-text font-bold rounded-full hover:bg-slate-400 active:bg-zinc-800 transition-colors z-10"
+            className="px-6 py-2 bg-accent text-button-text font-bold rounded-full hover:bg-slate-400 active:bg-accent/80 transition-all duration-200 ease-out z-10"
           >
             DONATE
           </Link>
