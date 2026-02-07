@@ -31,12 +31,12 @@ export default function NavDropdown({
   return (
     <div className="relative" onMouseEnter={onMouseEnter}>
       <button
-        className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors ${
+        className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-200 ease-out ${
           isOpen
             ? 'bg-zinc-800 text-main-text'
             : dropdown.some((d) => isActive(d.to))
-              ? 'text-yellow-400 hover:text-yellow-400'
-              : 'text-main-text hover:text-yellow-400'
+              ? 'text-accent hover:bg-white/10'
+              : 'text-main-text hover:bg-white/10'
         }`}
       >
         {label}
@@ -89,9 +89,9 @@ export function DropdownMenu({
           <Link
             key={`${label}-${dropdownItem.label}`}
             to={dropdownItem.to}
-            className={`group w-96 flex items-center px-4 py-2 bg-zinc-800 rounded-lg no-underline transition-all duration-300 ease-in-out whitespace-nowrap ${
+            className={`group w-96 flex items-center px-4 py-2 bg-zinc-800 rounded-full no-underline transition-all duration-200 ease-out whitespace-nowrap ${
               isActive(dropdownItem.to) ? 'text-accent' : 'text-main-text'
-            } hover:bg-slate-400 hover:text-stone-950`}
+            } hover:bg-white/10`}
             onClick={onItemClick}
           >
             <span className="flex-shrink-0">{dropdownItem.label}</span>
