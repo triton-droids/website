@@ -6,6 +6,8 @@ interface ModelViewerProps {
   fallbackImage?: string;
   alt?: string;
   className?: string;
+  /** Model orientation as space-separated "X Y Z" in degrees, e.g. "0 180deg 0" to flip horizontally */
+  orientation?: string;
 }
 
 export default function ModelViewer({
@@ -13,6 +15,7 @@ export default function ModelViewer({
   fallbackImage,
   alt = '3D Model',
   className = '',
+  orientation,
 }: ModelViewerProps) {
   const containerClassName = [
     'w-full rounded-[24px] overflow-hidden shadow-xl ring-1 ring-white/[0.06]',
@@ -30,6 +33,7 @@ export default function ModelViewer({
         <model-viewer
           src={modelUrl}
           alt={alt}
+          {...(orientation && { orientation })}
           camera-controls
           auto-rotate
           auto-rotate-delay="2000"
