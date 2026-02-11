@@ -28,7 +28,7 @@ export const teamMembers: TeamMember[] = [
     bio: 'Blurb here',
     email: 'johndoe@ucsd.edu',
     image: abhinavSwarupImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/abhinav-swarup-7284b1236',
   },
   {
     id: '2',
@@ -40,7 +40,7 @@ export const teamMembers: TeamMember[] = [
     bio: "I'm a senior majoring in Computer Science with a passion for robot learning and generalization. I currently work as a research assistant at the Hao Su Lab @ UCSD, where I dabble a bit in reinforcement learning and co-design (optimization of hardware and software simultaneously). I've worked with many different morphologies of robots spanning from UAVs, hexapods, autonomous cars, arms, and humanoids. In my free time you'll catch me playing the piano or trying to teach a robot to play the piano.",
     email: 'janesmith@ucsd.edu',
     image: darinImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/darin-djapri-a91143214',
   },
   {
     id: '3',
@@ -52,7 +52,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Hello! I'm a second year electrical engineering and business analytics student passionate about semiconductor design (specifically at the ASIC level) as well as engineering education. At Triton Droids, you can catch me leading our operations sub-teams as well as tinkering in project work in the electrical team! Outside of workdays, you can find me tutoring in the library, learning Japanese, exploring new trolley stations, perfecting my matcha recipe, or sunset chasing.",
     email: 'mikejohnson@ucsd.edu',
     image: jenniferImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/jennifer-pan-560204243',
   },
 
   // Team Leads
@@ -66,7 +66,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'alexchen@ucsd.edu',
     image: helenaImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/hphamova',
   },
   {
     id: '5',
@@ -78,7 +78,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'emmadavis@ucsd.edu',
     image: arnavImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/arnav-pandit-07a857216',
   },
   {
     id: '6',
@@ -90,7 +90,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'ryanlee@ucsd.edu',
     image: danielImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/daniel-sanei-79b708266',
   },
   {
     id: '7',
@@ -102,7 +102,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: bryceImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/bryce-hackel',
   },
   {
     id: '8',
@@ -114,7 +114,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: roxanaImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/roxana-nevarez',
   },
   {
     id: '9',
@@ -126,7 +126,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: martinaImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/martina-danieli-6788b626a',
   },
   {
     id: '10',
@@ -138,7 +138,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: sylvieImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/sylvie-t2k4',
   },
   {
     id: '11',
@@ -150,7 +150,7 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: aadiImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/aadi-khanuja',
   },
   {
     id: '12',
@@ -162,6 +162,6 @@ export const teamMembers: TeamMember[] = [
     bio: '',
     email: 'oliviamartinez@ucsd.edu',
     image: arjunImg,
-    linkedin: 'https://www.linkedin.com/in/andrew-yin-462759240/',
+    linkedin: 'https://www.linkedin.com/in/arjun-vad',
   },
 ];
