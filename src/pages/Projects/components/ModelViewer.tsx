@@ -8,6 +8,10 @@ interface ModelViewerProps {
   className?: string;
   /** Model orientation as space-separated "X Y Z" in degrees, e.g. "0 180deg 0" to flip horizontally */
   orientation?: string;
+  /** Initial camera orbit "theta phi radius", e.g. "0deg 75deg 1.2m" for a closer view */
+  cameraOrbit?: string;
+  /** Camera target point "x y z" in meters, e.g. "0 0.15 0" to shift framing (positive Y = look above center, model appears lower) */
+  cameraTarget?: string;
 }
 
 export default function ModelViewer({
@@ -16,6 +20,8 @@ export default function ModelViewer({
   alt = '3D Model',
   className = '',
   orientation,
+  cameraOrbit,
+  cameraTarget,
 }: ModelViewerProps) {
   const containerClassName = [
     'w-full rounded-[24px] overflow-hidden shadow-xl ring-1 ring-white/[0.06]',
@@ -34,6 +40,8 @@ export default function ModelViewer({
           src={modelUrl}
           alt={alt}
           {...(orientation && { orientation })}
+          {...(cameraOrbit && { 'camera-orbit': cameraOrbit })}
+          {...(cameraTarget && { 'camera-target': cameraTarget })}
           camera-controls
           auto-rotate
           auto-rotate-delay="2000"

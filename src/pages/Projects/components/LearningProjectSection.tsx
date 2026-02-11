@@ -6,6 +6,8 @@ interface LearningProjectSectionProps {
   description: string;
   modelUrl?: string;
   modelOrientation?: string;
+  cameraOrbit?: string;
+  cameraTarget?: string;
 }
 
 export default function LearningProjectSection({
@@ -13,6 +15,8 @@ export default function LearningProjectSection({
   description,
   modelUrl,
   modelOrientation,
+  cameraOrbit,
+  cameraTarget,
 }: LearningProjectSectionProps) {
   return (
     <div className="flex flex-col gap-20 md:gap-32 w-full max-w-[1228px]">
@@ -30,6 +34,8 @@ export default function LearningProjectSection({
         <ModelViewer
           modelUrl={modelUrl}
           orientation={modelOrientation}
+          cameraOrbit={cameraOrbit}
+          cameraTarget={cameraTarget}
           fallbackImage={undefined}
           alt={`${title} 3D Model`}
         />

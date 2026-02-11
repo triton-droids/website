@@ -2,6 +2,7 @@ import ProjectHeroSection from './components/ProjectHeroSection';
 import LearningProjectSection from './components/LearningProjectSection';
 import ProjectGallery from './components/ProjectGallery';
 import learningAsciiArt from '../../assets/projects/hero/learning-ascii-art.svg';
+import arctosModel from '../../assets/models/arctos-optimized.glb';
 import pupperModel from '../../assets/models/pupper.glb';
 import so101Model from '../../assets/models/SO101.glb';
 import galleryImage1 from '../../assets/projects/humanoid-gallery/gallery-1.jpg';
@@ -23,14 +24,18 @@ const projects = [
     description:
       'The Triton Pupper Project is Triton Droids’ newest initiative at inspiring undergraduate students to break boundaries with modern innovation. Next to developing a humanoid robot, the Triton Pupper Team is aiming to develop a robotic dog at the undergraduate level. The goals of this initiative include building a proof-of-concept out of the Petoi Bittle Dog, and then graduating to an industry-grade robotic dog that matches the sophistication of those built by Boston Dynamics, Unitree, and Ghost Robotics, to name a few.',
     modelUrl: pupperModel,
-    modelOrientation: '-90deg 0 180deg',
+    modelOrientation: '-90deg -90deg 180deg',
+    cameraOrbit: undefined as string | undefined,
+    cameraTarget: undefined as string | undefined,
   },
   {
     title: 'ARCTOS Robot Arm',
     description:
       'The ARCTOS Arm is an industrial-scale, six degree of freedom (6 DoF) robotic arm designed to advance research in classical control, learning-based control, and computer vision. As an open source project, Triton Droids aims to expand its capabilities by developing and sharing new software packages and 3D printable components with the broader robotics community. The arm will integrate with cutting-edge technologies such as the Amazing Hand by Pollen Robotics and Vision-Language-Action (VLA) models, enabling intelligent, general-purpose task performance and pushing the limits of autonomous manipulation.',
-    modelUrl: undefined as string | undefined,
+    modelUrl: arctosModel,
     modelOrientation: undefined as string | undefined,
+    cameraOrbit: undefined as string | undefined,
+    cameraTarget: '0 1.5 0',
   },
   {
     title: 'SO101 Robot Arms',
@@ -38,6 +43,8 @@ const projects = [
       'TThe SO101 - SO100 Robot Arms are compact, five degree of freedom (5 DoF) robotic systems designed as the primary testbed for reinforcement learning and Vision Language Action (VLA) model development. Their small form factor enables rapid experimentation and scalable testing, allowing the Simulations Team to prototype and refine intelligent control algorithms before deploying them onto the main humanoid robot.',
     modelUrl: so101Model,
     modelOrientation: undefined as string | undefined,
+    cameraOrbit: undefined as string | undefined,
+    cameraTarget: undefined as string | undefined,
   },
 ];
 
@@ -67,6 +74,8 @@ export default function LearningProjects() {
               description={project.description}
               modelUrl={project.modelUrl}
               modelOrientation={project.modelOrientation}
+              cameraOrbit={project.cameraOrbit}
+              cameraTarget={project.cameraTarget}
             />
           ))}
         </div>
