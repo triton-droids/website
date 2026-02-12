@@ -3,12 +3,13 @@ import heidenhainLogo from '../../assets/sponsors/heidenhain.svg';
 import ansysLogo from '../../assets/sponsors/ansys.svg';
 import onshapeLogo from '../../assets/sponsors/onshape.svg';
 import engineeringDudesLogo from '../../assets/sponsors/engineering_dudes.svg';
-import sponsorshipPackagePdf from '../../assets/sponsorship-package.pdf';
+
 import {
   HeroHeading,
   SectionHeading,
   BodyText,
 } from '../../components/Typography';
+import { donationUrl, sponsorshipPackageUrl } from '../../data/links';
 
 const sponsors = [
   {
@@ -72,11 +73,16 @@ export default function Sponsorship() {
             for details!
           </BodyText>
           <div className="mt-10 flex justify-center items-center gap-6">
-            <button className="h-16 px-10 bg-accent text-button-text text-xl rounded-button font-normal flex justify-center items-center hover:bg-slate-400 hover:text-stone-950 hover:outline-slate-400 transition-colors">
-              Donate Now
-            </button>
             <a
-              href={sponsorshipPackagePdf}
+              href={donationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-16 px-10 bg-accent text-button-text text-xl rounded-button font-normal flex justify-center items-center hover:bg-slate-400 hover:text-stone-950 hover:outline-slate-400 transition-colors"
+            >
+              Donate Now
+            </a>
+            <a
+              href={sponsorshipPackageUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="h-16 px-10 rounded-button outline outline-1 outline-offset-[-1px] outline-accent flex justify-center items-center text-yellow-400 text-xl font-normal hover:bg-slate-400 hover:text-stone-950 hover:outline-slate-400 transition-colors"
