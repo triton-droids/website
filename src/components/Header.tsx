@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import logo from '../assets/logo.svg';
 import NavDropdown, { DropdownMenu } from './NavDropdown';
+import { donationUrl } from '../data/links';
 
 interface DropdownItem {
   to: string;
@@ -49,7 +50,6 @@ export default function Header() {
     },
     {
       label: 'Projects',
-      // TODO: Add project paths to the dropdown items
       dropdown: [
         { to: '/projects/humanoid', label: 'Humanoid Robot' },
         { to: '/projects/learning-projects', label: 'Learning Projects' },
@@ -101,12 +101,14 @@ export default function Header() {
             </div>
           ))}
 
-          <Link
-            to="/donate"
+          <a
+            href={donationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-2 bg-accent text-button-text font-bold rounded-full hover:bg-slate-400 active:bg-accent/80 transition-all duration-200 ease-out z-10"
           >
             DONATE
-          </Link>
+          </a>
         </div>
       </nav>
 
