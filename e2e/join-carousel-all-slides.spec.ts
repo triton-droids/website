@@ -6,7 +6,7 @@ test.describe('Join Carousel All Slides', () => {
   }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
 
-    await page.goto('/website/join');
+    await page.goto('/join');
     await page
       .locator('h2:has-text("Why join Triton Droids?")')
       .scrollIntoViewIfNeeded();

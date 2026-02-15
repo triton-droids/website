@@ -6,7 +6,7 @@ test.describe('Project Section', () => {
   }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
 
-    await page.goto('/website/');
+    await page.goto('/');
 
     // Scroll to the project section
     await page
