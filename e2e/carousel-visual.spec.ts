@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 
 test.describe('Carousel Visual Testing', () => {
   test('AchieveSection carousel visual test', async ({ page }) => {
-    await page.goto('/website/');
+    await page.goto('/');
 
     // Scroll to the carousel section
     await page
@@ -31,7 +31,7 @@ test.describe('Carousel Visual Testing', () => {
   });
 
   test('WhyJoinCarousel visual test', async ({ page }) => {
-    await page.goto('/website/join');
+    await page.goto('/join');
 
     // Scroll to the carousel section
     await page
@@ -59,7 +59,7 @@ test.describe('Carousel Visual Testing', () => {
   test('Carousel typography at different viewport sizes', async ({ page }) => {
     // Test at desktop size (1920x1080)
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/website/');
+    await page.goto('/');
 
     await page
       .locator('h2:has-text("How We Aim to Achieve Our Mission")')
@@ -82,7 +82,7 @@ test.describe('Carousel Visual Testing', () => {
 
     // Test at tablet size (768x1024)
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/website/');
+    await page.goto('/');
 
     await page
       .locator('h2:has-text("How We Aim to Achieve Our Mission")')

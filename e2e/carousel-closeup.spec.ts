@@ -6,7 +6,7 @@ test.describe('Carousel Close-up Screenshots', () => {
     await page.setViewportSize({ width: 1920, height: 1080 });
 
     // AchieveSection carousel
-    await page.goto('/website/');
+    await page.goto('/');
     await page
       .locator('h2:has-text("How We Aim to Achieve Our Mission")')
       .scrollIntoViewIfNeeded();
@@ -31,7 +31,7 @@ test.describe('Carousel Close-up Screenshots', () => {
     console.log('AchieveSection card close-up saved');
 
     // WhyJoinCarousel
-    await page.goto('/website/join');
+    await page.goto('/join');
     await page
       .locator('h2:has-text("Why join Triton Droids?")')
       .scrollIntoViewIfNeeded();
@@ -54,7 +54,7 @@ test.describe('Carousel Close-up Screenshots', () => {
     console.log('WhyJoinCarousel card close-up saved');
 
     // Test clicking next button to see another slide
-    await page.goto('/website/');
+    await page.goto('/');
     await page
       .locator('h2:has-text("How We Aim to Achieve Our Mission")')
       .scrollIntoViewIfNeeded();

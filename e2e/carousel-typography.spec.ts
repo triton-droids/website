@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Carousel Typography', () => {
   test('AchieveSection carousel has correct typography', async ({ page }) => {
-    await page.goto('/website/');
+    await page.goto('/');
 
     // Wait for carousel to be visible
     await page.waitForSelector(
@@ -64,7 +64,7 @@ test.describe('Carousel Typography', () => {
   });
 
   test('WhyJoinCarousel has correct typography', async ({ page }) => {
-    await page.goto('/website/join');
+    await page.goto('/join');
 
     // Wait for carousel to be visible
     await page.waitForSelector('h3:has-text("Real world impact")', {
@@ -124,7 +124,7 @@ test.describe('Carousel Typography', () => {
   });
 
   test('Carousel text fits well in cards', async ({ page }) => {
-    await page.goto('/website/');
+    await page.goto('/');
 
     // Wait for carousel
     await page.waitForSelector(
@@ -160,7 +160,7 @@ test.describe('Carousel Typography', () => {
     }
 
     // Test Why Join carousel
-    await page.goto('/website/join');
+    await page.goto('/join');
     await page.waitForSelector('h3:has-text("Real world impact")', {
       timeout: 10000,
     });
