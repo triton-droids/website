@@ -1,3 +1,4 @@
+import { SplineSceneBasic } from '@/components/ui/spline-scene-basic';
 import HeroSection from './components/HeroSection';
 import VisionSection from './components/VisionSection';
 import AchieveSection from './components/AchieveSection';
@@ -9,6 +10,11 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Interactive 3D demo (shadcn/ui SplineScene + Spotlight) */}
+      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-8 md:py-12">
+        <SplineSceneBasic />
+      </section>
 
       {/* A Future Worth Building - Vision Cards */}
       <VisionSection />

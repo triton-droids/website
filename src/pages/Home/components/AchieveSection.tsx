@@ -1,4 +1,5 @@
 import Carousel from '../../../components/Carousel';
+import { motion } from 'motion/react';
 
 import slide1Image from '../../../assets/carousel/slide-1.jpg';
 import { SectionHeading } from '../../../components/Typography';
@@ -83,11 +84,25 @@ export default function AchieveSection() {
   return (
     <section className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center overflow-hidden">
       {/* Heading uses same padding as other sections */}
-      <SectionHeading className="w-full max-w-7xl mx-auto text-left px-6 md:px-12 lg:px-16 xl:px-20">
-        How We Aim to Achieve Our Mission
-      </SectionHeading>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="w-full"
+      >
+        <SectionHeading className="w-full max-w-7xl mx-auto text-left px-6 md:px-12 lg:px-16 xl:px-20">
+          How We Aim to Achieve Our Mission
+        </SectionHeading>
+      </motion.div>
 
-      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center w-full">
+      <motion.div 
+        className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center w-full"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+      >
         <Carousel
           renderSlide={(slide, _index, tweenValue) => {
             const scale = 0.85 + tweenValue * 0.15;
@@ -136,7 +151,7 @@ export default function AchieveSection() {
           }}
           slides={slides}
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

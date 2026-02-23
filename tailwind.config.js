@@ -4,6 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        card: 'hsl(var(--card) / <alpha-value>)',
+        'card-foreground': 'hsl(var(--card-foreground) / <alpha-value>)',
+        'muted-foreground': 'hsl(var(--muted-foreground) / <alpha-value>)',
+        border: 'hsl(var(--border) / <alpha-value>)',
         'main-bg': '#101010',
         'main-text': '#F5F5F5',
         'muted-text': '#A3B2C2',
@@ -30,6 +34,13 @@ export default {
       },
       animation: {
         'rotate-y-3d': 'rotate-y-3d 15s linear infinite',
+        spotlight: 'spotlight 2s ease 0.75s 1 forwards',
+      },
+      keyframes: {
+        spotlight: {
+          '0%': { opacity: '0', transform: 'translate(-72%, -62%) scale(0.5)' },
+          '100%': { opacity: '1', transform: 'translate(-50%,-40%) scale(1)' },
+        },
       },
     },
   },

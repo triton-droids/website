@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* shadcn-style tokens for Card and ui components */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --muted-foreground: 0 0% 45.1%;
+    --border: 0 0% 89.8%;
+  }
+
   body {
     @apply bg-main-bg text-main-text font-sans;
   }
@@ -35,5 +45,20 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Loader for SplineScene */
+  .loader {
+    width: 24px;
+    height: 24px;
+    border: 2px solid hsl(0 0% 60%);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: loader-spin 0.8s linear infinite;
+  }
+  @keyframes loader-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 }

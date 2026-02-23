@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import humanoidIconBlue from '../../assets/projects/humanoid-icon-blue.svg';
 import {
@@ -66,17 +67,31 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center"
+      className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center overflow-hidden"
     >
-      <div className="w-full px-6 md:px-12 lg:px-20 xl:px-[140px]">
+      <motion.div 
+        className="w-full px-6 md:px-12 lg:px-20 xl:px-[140px]"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <SectionHeading>A Vision Set in Motion</SectionHeading>
-      </div>
+      </motion.div>
 
       <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 items-center w-full px-6 md:px-12 lg:px-20">
         {/* Project Icons/Indicators */}
-        <div className="flex gap-8 md:gap-12 lg:gap-20 items-center flex-wrap justify-center">
+        <motion.div 
+          className="flex gap-8 md:gap-12 lg:gap-20 items-center flex-wrap justify-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+        >
           {projects.map((proj, index) => (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               key={proj.id}
               onClick={() => setActiveProject(index)}
               className="flex flex-col gap-2 md:gap-[14px] items-center justify-center p-2 md:p-4 w-24 md:w-32 lg:w-[142px] cursor-pointer"
@@ -93,13 +108,21 @@ export default function ProjectsSection() {
                   index === activeProject ? 'bg-[#3C92DD]' : 'bg-[#2A2B2D]'
                 }`}
               />
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Project Card */}
-        <div className="bg-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-14 items-center max-w-[1165px] w-full">
-          {/* Content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProject}
+            initial={{ opacity: 0, y: 20, filter: 'blur(5px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="bg-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-14 items-center max-w-[1165px] w-full"
+          >
+            {/* Content */}
           <div className="flex flex-col gap-6 md:gap-8 items-start flex-1 w-full">
             <div className="flex flex-col gap-3">
               <CardTitle className="font-normal">{project.title}</CardTitle>
@@ -136,13 +159,17 @@ export default function ProjectsSection() {
 
           {/* Image */}
           <div className="w-full lg:w-[432px] h-[250px] md:h-[350px] lg:h-[411px] rounded-[16px] md:rounded-[24px] lg:rounded-[32px] overflow-hidden shrink-0">
-            <img
+            <motion.img
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6 }}
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
           </div>
-        </div>
+        </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
