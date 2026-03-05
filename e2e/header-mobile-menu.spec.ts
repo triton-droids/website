@@ -26,9 +26,7 @@ test.describe('Mobile Header / Hamburger Menu', () => {
     ).toBeVisible();
   });
 
-  test('hamburger menu closes when close button clicked', async ({
-    page,
-  }) => {
+  test('hamburger menu closes when close button clicked', async ({ page }) => {
     await page.getByRole('button', { name: 'Open navigation menu' }).click();
     await page.getByRole('button', { name: 'Close navigation menu' }).click();
 
@@ -82,7 +80,10 @@ test.describe('Mobile Header / Hamburger Menu', () => {
       .getByRole('banner')
       .getByRole('button', { name: 'About Us' })
       .click();
-    await page.getByRole('banner').getByRole('link', { name: 'Alumni' }).click();
+    await page
+      .getByRole('banner')
+      .getByRole('link', { name: 'Alumni' })
+      .click();
 
     await expect(page).toHaveURL(/\/alumni/);
   });
@@ -94,7 +95,9 @@ test.describe('Mobile Header / Hamburger Menu', () => {
     ).toBeVisible();
 
     await page.evaluate(() => {
-      document.body.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+      document.body.dispatchEvent(
+        new MouseEvent('mousedown', { bubbles: true })
+      );
     });
 
     await expect(

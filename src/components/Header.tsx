@@ -149,7 +149,9 @@ export default function Header() {
               setMobileExpandedCategory(null);
             }}
             className="shrink-0 w-6 h-6 flex items-center justify-center text-main-text hover:text-accent transition-colors"
-            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-label={
+              mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+            }
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
@@ -248,9 +250,7 @@ export default function Header() {
                           key={d.to}
                           to={d.to}
                           className={`border border-[#2A2B2D] flex items-center px-4 py-4 rounded-lg no-underline transition-all text-main-text text-base min-w-0 truncate ${
-                            isActive(d.to)
-                              ? 'text-accent'
-                              : 'hover:bg-white/5'
+                            isActive(d.to) ? 'text-accent' : 'hover:bg-white/5'
                           }`}
                           onClick={() => {
                             setMobileMenuOpen(false);
