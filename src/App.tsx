@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
@@ -31,6 +32,7 @@ function App() {
         <Route path="/advisor" element={<Advisor />} />
         <Route path="/alumni" element={<Alumni />} />
       </Routes>
+      <Analytics />
     </Layout>
   );
 }
