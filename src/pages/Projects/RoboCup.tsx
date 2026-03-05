@@ -1,5 +1,6 @@
 import ProjectHeroSection from './components/ProjectHeroSection';
 import ProjectDetailCard from './components/ProjectDetailCard';
+import SEO from '../../components/SEO';
 import whatIsRobocupIcon from '../../assets/projects/icons/what-is-robocup-icon.svg';
 import ourGoalIcon from '../../assets/projects/icons/our-goal-icon.svg';
 import asciiArtImage from '../../assets/projects/hero/robocup-ascii-art.svg';
@@ -27,6 +28,11 @@ const ieeeRobocupProject = {
 export default function RoboCup() {
   return (
     <div className="bg-main-bg min-h-screen">
+      <SEO
+        title="RoboCup"
+        description="IEEE RoboCup 2027 participation"
+        path="/projects/robocup"
+      />
       <div className="flex flex-col gap-20 md:gap-32 items-center">
         <ProjectHeroSection
           title={ieeeRobocupProject.title}

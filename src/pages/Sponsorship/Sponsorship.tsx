@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../../components/SEO';
 import heidenhainLogo from '../../assets/sponsors/heidenhain.svg';
 import ansysLogo from '../../assets/sponsors/ansys.svg';
 import onshapeLogo from '../../assets/sponsors/onshape.svg';
@@ -39,6 +40,11 @@ export default function Sponsorship() {
     : sponsors.slice(0, INITIAL_VISIBLE_COUNT);
   return (
     <>
+      <SEO
+        title="Sponsorship"
+        description="Support Triton Droids and partner with us"
+        path="/sponsorship"
+      />
       <section className="py-10 px-20">
         <div className="flex flex-col gap-6 text-left max-w-4xl">
           <HeroHeading>Fund a Droid. Make a Difference</HeroHeading>

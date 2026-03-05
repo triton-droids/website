@@ -9,7 +9,7 @@ export default function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0 mix-blend-lighten overflow-hidden pointer-events-none">
         <img
-          alt=""
+          alt="Triton Droids hero background"
           className="absolute h-full right-0 top-0 max-w-none object-contain object-right"
           src={heroBackground}
         />

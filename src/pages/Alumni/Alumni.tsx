@@ -6,6 +6,7 @@ import {
   BodyText,
 } from '../../components/Typography';
 import alumniPhoto from '../../imgs/alumni-page/hero/alumni-hero.png';
+import SEO from '../../components/SEO';
 
 // Shared layout constants for consistent spacing
 const SECTION_WRAPPER = 'py-16';
@@ -18,6 +19,11 @@ export default function Alumni() {
 
   return (
     <>
+      <SEO
+        title="Alumni"
+        description="Triton Droids alumni network"
+        path="/alumni"
+      />
       <div className={CONTAINER}>
         <HeroHeading>Meet Our Alumni</HeroHeading>
         <BodyText size="lg" className="mt-6">

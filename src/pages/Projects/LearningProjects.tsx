@@ -1,6 +1,7 @@
 import ProjectHeroSection from './components/ProjectHeroSection';
 import LearningProjectSection from './components/LearningProjectSection';
 import ProjectGallery from './components/ProjectGallery';
+import SEO from '../../components/SEO';
 import learningAsciiArt from '../../assets/projects/hero/learning-ascii-art.svg';
 import arctosModel from '../../assets/models/arctos-optimized.glb';
 import pupperModel from '../../assets/models/pupper.glb';
@@ -60,6 +61,11 @@ const galleryImages = [
 export default function LearningProjects() {
   return (
     <div className="bg-main-bg min-h-screen">
+      <SEO
+        title="Learning Projects"
+        description="Hands-on learning with Pupper, ARCTOS, SO101"
+        path="/projects/learning-projects"
+      />
       <div className="flex flex-col gap-20 md:gap-32 items-center w-full">
         <ProjectHeroSection
           title={hero.title}
