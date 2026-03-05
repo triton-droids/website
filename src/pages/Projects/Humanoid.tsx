@@ -3,6 +3,7 @@ import ProjectDetailCard from './components/ProjectDetailCard';
 import ProjectGallery from './components/ProjectGallery';
 import ModelViewer from './components/ModelViewer';
 import rationaleIcon from '../../assets/projects/icons/rationale-icon.svg';
+import SEO from '../../components/SEO';
 import functionIcon from '../../assets/projects/icons/function-icon.svg';
 import approachIcon from '../../assets/projects/icons/approach-icon.svg';
 import progressIcon from '../../assets/projects/icons/progress-icon.svg';
@@ -61,6 +62,11 @@ export default function Humanoid() {
 
   return (
     <div className="bg-main-bg min-h-screen">
+      <SEO
+        title="Humanoid Robot"
+        description="Our flagship humanoid robot project"
+        path="/projects/humanoid"
+      />
       <div className="flex flex-col gap-20 md:gap-32 items-center">
         <ProjectHeroSection
           title={humanoidProject.title}

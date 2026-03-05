@@ -1,3 +1,4 @@
+import SEO from '../../components/SEO';
 import HeroSection from './components/HeroSection';
 import VisionSection from './components/VisionSection';
 import AchieveSection from './components/AchieveSection';
@@ -7,6 +8,11 @@ import RecruitmentSection from './components/RecruitmentSection';
 export default function Home() {
   return (
     <>
+      <SEO
+        title="Home"
+        description="UCSD robotics team building autonomous humanoid robots"
+        path="/"
+      />
       {/* Hero Section */}
       <HeroSection />
 
