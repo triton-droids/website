@@ -4,7 +4,8 @@ interface TeamCardProps {
   description?: string | string[];
 }
 
-const PLACEHOLDER_DESCRIPTION = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+const PLACEHOLDER_DESCRIPTION =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
 export default function TeamCard({ icon, name, description }: TeamCardProps) {
   const displayDescription = description ?? PLACEHOLDER_DESCRIPTION;
