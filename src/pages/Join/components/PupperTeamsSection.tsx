@@ -3,40 +3,36 @@ import electricalIcon from '../../../assets/pupper/electrical-icon.svg';
 import embeddedSystemsIcon from '../../../assets/pupper/embedded-systems-icon.svg';
 import machineLearningIcon from '../../../assets/pupper/machine-learning-icon.svg';
 import { SectionHeading, BodyText } from '../../../components/Typography';
-
-interface TeamCardProps {
-  icon: string;
-  name: string;
-}
-
-function TeamCard({ icon, name }: TeamCardProps) {
-  return (
-    // Use aspect ratio instead of fixed height
-    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] w-full sm:w-56 md:w-60 lg:w-64 xl:w-[274px] aspect-[3/4] flex flex-col items-center justify-center gap-4 shrink-0">
-      <img
-        src={icon}
-        alt={name}
-        className="w-10 md:w-12 lg:w-[50px] h-10 md:h-12 lg:h-[50px]"
-      />
-      <span className="text-lg md:text-xl lg:text-2xl text-main-text text-center px-4 md:px-6 lg:px-8">
-        {name}
-      </span>
-    </div>
-  );
-}
+import TeamCard from './TeamCard';
 
 const teams = [
-  { id: 'mechanical', name: 'Mechanical', icon: mechanicalIcon },
-  { id: 'electrical', name: 'Electrical', icon: electricalIcon },
+  {
+    id: 'mechanical',
+    name: 'Mechanical',
+    icon: mechanicalIcon,
+    description:
+      'Design and build the robotic dog’s structure—legs, joints, and body. Work from proof-of-concept builds toward industry-grade hardware and locomotion.',
+  },
+  {
+    id: 'electrical',
+    name: 'Electrical',
+    icon: electricalIcon,
+    description:
+      'Design and integrate power, sensors, and electronics for the Pupper. Enable sensing and actuation that support agile, responsive behavior.',
+  },
   {
     id: 'software-embedded',
     name: 'Software: Embedded Systems',
     icon: embeddedSystemsIcon,
+    description:
+      'Develop real-time control and firmware for the Pupper. Implement low-level code for gait, balance, and sensor processing on the platform.',
   },
   {
     id: 'software-ml',
     name: 'Software: Machine Learning',
     icon: machineLearningIcon,
+    description:
+      'Bring intelligence to the Pupper with learning-based control and perception. Prototype algorithms that can later scale to the humanoid.',
   },
 ];
 
@@ -56,7 +52,12 @@ export default function PupperTeamsSection() {
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
           {teams.map((team) => (
-            <TeamCard key={team.id} icon={team.icon} name={team.name} />
+            <TeamCard
+              key={team.id}
+              icon={team.icon}
+              name={team.name}
+              description={team.description}
+            />
           ))}
         </div>
       </div>
