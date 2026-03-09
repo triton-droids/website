@@ -3,40 +3,36 @@ import electricalIcon from '../../../assets/humanoid/electrical-icon.svg';
 import embeddedSystemsIcon from '../../../assets/humanoid/embedded-systems-icon.svg';
 import machineLearningIcon from '../../../assets/humanoid/machine-learning-icon.svg';
 import { SectionHeading, BodyText } from '../../../components/Typography';
-
-interface TeamCardProps {
-  icon: string;
-  name: string;
-}
-
-function TeamCard({ icon, name }: TeamCardProps) {
-  return (
-    // Use aspect ratio instead of fixed height, min-width for consistency
-    <div className="border-[6px] border-[#2A2B2D] rounded-[24px] md:rounded-[32px] lg:rounded-[40px] w-full sm:w-56 md:w-60 lg:w-64 xl:w-[274px] aspect-[3/4] flex flex-col items-center justify-center gap-4 shrink-0">
-      <img
-        src={icon}
-        alt={name}
-        className="w-10 md:w-12 lg:w-[50px] h-10 md:h-12 lg:h-[50px]"
-      />
-      <span className="text-lg md:text-xl lg:text-2xl text-main-text text-center px-4 md:px-6 lg:px-8">
-        {name}
-      </span>
-    </div>
-  );
-}
+import TeamCard from './TeamCard';
 
 const teams = [
-  { id: 'mechanical', name: 'Mechanical', icon: mechanicalIcon },
-  { id: 'electrical', name: 'Electrical', icon: electricalIcon },
+  {
+    id: 'mechanical',
+    name: 'Mechanical',
+    icon: mechanicalIcon,
+    description:
+      'Design and build the physical structure—legs, joints, and upper body. Focus on bipedal locomotion, structural integrity, and iterative prototyping from lower body to torso, arms, and head.',
+  },
+  {
+    id: 'electrical',
+    name: 'Electrical',
+    icon: electricalIcon,
+    description:
+      'Design and integrate power systems, sensors, and wiring so the robot can sense and act. Work on the hardware that connects perception to motion and supports control systems.',
+  },
   {
     id: 'software-embedded',
     name: 'Software: Embedded Systems',
     icon: embeddedSystemsIcon,
+    description:
+      'Develop real-time control systems and firmware on the robot. Bridge hardware and software with low-level code for locomotion, balance, and sensor integration.',
   },
   {
     id: 'software-ml',
     name: 'Software: Machine Learning',
     icon: machineLearningIcon,
+    description:
+      'Build the intelligence: reinforcement learning, vision-language-action models, and learning-based control for autonomous behavior and manipulation on the humanoid platform.',
   },
 ];
 
@@ -56,7 +52,12 @@ export default function HumanoidTeamsSection() {
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
           {teams.map((team) => (
-            <TeamCard key={team.id} icon={team.icon} name={team.name} />
+            <TeamCard
+              key={team.id}
+              icon={team.icon}
+              name={team.name}
+              description={team.description}
+            />
           ))}
         </div>
       </div>
