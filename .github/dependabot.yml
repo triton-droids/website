@@ -16,12 +16,13 @@ updates:
           - "minor"
           - "patch"
     ignore:
-      # eslint-plugin-react doesn't support ESLint v10 yet
-      - dependency-name: "eslint"
-        update-types: ["version-update:semver-major"]
       # Major versions require manual migration — review individually
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+      # eslint ecosystem is pinned to v8 — plugins with new peer dep requirements
+      # on eslint v9/v10 must be upgraded together with eslint itself
+      - dependency-name: "eslint-plugin-react-refresh"
+        update-types: ["version-update:semver-minor"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
