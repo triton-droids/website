@@ -1,9 +1,9 @@
 import Carousel from '../../../components/Carousel';
 import { SectionHeading } from '../../../components/Typography';
-import slide1Image from '../../../assets/join/join-carousel-1.png';
+import slide1Image from '../../../assets/join/join-carousel-1.webp';
 import slide2Image from '../../../assets/join/join-carousel-2.jpg';
-import slide3Image from '../../../assets/join/join-carousel-3.png';
-import slide4Image from '../../../assets/join/join-carousel-4.png';
+import slide3Image from '../../../assets/join/join-carousel-3.webp';
+import slide4Image from '../../../assets/join/join-carousel-4.webp';
 
 interface Slide {
   id: number;

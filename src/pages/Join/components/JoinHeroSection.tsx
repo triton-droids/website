@@ -1,5 +1,5 @@
 import { HeroHeading } from '../../../components/Typography';
-import heroImage from '../../../assets/join/join-hero.png';
+import heroImage from '../../../assets/join/join-hero.webp';
 
 export default function JoinHeroSection() {
   return (

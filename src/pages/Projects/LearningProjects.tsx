@@ -10,8 +10,8 @@ import galleryImage1 from '../../assets/projects/humanoid-gallery/gallery-1.jpg'
 import galleryImage2 from '../../assets/projects/humanoid-gallery/gallery-2.jpg';
 import galleryImage3 from '../../assets/projects/humanoid-gallery/gallery-3.jpg';
 import galleryImage4 from '../../assets/projects/humanoid-gallery/gallery-4.jpg';
-import galleryImage5 from '../../assets/projects/humanoid-gallery/gallery-5.png';
-import galleryImage6 from '../../assets/projects/humanoid-gallery/gallery-6.png';
+import galleryImage5 from '../../assets/projects/humanoid-gallery/gallery-5.webp';
+import galleryImage6 from '../../assets/projects/humanoid-gallery/gallery-6.webp';
 
 const hero = {
   title: 'Learning Projects',

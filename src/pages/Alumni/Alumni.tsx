@@ -5,7 +5,7 @@ import {
   SectionHeading,
   BodyText,
 } from '../../components/Typography';
-import alumniPhoto from '../../imgs/alumni-page/hero/alumni-hero.png';
+import alumniPhoto from '../../imgs/alumni-page/hero/alumni-hero.webp';
 import SEO from '../../components/SEO';
 
 // Shared layout constants for consistent spacing

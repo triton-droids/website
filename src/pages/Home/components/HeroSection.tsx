@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import heroBackground from '../../../assets/hero-background.png';
+import heroBackground from '../../../assets/hero-background.webp';
 import { HeroHeading, BodyText } from '../../../components/Typography';
 
 export default function HeroSection() {

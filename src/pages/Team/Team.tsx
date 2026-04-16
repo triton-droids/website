@@ -7,7 +7,7 @@ import {
   BodyText,
 } from '../../components/Typography';
 import { TeamMember } from '../../types/team';
-import teamPhoto from '../../imgs/hero/team-hero.png';
+import teamPhoto from '../../imgs/hero/team-hero.webp';
 
 // Shared layout constants for consistent spacing
 const SECTION_WRAPPER = 'py-16';

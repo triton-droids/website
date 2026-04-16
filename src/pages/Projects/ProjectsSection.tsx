@@ -13,7 +13,7 @@ import robocupIconBlue from '../../assets/projects/robocup-icon-blue.svg';
 import robocupIconGray from '../../assets/projects/robocup-icon-gray.svg';
 import humanoidImage from '../../assets/projects/humanoid-image.jpg';
 import pupperImage from '../../assets/projects/pupper-image.jpg';
-import robocupImage from '../../assets/projects/robocup-image.png';
+import robocupImage from '../../assets/projects/robocup-image.webp';
 
 interface ProjectData {
   id: string;
