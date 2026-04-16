@@ -1,0 +1,12 @@
+# Default: all files require review from the maintainer
+* @andrewy1n
+
+# Source code
+src/ @andrewy1n
+
+# CI/CD and GitHub config
+.github/ @andrewy1n
+
+# Documentation
+docs/ @andrewy1n
+*.md @andrewy1n
