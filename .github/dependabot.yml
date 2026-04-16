@@ -8,12 +8,19 @@ updates:
     labels:
       - "dependencies"
     groups:
-      all-npm-dependencies:
+      # Patch and minor updates are safe to review together
+      npm-patch-minor:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
     ignore:
       # eslint-plugin-react doesn't support ESLint v10 yet
       - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      # Major versions require manual migration — review individually
+      - dependency-name: "*"
         update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
