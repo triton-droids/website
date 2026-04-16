@@ -11,6 +11,10 @@ updates:
       all-npm-dependencies:
         patterns:
           - "*"
+    ignore:
+      # eslint-plugin-react doesn't support ESLint v10 yet
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
