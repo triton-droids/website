@@ -7,7 +7,7 @@ import {
 import { academicAdvisors, advisoryBoard } from '../../data/advisors';
 import type { Advisor } from '../../types/advisor';
 import SEO from '../../components/SEO';
-import advisoryHeroImg from '../../imgs/advisors-page/hero/advisory-hero.png';
+import advisoryHeroImg from '../../imgs/advisors-page/hero/advisory-hero.webp';
 
 const CONTAINER = 'w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-left';
 const SECTION_WRAPPER = 'py-16';
