@@ -1,15 +1,25 @@
 # Deployment Guide
 
-The Triton Droids website is hosted on **Vercel** with automatic deployments triggered by pushes to `main`.
+The Triton Droids website is deployed to **Cloudflare Pages** using a GitHub Actions workflow.
 
 ## How It Works
 
-| Event | Result |
-|-------|--------|
-| Push to `main` | Production deployment at the live URL |
-| Open a Pull Request | Preview deployment (Vercel bot posts the URL in the PR) |
+| Event                            | Result                                    |
+| -------------------------------- | ----------------------------------------- |
+| Push to `main`                   | Production deployment to Cloudflare Pages |
+| Manual run (`workflow_dispatch`) | On-demand deployment from GitHub Actions  |
 
-No manual steps are needed — Vercel picks up changes automatically once the project is connected.
+Deployments are handled by `.github/workflows/cloudflare-pages.yml` and use `cloudflare/wrangler-action@v3` with `wrangler pages deploy`.
+
+## One-Time Setup
+
+1. Create a Cloudflare Pages project in your Cloudflare account.
+2. In GitHub, go to **Settings → Secrets and variables → Actions**.
+3. Add these repository **secrets**:
+   - `CLOUDFLARE_API_TOKEN` (token with `Cloudflare Pages:Edit` permission)
+   - `CLOUDFLARE_ACCOUNT_ID` (Cloudflare account ID)
+4. Add this repository **variable**:
+   - `CLOUDFLARE_PAGES_PROJECT_NAME` (exact Cloudflare Pages project name)
 
 ## CI Checks (GitHub Actions)
 
@@ -37,28 +47,18 @@ npm run build
 npm run preview
 ```
 
-## Environment Variables
-
-If the project needs environment variables (e.g., API keys):
-
-1. Add them in the Vercel dashboard: **Project → Settings → Environment Variables**
-2. For CI use, add them as **GitHub Actions secrets**: **Settings → Secrets and variables → Actions**
-3. Reference in workflow files: `${{ secrets.VARIABLE_NAME }}`
-
-Currently no environment variables are required.
-
 ## Rollback
 
-1. In the Vercel dashboard, open **Deployments**
-2. Find a previous successful deployment and click **Promote to Production**
+1. In the Cloudflare Pages dashboard, open **Deployments**.
+2. Redeploy a previously successful deployment.
 
-Or revert the commit on `main` — Vercel will redeploy automatically.
+Or revert the commit on `main` and let GitHub Actions publish the reverted state.
 
 ## Troubleshooting
 
-| Symptom | Fix |
-|---------|-----|
-| Build fails in CI | Run `npm run build` locally and fix errors |
-| Lint/type errors | Run `npm run lint` and `npm run typecheck` |
-| Playwright failures | Run `npm run test:e2e` locally with `npx playwright install` |
-| Site not updating | Check Vercel dashboard for deployment status; clear browser cache |
+| Symptom                        | Fix                                                                                             |
+| ------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Build fails in GitHub Actions  | Run `npm run build` locally and fix errors                                                      |
+| Missing Cloudflare credentials | Confirm `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set in GitHub secrets            |
+| Wrong Pages target project     | Confirm `CLOUDFLARE_PAGES_PROJECT_NAME` matches the Pages project exactly                       |
+| Site not updating              | Check the `Deploy to Cloudflare Pages` workflow run logs and Cloudflare Pages deployment status |
