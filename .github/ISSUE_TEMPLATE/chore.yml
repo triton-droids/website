@@ -1,0 +1,25 @@
+name: Chore
+description: Refactor, dependency bump, content update, infra, etc.
+title: "[Chore]: "
+labels: ["chore"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs to happen
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P1
+        - P2
+        - P3
+    validations:
+      required: true

@@ -1,42 +1,44 @@
-name: Bug Report
-description: Report a bug on the Triton Droids website
+name: Bug
+description: Something on the site is broken
 title: "[Bug]: "
 labels: ["bug"]
 body:
-  - type: markdown
-    attributes:
-      value: Thanks for taking the time to report a bug!
   - type: textarea
     id: description
     attributes:
-      label: What happened?
-      description: A clear description of the bug.
+      label: What's broken
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce
+      label: Repro
       placeholder: |
-        1. Go to '...'
-        2. Click on '...'
-        3. See error
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected behavior
-      description: What did you expect to happen?
+        1. Go to ...
+        2. Click ...
+        3. See ...
     validations:
       required: true
   - type: input
-    id: browser
+    id: url
     attributes:
-      label: Browser / OS
-      placeholder: e.g. Chrome 124 on macOS 14
+      label: URL / route
+  - type: input
+    id: env
+    attributes:
+      label: Browser / device
+      placeholder: e.g. Chrome 124 / iPhone 14 Safari
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 - site broken in prod
+        - P1 - visible regression
+        - P2 - minor
+    validations:
+      required: true
   - type: textarea
     id: screenshots
     attributes:
-      label: Screenshots
-      description: If applicable, add screenshots to help explain the bug.
+      label: Screenshots / console errors

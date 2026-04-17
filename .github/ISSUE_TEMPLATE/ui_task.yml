@@ -1,0 +1,73 @@
+name: UI / Design Task
+description: A UI or visual change for the website
+title: "[UI]: "
+labels: ["ui"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Home
+        - About
+        - Team
+        - Projects
+        - Sponsors
+        - Contact
+        - Navigation / Layout
+        - Global / Shared component
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: component
+    attributes:
+      label: Page or component
+      placeholder: e.g. app/(site)/team/page.tsx, components/Navbar.tsx
+  - type: textarea
+    id: current
+    attributes:
+      label: Current state
+      description: What does it look / behave like today? Screenshots welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired state
+      description: What should it look / behave like after this change?
+    validations:
+      required: true
+  - type: input
+    id: design
+    attributes:
+      label: Design reference
+      placeholder: Figma link, screenshot, or inspiration URL
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Checklist of what "done" means.
+      value: |
+        - [ ] 
+        - [ ] Responsive on mobile
+        - [ ] Matches design reference
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0 - blocker for next release
+        - P1 - should land this version
+        - P2 - nice to have
+    validations:
+      required: true
+  - type: input
+    id: milestone
+    attributes:
+      label: Target version
+      placeholder: e.g. v2.0
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
