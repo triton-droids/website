@@ -1,4 +1,3 @@
-import ProjectHeroSection from './components/ProjectHeroSection';
 import ProjectDetailCard from './components/ProjectDetailCard';
 import ProjectGallery from './components/ProjectGallery';
 import ModelViewer from './components/ModelViewer';
@@ -8,13 +7,13 @@ import functionIcon from '../../assets/projects/icons/function-icon.svg';
 import approachIcon from '../../assets/projects/icons/approach-icon.svg';
 import progressIcon from '../../assets/projects/icons/progress-icon.svg';
 import lowerBodyModel from '../../assets/models/1.26.26 Lower Body.glb';
-import humanoidAsciiArt from '../../assets/projects/hero/humanoid-ascii-art.webp';
 import galleryImage1 from '../../assets/projects/humanoid-gallery/gallery-1.jpg';
 import galleryImage2 from '../../assets/projects/humanoid-gallery/gallery-2.jpg';
 import galleryImage3 from '../../assets/projects/humanoid-gallery/gallery-3.jpg';
 import galleryImage4 from '../../assets/projects/humanoid-gallery/gallery-4.jpg';
 import galleryImage5 from '../../assets/projects/humanoid-gallery/gallery-5.webp';
 import galleryImage6 from '../../assets/projects/humanoid-gallery/gallery-6.webp';
+import { HeroHeading, BodyText } from '../../components/Typography';
 
 const humanoidProject = {
   title: 'Humanoid Robot',
@@ -58,8 +57,6 @@ const humanoidProject = {
 };
 
 export default function Humanoid() {
-  const modelInsertAfter = 'Approach';
-
   return (
     <div className="bg-main-bg min-h-screen">
       <SEO
@@ -67,40 +64,40 @@ export default function Humanoid() {
         description="Our flagship humanoid robot project"
         path="/projects/humanoid"
       />
-      <div className="flex flex-col gap-20 md:gap-32 items-center">
-        <ProjectHeroSection
-          title={humanoidProject.title}
-          description={humanoidProject.description}
-          asciiArtAsset={humanoidAsciiArt}
-          mediaWrapperClassName="max-w-[1215px] h-[530px] bg-[#101010] mx-auto"
-          mediaClassName="h-full object-cover object-top"
-        />
-        <div className="flex flex-col gap-12 md:gap-16 w-full max-w-[1400px] mx-auto px-6 md:px-20 lg:px-[148px]">
-          {humanoidProject.sections.map((section, index) => (
-            <div
-              key={`${section.title}-${index}`}
-              className="flex flex-col gap-12 md:gap-16"
+      <div className="flex flex-col gap-0 md:gap-20 lg:gap-32 items-center">
+        <section className="flex flex-col gap-5 md:gap-10 items-start px-4 py-5 md:px-12 lg:px-16 xl:px-20 w-full max-w-7xl mx-auto">
+          <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 items-start w-full">
+            <HeroHeading>{humanoidProject.title}</HeroHeading>
+            <BodyText
+              size="lg"
+              className="text-xs leading-normal md:text-lg md:leading-relaxed max-w-4xl"
             >
-              <ProjectDetailCard
-                icon={section.icon}
-                title={section.title}
-                description={section.description}
-              />
-              {section.title === modelInsertAfter && (
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-[900px]">
-                    <ModelViewer
-                      modelUrl={humanoidProject.modelUrl}
-                      alt={`${humanoidProject.title} Lower Body Model`}
-                      className="rounded-[32px] lg:rounded-[40px] bg-black h-[360px] md:h-[420px] lg:h-[480px]"
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
+              {humanoidProject.description}
+            </BodyText>
+          </div>
+
+          <div className="w-full">
+            <ModelViewer
+              modelUrl={humanoidProject.modelUrl}
+              alt={`${humanoidProject.title} Lower Body Model`}
+              className="rounded-[16px] md:rounded-[32px] lg:rounded-[40px] bg-black h-[179px] sm:h-[220px] md:h-[460px] lg:h-[530px]"
+            />
+          </div>
+        </section>
+        <div className="flex flex-col gap-5 md:gap-12 lg:gap-16 w-full max-w-[1400px] mx-auto px-4 md:px-20 lg:px-[148px] py-5 md:py-0">
+          {humanoidProject.sections.map((section, index) => (
+            <ProjectDetailCard
+              key={`${section.title}-${index}`}
+              icon={section.icon}
+              title={section.title}
+              description={section.description}
+            />
           ))}
         </div>
-        <ProjectGallery images={humanoidProject.galleryImages} />
+        <ProjectGallery
+          images={humanoidProject.galleryImages}
+          sectionClassName="py-5 md:py-0"
+        />
       </div>
     </div>
   );
