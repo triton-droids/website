@@ -1,6 +1,6 @@
 # Force LF for text files
 * text=auto eol=lf
 
-# Git LFS for large binary assets
-*.glb filter=lfs diff=lfs merge=lfs -text
-*.gltf filter=lfs diff=lfs merge=lfs -text
+# GLB/GLTF treated as binary (no line-ending conversion)
+*.glb -text
+*.gltf -text
