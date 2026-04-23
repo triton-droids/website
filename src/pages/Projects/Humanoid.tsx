@@ -68,10 +68,7 @@ export default function Humanoid() {
         <section className="flex flex-col gap-5 md:gap-10 items-start px-4 py-5 md:px-12 lg:px-16 xl:px-20 w-full max-w-7xl mx-auto">
           <div className="flex flex-col gap-2 md:gap-4 lg:gap-6 items-start w-full">
             <HeroHeading>{humanoidProject.title}</HeroHeading>
-            <BodyText
-              size="lg"
-              className="text-xs leading-normal md:text-lg md:leading-relaxed max-w-4xl"
-            >
+            <BodyText className="max-w-4xl">
               {humanoidProject.description}
             </BodyText>
           </div>
