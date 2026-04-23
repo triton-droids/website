@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Carousel from '../../../components/Carousel';
 import { SectionHeading } from '../../../components/Typography';
 import slide1Image from '../../../assets/join/join-carousel-1.webp';
@@ -10,6 +11,45 @@ interface Slide {
   title: string;
   description: JSX.Element;
   image: string;
+}
+
+function WhyJoinSlide({ slide }: { slide: Slide }) {
+  const [showText, setShowText] = useState(false);
+
+  return (
+    <div className="w-full">
+      <div className="w-full bg-[#2A2B2D] rounded-[28px] lg:rounded-[40px] flex min-h-[20rem] md:min-h-[36rem] flex-col items-center justify-center text-center gap-6 md:gap-8 px-7 py-10 sm:px-10 sm:py-12 md:px-12 md:py-12 max-w-[1050px] mx-auto">
+        <h3 className="text-[20px] sm:text-2xl md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-xl mx-auto px-2 text-center">
+          {slide.title}
+        </h3>
+
+        <div className="w-full flex justify-center px-1">
+          <button
+            type="button"
+            onClick={() => setShowText((v) => !v)}
+            aria-label={showText ? 'Hide description' : 'Show description'}
+            aria-expanded={showText}
+            className="group w-full max-w-[min(100%,300px)] aspect-square sm:max-w-[min(100%,360px)] md:aspect-[4/3] md:max-w-[min(100%,480px)] rounded-[20px] lg:rounded-[28px] overflow-hidden shrink-0 relative cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          >
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div
+              className={`absolute inset-0 bg-[#1F2022]/95 flex items-center justify-center p-5 sm:p-6 md:p-8 overflow-y-auto transition-opacity duration-300 ${
+                showText ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <p className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] text-main-text leading-[140%] font-normal text-center">
+                {slide.description}
+              </p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const slides: Slide[] = [
@@ -79,51 +119,19 @@ const slides: Slide[] = [
 
 export default function WhyJoinCarousel() {
   return (
-    <section className="flex flex-col gap-10 lg:gap-16 xl:gap-20 items-center w-full">
-      {/* Heading matches standard container width */}
+    <section className="flex flex-col gap-8 md:gap-10 lg:gap-16 xl:gap-20 items-center w-full">
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
-        <SectionHeading>Why join Triton Droids?</SectionHeading>
+        <SectionHeading className="w-full text-left text-2xl leading-tight sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+          Why join Triton Droids?
+        </SectionHeading>
       </div>
 
       <Carousel
         slides={slides}
-        renderSlide={(slide, _index, tweenValue) => {
-          const scale = 0.85 + tweenValue * 0.15;
-          const opacity = 0.3 + tweenValue * 0.7;
-
-          return (
-            <div
-              className="transition-transform duration-100 ease-out origin-center"
-              style={{
-                transform: `scale(${scale})`,
-                opacity: opacity,
-              }}
-            >
-              <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-0 lg:gap-6 items-stretch max-w-[1050px] md:h-[595px] mx-auto">
-                {/* Image section: Reduced from 513px to 420px for more text space */}
-                <div className="w-full md:w-[420px] h-full shrink-0 p-4 md:pt-10 md:pb-10 md:pl-10 md:pr-4 flex items-center justify-center">
-                  <div className="w-full h-full md:w-[360px] md:h-[360px] rounded-[16px] lg:rounded-[32px] overflow-hidden">
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-
-                {/* Content section: More space with reduced image, added horizontal padding */}
-                <div className="flex flex-col gap-8 px-8 md:px-10 py-10 flex-1 justify-center">
-                  <h3 className="text-[24px] md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-[449px]">
-                    {slide.title}
-                  </h3>
-                  <p className="text-[16px] md:text-[18px] lg:text-[20px] text-main-text leading-[140%] font-normal max-w-[480px]">
-                    {slide.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        }}
+        arrowOffset="card"
+        slideClassName="flex-[0_0_100%] shrink-0 px-3 sm:px-4 md:px-5"
+        className="w-full max-w-[1512px] mx-auto px-14 sm:px-16 md:px-20 lg:px-[148px]"
+        renderSlide={(slide) => <WhyJoinSlide slide={slide} />}
       />
     </section>
   );

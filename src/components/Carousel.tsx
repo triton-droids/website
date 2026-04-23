@@ -21,6 +21,14 @@ interface CarouselProps<T = unknown> {
   ) => ReactNode;
   showArrows?: boolean;
   showPagination?: boolean;
+  /**
+   * Arrow visual / position style:
+   * - 'flush'  : legacy outer arrows with gutter padding on the viewport
+   * - 'inset'  : legacy outer arrows pulled slightly inward
+   * - 'card'   : white ring buttons overlaid on the carousel (outside the Embla viewport),
+   *              vertically centered. Guarantees one pair, no per-slide arrows.
+   */
+  arrowOffset?: 'flush' | 'inset' | 'card';
 }
 
 export default function Carousel<T = unknown>({
@@ -33,12 +41,14 @@ export default function Carousel<T = unknown>({
   renderPagination,
   showArrows = true,
   showPagination = true,
+  arrowOffset = 'flush',
 }: CarouselProps<T>) {
+  const isCardStyle = arrowOffset === 'card';
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: 'center',
+    align: isCardStyle ? 'start' : 'center',
     skipSnaps: false,
-    containScroll: false,
+    containScroll: isCardStyle ? 'trimSnaps' : false,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -140,9 +150,9 @@ export default function Carousel<T = unknown>({
       <button
         onClick={onClick}
         disabled={!enabled}
-        className={`size-12 lg:size-14 xl:size-[66px] rounded-full border-2 lg:border-3 xl:border-4 border-muted-text flex items-center justify-center transition-all cursor-pointer shrink-0 ${
+        className={`size-12 lg:size-14 xl:size-[66px] rounded-full border-2 lg:border-3 xl:border-4 border-muted-text bg-main-bg/75 backdrop-blur-sm flex items-center justify-center transition-all cursor-pointer shrink-0 ${
           direction === 'left' ? '' : 'rotate-180'
-        } ${enabled ? 'hover:border-main-text hover:bg-main-text/10' : 'opacity-50'}`}
+        } ${enabled ? 'hover:border-main-text hover:bg-main-text/20' : 'opacity-50'}`}
         aria-label={direction === 'left' ? 'Previous slide' : 'Next slide'}
       >
         <svg
@@ -165,6 +175,37 @@ export default function Carousel<T = unknown>({
     );
   };
 
+  const cardArrowButton = (
+    direction: 'left' | 'right',
+    onClick: () => void
+  ) => (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`size-10 sm:size-11 rounded-full border-2 border-white bg-black/30 text-white flex items-center justify-center transition-colors hover:bg-white/15 active:scale-95 ${
+        direction === 'left' ? '' : 'rotate-180'
+      }`}
+      aria-label={direction === 'left' ? 'Previous slide' : 'Next slide'}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path
+          d="M15 18L9 12L15 6"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+  );
+
   const defaultPagination = (
     total: number,
     selectedIndex: number,
@@ -186,54 +227,75 @@ export default function Carousel<T = unknown>({
     </div>
   );
 
+  const leftArrowWrapClass =
+    arrowOffset === 'card'
+      ? 'absolute left-0 top-1/2 z-30 -translate-y-1/2 -translate-x-[calc(100%+10px)] sm:-translate-x-[calc(100%+16px)] md:-translate-x-[calc(100%+20px)] pointer-events-none'
+      : arrowOffset === 'inset'
+        ? 'absolute left-2 sm:left-3 md:left-4 top-1/2 z-30 -translate-y-1/2 pointer-events-none'
+        : 'absolute left-0 top-1/2 z-30 -translate-y-1/2 pl-0 sm:pl-1 pointer-events-none';
+  const rightArrowWrapClass =
+    arrowOffset === 'card'
+      ? 'absolute right-0 top-1/2 z-30 -translate-y-1/2 translate-x-[calc(100%+10px)] sm:translate-x-[calc(100%+16px)] md:translate-x-[calc(100%+20px)] pointer-events-none'
+      : arrowOffset === 'inset'
+        ? 'absolute right-2 sm:right-3 md:right-4 top-1/2 z-30 -translate-y-1/2 pointer-events-none'
+        : 'absolute right-0 top-1/2 z-30 -translate-y-1/2 pr-0 sm:pr-1 pointer-events-none';
+
+  const viewportPaddingClass = isCardStyle
+    ? 'overflow-hidden'
+    : 'overflow-hidden pl-11 pr-11 sm:pl-12 sm:pr-12 lg:pl-16 lg:pr-16 xl:pl-20 xl:pr-20';
+
+  const renderArrow = (
+    direction: 'left' | 'right',
+    onClick: () => void,
+    disabled: boolean
+  ) => {
+    if (renderArrowButton) {
+      return renderArrowButton(direction, onClick, disabled);
+    }
+    if (isCardStyle) {
+      return cardArrowButton(direction, onClick);
+    }
+    return defaultArrowButton(direction, onClick, disabled);
+  };
+
   return (
     <div className={className}>
       <div
-        className={`flex gap-4 lg:gap-6 xl:gap-8 items-center w-full ${containerClassName}`.trim()}
+        className={`relative w-full min-w-0 max-w-full lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto ${containerClassName}`.trim()}
       >
-        {showArrows &&
-          (renderArrowButton
-            ? renderArrowButton('left', scrollPrev, !canScrollPrev && !emblaApi)
-            : defaultArrowButton(
-                'left',
-                scrollPrev,
-                !canScrollPrev && !emblaApi
-              ))}
+        {showArrows && (
+          <div className={leftArrowWrapClass}>
+            <div className="pointer-events-auto">
+              {renderArrow('left', scrollPrev, !canScrollPrev && !emblaApi)}
+            </div>
+          </div>
+        )}
+        {showArrows && (
+          <div className={rightArrowWrapClass}>
+            <div className="pointer-events-auto">
+              {renderArrow('right', scrollNext, !canScrollNext && !emblaApi)}
+            </div>
+          </div>
+        )}
 
-        <div
-          className="flex-1 overflow-hidden max-w-full lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] -ml-4 pl-4"
-          ref={emblaRef}
-        >
+        <div className={viewportPaddingClass} ref={emblaRef}>
           <div className="flex">
             {slides.map((slide, index) => {
               const tweenValue = tweenValues[index] ?? 0;
+              const slideBasis =
+                slideClassName ||
+                'flex-[0_0_90%] md:flex-[0_0_85%] lg:flex-[0_0_80%] xl:flex-[0_0_70%] min-w-0 pl-4 pr-4';
+              const slideSizing = isCardStyle
+                ? `${slideBasis} min-w-[100%] shrink-0`
+                : slideBasis;
               return (
-                <div
-                  key={index}
-                  className={
-                    slideClassName ||
-                    'flex-[0_0_90%] md:flex-[0_0_85%] lg:flex-[0_0_80%] xl:flex-[0_0_70%] min-w-0 pl-4 pr-4'
-                  }
-                >
+                <div key={index} className={slideSizing}>
                   {renderSlide(slide, index, tweenValue)}
                 </div>
               );
             })}
           </div>
         </div>
-
-        {showArrows &&
-          (renderArrowButton
-            ? renderArrowButton(
-                'right',
-                scrollNext,
-                !canScrollNext && !emblaApi
-              )
-            : defaultArrowButton(
-                'right',
-                scrollNext,
-                !canScrollNext && !emblaApi
-              ))}
       </div>
 
       {showPagination && (

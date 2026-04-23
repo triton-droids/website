@@ -4,6 +4,7 @@ import embeddedSystemsIcon from '../../../assets/pupper/embedded-systems-icon.sv
 import machineLearningIcon from '../../../assets/pupper/machine-learning-icon.svg';
 import { SectionHeading, BodyText } from '../../../components/Typography';
 import TeamCard from './TeamCard';
+import TeamSectionMobileCarousel from './TeamSectionMobileCarousel';
 
 const teams = [
   {
@@ -42,14 +43,15 @@ export default function PupperTeamsSection() {
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-col w-full">
           <SectionHeading className="text-2xl md:text-3xl lg:text-4xl">
-            Triton Pupper
+            Triton Pupper Project
           </SectionHeading>
           <BodyText size="lg" className="text-slate-400">
             Main Engineering Teams
           </BodyText>
         </div>
       </div>
-      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+      <TeamSectionMobileCarousel teams={teams} />
+      <div className="hidden md:block w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
           {teams.map((team) => (
             <TeamCard
