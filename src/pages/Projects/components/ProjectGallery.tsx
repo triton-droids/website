@@ -4,9 +4,13 @@ import AutoScroll from 'embla-carousel-auto-scroll';
 
 interface ProjectGalleryProps {
   images: string[];
+  sectionClassName?: string;
 }
 
-export default function ProjectGallery({ images }: ProjectGalleryProps) {
+export default function ProjectGallery({
+  images,
+  sectionClassName = 'py-20',
+}: ProjectGalleryProps) {
   const autoScrollPlugin = useMemo(
     () =>
       AutoScroll({
@@ -31,7 +35,9 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
   if (images.length === 0) return null;
 
   return (
-    <section className="flex flex-col items-center py-20 w-full">
+    <section
+      className={`flex flex-col items-center w-full ${sectionClassName}`}
+    >
       <div className="w-full">
         <div
           className="h-[500px] overflow-hidden"
