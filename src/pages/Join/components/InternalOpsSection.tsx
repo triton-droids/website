@@ -4,6 +4,7 @@ import webdevIcon from '../../../assets/join/webdev-icon.svg';
 import marketingIcon from '../../../assets/join/marketing-icon-new.svg';
 import { SectionHeading, BodyText } from '../../../components/Typography';
 import TeamCard from './TeamCard';
+import TeamSectionMobileCarousel from './TeamSectionMobileCarousel';
 
 const internalOpsTeams = [
   {
@@ -49,7 +50,8 @@ export default function InternalOpsSection() {
           </BodyText>
         </div>
       </div>
-      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+      <TeamSectionMobileCarousel teams={internalOpsTeams} />
+      <div className="hidden md:block w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
           {internalOpsTeams.map((team) => (
             <TeamCard

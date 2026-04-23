@@ -9,7 +9,7 @@ export default function OurTeamsSection() {
       {/* Our Teams Header - uses standard container */}
       <div className="px-6 md:px-12 lg:px-[148px] py-12 md:py-16 lg:py-20 w-full max-w-[1512px] mx-auto">
         <SectionHeading className="w-full !text-[32px] md:!text-[48px] lg:!text-[64px] !font-bold !leading-none">
-          Our Teams
+          Our Team
         </SectionHeading>
       </div>
 

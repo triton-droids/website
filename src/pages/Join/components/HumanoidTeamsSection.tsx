@@ -4,6 +4,7 @@ import embeddedSystemsIcon from '../../../assets/humanoid/embedded-systems-icon.
 import machineLearningIcon from '../../../assets/humanoid/machine-learning-icon.svg';
 import { SectionHeading, BodyText } from '../../../components/Typography';
 import TeamCard from './TeamCard';
+import TeamSectionMobileCarousel from './TeamSectionMobileCarousel';
 
 const teams = [
   {
@@ -49,7 +50,8 @@ export default function HumanoidTeamsSection() {
           </BodyText>
         </div>
       </div>
-      <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
+      <TeamSectionMobileCarousel teams={teams} />
+      <div className="hidden md:block w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 xl:gap-10 items-center justify-center w-full">
           {teams.map((team) => (
             <TeamCard
