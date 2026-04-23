@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import humanoidIconBlue from '../../assets/projects/humanoid-icon-blue.svg';
 import {
@@ -60,6 +60,12 @@ const projects: ProjectData[] = [
 
 export default function ProjectsSection() {
   const [activeProject, setActiveProject] = useState(0);
+
+  useEffect(() => {
+    projects.forEach((p) => {
+      new Image().src = p.image;
+    });
+  }, []);
 
   const project = projects[activeProject];
 
