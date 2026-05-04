@@ -9,7 +9,17 @@ import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
 
 export default [
-  { ignores: ['dist', 'eslint.config.js', '.claude/'] },
+  {
+    ignores: [
+      'dist',
+      'eslint.config.js',
+      '.claude/',
+      '.vite',
+      'node_modules',
+      'playwright-report',
+      'test-results',
+    ],
+  },
   js.configs.recommended,
   {
     files: ['**/*.{ts,tsx}'],

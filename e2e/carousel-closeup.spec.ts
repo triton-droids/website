@@ -18,6 +18,7 @@ test.describe('Carousel Close-up Screenshots', () => {
 
     // Get the actual card element (the dark container with content)
     const achieveCard = page
+      .getByTestId('achieve-carousel-desktop')
       .locator('div[class*="bg-[#2A2B2D]"]')
       .filter({
         has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
@@ -64,13 +65,16 @@ test.describe('Carousel Close-up Screenshots', () => {
     );
     await page.waitForTimeout(1000);
 
-    // Click the next arrow
-    const nextButton = page.locator('button[aria-label="Next slide"]').first();
+    // Click the next arrow (desktop carousel; mobile also has Next in DOM)
+    const nextButton = page
+      .getByTestId('achieve-carousel-desktop')
+      .locator('button[aria-label="Next slide"]');
     await nextButton.click();
     await page.waitForTimeout(1000);
 
     // Screenshot the second slide
     const secondSlideCard = page
+      .getByTestId('achieve-carousel-desktop')
       .locator('div[class*="bg-[#2A2B2D]"]')
       .filter({
         has: page.locator('h3:has-text("Focus on Equity")'),
