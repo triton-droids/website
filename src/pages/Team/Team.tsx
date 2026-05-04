@@ -12,7 +12,11 @@ import teamPhoto from '../../imgs/hero/team-hero.webp';
 // Shared layout constants for consistent spacing
 const SECTION_WRAPPER = 'py-16';
 const CONTAINER = 'w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8';
-const GRID = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14';
+/** Executives keep a single column on small phones (detailed cards); 2+ cols from sm. */
+const GRID_EXECUTIVES = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14';
+/** Team Leads: Figma mobile — two columns, ~28px gutter; align with V2 mobile design. */
+const GRID_TEAM_LEADS =
+  'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-14';
 
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
@@ -58,7 +62,7 @@ export default function Team() {
           <SectionHeading className="text-left mb-8">
             Our Executives
           </SectionHeading>
-          <div className={GRID}>
+          <div className={GRID_EXECUTIVES}>
             {executives.map((member) => (
               <TeamMemberCard
                 key={member.id}
@@ -80,7 +84,7 @@ export default function Team() {
           <SectionHeading className="text-left mb-8">
             Our Team Leads
           </SectionHeading>
-          <div className={GRID}>
+          <div className={GRID_TEAM_LEADS}>
             {teamLeads.map((member) => (
               <TeamMemberCard
                 key={member.id}

@@ -11,7 +11,8 @@ import SEO from '../../components/SEO';
 // Shared layout constants for consistent spacing
 const SECTION_WRAPPER = 'py-16';
 const CONTAINER = 'w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8';
-const GRID = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14';
+/** Mobile: two-column cards per Figma V2 mobile; tighter gutter (~28px). */
+const GRID = 'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-14';
 
 export default function Alumni() {
   const executives = alumniMembers.filter((m) => m.category === 'executive');

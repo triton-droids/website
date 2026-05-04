@@ -25,7 +25,7 @@ export const teamMembers: TeamMember[] = [
     category: 'executive',
     major: 'Computer Science',
     year: 'Senior',
-    bio: 'Blurb here',
+    bio: 'A 3rd year Aerospace & Robotics Engineering student, Abhinav is a patented inventor, writer, YouTuber, and Entrepreneur. At age 14 he created a book donation app, at 17 he set up a company for his invention -- a wearable app for pregnant women.',
     email: 'johndoe@ucsd.edu',
     image: abhinavSwarupImg,
     linkedin: 'https://www.linkedin.com/in/abhinav-swarup-7284b1236',
