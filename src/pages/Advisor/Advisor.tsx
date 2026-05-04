@@ -12,7 +12,8 @@ import advisoryHeroImg from '../../imgs/advisors-page/hero/advisory-hero.webp';
 const CONTAINER = 'w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-left';
 const SECTION_WRAPPER = 'py-16';
 const SECTION_TITLE = 'text-left mb-12';
-const GRID = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14';
+/** Mobile: two-column advisor cards per Figma V2 mobile. */
+const GRID = 'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-14';
 
 function AdvisorCard({ name, department, image }: Advisor) {
   return (
@@ -27,14 +28,11 @@ function AdvisorCard({ name, department, image }: Advisor) {
           className="w-full h-full object-cover block rounded-3xl"
         />
       </div>
-      <section className="w-full bg-main-bg rounded-b-card px-6 py-4 text-left">
-        <CardTitle className="text-sm md:text-base font-bold text-white leading-tight">
+      <section className="w-full bg-main-bg rounded-b-card px-2 py-3 sm:px-6 sm:py-4 text-left">
+        <CardTitle className="text-xs sm:text-sm md:text-base font-bold text-white leading-tight">
           {name}
         </CardTitle>
-        <p
-          className="mt-1 text-sm md:text-base leading-relaxed"
-          style={{ color: '#FECE00' }}
-        >
+        <p className="mt-1 text-xs sm:text-sm md:text-base leading-relaxed text-accent">
           {department}
         </p>
       </section>
