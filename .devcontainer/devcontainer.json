@@ -6,12 +6,10 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
   },
-  "mounts": [
-    "source=triton-droids-claude,target=/home/node/.claude,type=volume",
-    "source=triton-droids-cursor,target=/home/node/.cursor,type=volume"
-  ],
+  "mounts": [],
   "customizations": {
     "vscode": {
       "extensions": [
