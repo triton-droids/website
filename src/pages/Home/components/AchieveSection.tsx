@@ -1,7 +1,8 @@
 import Carousel from '../../../components/Carousel';
+import MobileCarousel from '../../../components/MobileCarousel';
+import { BodyText, SectionHeading } from '../../../components/Typography';
 
 import slide1Image from '../../../assets/carousel/slide-1.jpg';
-import { SectionHeading } from '../../../components/Typography';
 import slide2Image from '../../../assets/carousel/slide-2.jpg';
 import slide3Image from '../../../assets/carousel/slide-3.jpg';
 import slide4Image from '../../../assets/carousel/slide-4.jpg';
@@ -79,63 +80,119 @@ const slides: SlideData[] = [
   },
 ];
 
+/** Mobile: fill width between arrows; type scale aligned with section heading body text. */
+function AchieveMissionMobileSlide({ slide }: { slide: SlideData }) {
+  return (
+    <div className="mx-auto w-full max-w-full">
+      <div className="flex flex-col gap-5 rounded-3xl bg-[#2A2B2D] py-6">
+        <div className="flex flex-col px-5 sm:px-6">
+          <div className="aspect-[260/173] w-full overflow-hidden rounded-xl">
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="size-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 px-5 sm:px-6">
+          <BodyText
+            size="sm"
+            className="!text-base !leading-snug !font-normal w-full text-left text-main-text sm:!text-lg"
+          >
+            {slide.title}
+          </BodyText>
+          <ul className="flex w-full flex-col gap-3 list-disc pl-[1.15rem] text-sm leading-relaxed text-main-text marker:text-main-text sm:text-[15px] sm:leading-relaxed">
+            {slide.points.map((point, pointIndex) => (
+              <li key={pointIndex} className="pl-0.5">
+                <span className="font-medium text-accent">
+                  {point.highlight}
+                </span>
+                {point.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AchieveSection() {
   return (
     <section className="bg-main-bg py-12 md:py-16 lg:py-20 flex flex-col gap-10 md:gap-16 lg:gap-20 items-center justify-center overflow-hidden">
-      {/* Heading uses same padding as other sections */}
       <SectionHeading className="w-full max-w-7xl mx-auto text-left px-6 md:px-12 lg:px-16 xl:px-20">
         How We Aim to Achieve Our Mission
       </SectionHeading>
 
       <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 items-center w-full">
-        <Carousel
-          renderSlide={(slide, _index, tweenValue) => {
-            const scale = 0.85 + tweenValue * 0.15;
-            const opacity = 0.3 + tweenValue * 0.7;
+        <div
+          className="md:hidden w-full px-6"
+          data-testid="achieve-carousel-mobile"
+        >
+          <MobileCarousel
+            slides={slides}
+            aria-label="How we achieve our mission"
+            renderSlide={(slide) => <AchieveMissionMobileSlide slide={slide} />}
+          />
+        </div>
 
-            return (
-              <div
-                className="transition-transform duration-100 ease-out origin-center"
-                style={{
-                  transform: `scale(${scale})`,
-                  opacity: opacity,
-                }}
-              >
-                <div className="w-full bg-[#2A2B2D] rounded-[24px] lg:rounded-[40px] flex flex-col md:flex-row gap-0 lg:gap-6 items-stretch max-w-[1050px] md:h-[595px] mx-auto">
-                  {/* Image section: Reduced from 513px to 420px for more text space */}
-                  <div className="w-full md:w-[420px] h-full shrink-0 p-4 md:pt-10 md:pb-10 md:pl-10 md:pr-4 flex items-center justify-center">
-                    <div className="w-full h-full md:w-[360px] md:h-[360px] rounded-[16px] lg:rounded-[32px] overflow-hidden">
-                      <img
-                        src={slide.image}
-                        alt={slide.title}
-                        className="w-full h-full object-cover"
-                      />
+        <div
+          className="hidden md:flex flex-col items-center w-full px-6 lg:px-8"
+          data-testid="achieve-carousel-desktop"
+        >
+          <Carousel
+            className="mx-auto w-full max-w-[min(100%,1400px)]"
+            containerClassName="!max-w-none"
+            slideClassName="min-w-0 flex-[0_0_92%] lg:flex-[0_0_88%] xl:flex-[0_0_84%] 2xl:flex-[0_0_80%] px-2 sm:px-3 lg:px-4"
+            renderSlide={(slide, _index, tweenValue) => {
+              const scale = 0.85 + tweenValue * 0.15;
+              const opacity = 0.3 + tweenValue * 0.7;
+
+              return (
+                <div
+                  className="min-h-0 w-full overflow-hidden py-1 origin-center transition-transform duration-150 ease-out"
+                  style={{
+                    transform: `scale(${scale})`,
+                    opacity,
+                  }}
+                >
+                  <div className="mx-auto flex w-full max-w-full flex-col items-stretch rounded-[20px] bg-[#2A2B2D] md:min-h-[430px] md:flex-row md:gap-5 lg:min-h-[480px] lg:rounded-[24px] xl:min-h-[510px]">
+                    <div className="flex w-full shrink-0 flex-col items-center justify-center p-4 md:w-[320px] md:py-8 md:pl-8 md:pr-3 lg:w-[360px]">
+                      <div className="aspect-[4/3] w-full overflow-hidden rounded-[14px] md:aspect-auto md:h-[320px] md:w-[280px] lg:h-[360px] lg:w-[320px] lg:rounded-[18px]">
+                        <img
+                          src={slide.image}
+                          alt={slide.title}
+                          className="size-full object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex min-h-0 flex-1 flex-col justify-center gap-6 px-6 py-8 md:gap-7 md:px-8 md:py-11 lg:px-9 lg:py-12">
+                      <h3 className="max-w-full text-[22px] font-normal leading-[120%] text-main-text md:text-[26px] lg:text-[28px] xl:text-[30px]">
+                        {slide.title}
+                      </h3>
+                      <ul className="ml-8 max-w-full list-outside list-disc space-y-4 pl-1 marker:text-main-text md:ml-9 md:space-y-5">
+                        {slide.points.map((point, pointIndex) => (
+                          <li
+                            key={pointIndex}
+                            className="text-[15px] font-normal leading-[1.45] text-main-text md:text-[18px] lg:text-[18px] lg:leading-[1.4]"
+                          >
+                            <span className="font-medium text-accent">
+                              {point.highlight}
+                            </span>
+                            {point.text}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  {/* Content section: More space with reduced image, added horizontal padding */}
-                  <div className="flex flex-col gap-8 px-8 md:px-10 py-10 flex-1 justify-center">
-                    <h3 className="text-[24px] md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-[449px]">
-                      {slide.title}
-                    </h3>
-                    <ul className="flex flex-col gap-6 list-disc ml-9 max-w-[449px]">
-                      {slide.points.map((point, pointIndex) => (
-                        <li
-                          key={pointIndex}
-                          className="text-[16px] md:text-[18px] lg:text-[20px] text-main-text leading-[140%] font-normal"
-                        >
-                          <span className="text-accent">{point.highlight}</span>
-                          {point.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
-              </div>
-            );
-          }}
-          slides={slides}
-        />
+              );
+            }}
+            slides={slides}
+          />
+        </div>
       </div>
     </section>
   );

@@ -4,16 +4,17 @@ test.describe('Carousel Typography', () => {
   test('AchieveSection carousel has correct typography', async ({ page }) => {
     await page.goto('/');
 
-    // Wait for carousel to be visible
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
+    const desktopAchieve = page.getByTestId('achieve-carousel-desktop');
+
+    // Wait for desktop carousel to be visible (mobile + desktop both mount; target md+ view)
+    await expect(
+      desktopAchieve.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
+    ).toBeVisible({ timeout: 10000 });
 
     // Check title typography
-    const title = page
-      .locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
-      .first();
+    const title = desktopAchieve.locator(
+      'h3:has-text("Leveraging UCSD\'s Unique Assets")'
+    );
     await expect(title).toBeVisible();
 
     const titleStyles = await title.evaluate((el) => {
@@ -37,9 +38,9 @@ test.describe('Carousel Typography', () => {
     expect(titleStyles.fontWeight).toBe('400');
 
     // Check bullet point typography
-    const bulletPoint = page
-      .locator('li span:has-text("Expert Faculty Collaboration")')
-      .first();
+    const bulletPoint = desktopAchieve.locator(
+      'li span:has-text("Expert Faculty Collaboration")'
+    );
     await expect(bulletPoint).toBeVisible();
 
     const bulletStyles = await bulletPoint.locator('..').evaluate((el) => {
@@ -126,11 +127,12 @@ test.describe('Carousel Typography', () => {
   test('Carousel text fits well in cards', async ({ page }) => {
     await page.goto('/');
 
-    // Wait for carousel
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
+    const desktopAchieve = page.getByTestId('achieve-carousel-desktop');
+
+    // Wait for desktop carousel
+    await expect(
+      desktopAchieve.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
+    ).toBeVisible({ timeout: 10000 });
 
     // Take a screenshot for visual verification
     await page.screenshot({
@@ -139,16 +141,16 @@ test.describe('Carousel Typography', () => {
     });
 
     // Check that text doesn't overflow the card
-    const card = page
+    const card = desktopAchieve
       .locator('div')
       .filter({
         has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
       })
       .first();
     const cardBox = await card.boundingBox();
-    const title = page
-      .locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
-      .first();
+    const title = desktopAchieve.locator(
+      'h3:has-text("Leveraging UCSD\'s Unique Assets")'
+    );
     const titleBox = await title.boundingBox();
 
     if (cardBox && titleBox) {
