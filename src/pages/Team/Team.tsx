@@ -8,6 +8,7 @@ import {
 } from '../../components/Typography';
 import { TeamMember } from '../../types/team';
 import teamPhoto from '../../imgs/hero/team-hero.webp';
+import SEO from '../../components/SEO';
 
 // Shared layout constants for consistent spacing
 const SECTION_WRAPPER = 'py-16';
@@ -40,6 +41,11 @@ export default function Team() {
 
   return (
     <div className="pb-24">
+      <SEO
+        title="Team"
+        description="Meet the Triton Droids executive board and team leads at UC San Diego"
+        path="/team"
+      />
       <div className={CONTAINER}>
         <HeroHeading>Meet The Team</HeroHeading>
         <BodyText size="lg" className="mt-6">
