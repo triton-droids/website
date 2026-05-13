@@ -14,6 +14,15 @@ npm run test:e2e:ui
 # Run visual tests only
 npm run test:e2e:visual
 
+# Run only Desktop Chrome
+npx playwright test --project="Desktop Chrome"
+
+# Run only Mobile Chrome (Pixel 7)
+npx playwright test --project="Mobile Chrome (Pixel 7)"
+
+# Run only Mobile Safari (iPhone 13)
+npx playwright test --project="Mobile Safari (iPhone 13)"
+
 # Run specific test file
 npx playwright test carousel-typography.spec.ts
 
@@ -23,6 +32,12 @@ npx playwright test --debug
 # View test report
 npx playwright show-report
 ```
+
+## Project Matrix
+
+- `Desktop Chrome`
+- `Mobile Chrome (Pixel 7)`
+- `Mobile Safari (iPhone 13)`
 
 ## Quick Test Template
 
@@ -65,8 +80,8 @@ await expect(element).toHaveClass('className');
 await expect(page.locator('.item')).toHaveCount(5);
 
 // CSS properties
-const fontSize = await element.evaluate((el) =>
-  window.getComputedStyle(el).fontSize
+const fontSize = await element.evaluate(
+  (el) => window.getComputedStyle(el).fontSize
 );
 expect(parseFloat(fontSize)).toBe(24);
 ```
@@ -119,21 +134,25 @@ await page.screenshot({ path: 'e2e/screenshots/desktop.png' });
 ## Debugging Tips
 
 1. **Use headed mode** to see the browser:
+
    ```bash
    npx playwright test --headed
    ```
 
 2. **Use debug mode** for step-by-step execution:
+
    ```bash
    npx playwright test --debug
    ```
 
 3. **Add console logs**:
+
    ```typescript
    console.log('Current URL:', await page.url());
    ```
 
 4. **Take screenshots on failure**:
+
    ```typescript
    test('my test', async ({ page }) => {
      try {

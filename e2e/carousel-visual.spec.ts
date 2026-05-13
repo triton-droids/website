@@ -1,4 +1,26 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
+
+async function getAchieveCarousel(page: Page) {
+  const desktopCarousel = page.getByTestId('achieve-carousel-desktop');
+  if (await desktopCarousel.isVisible()) {
+    return { carousel: desktopCarousel, isDesktop: true };
+  }
+
+  return {
+    carousel: page.getByTestId('achieve-carousel-mobile'),
+    isDesktop: false,
+  };
+}
+
+function getAchieveTitleLocator(
+  carousel: Locator,
+  title: string,
+  isDesktop: boolean
+) {
+  return isDesktop
+    ? carousel.getByRole('heading', { level: 3, name: title })
+    : carousel.getByText(title, { exact: true }).first();
+}
 
 test.describe('Carousel Visual Testing', () => {
   const achieveTitle = "Leveraging UCSD's Unique Assets";
@@ -6,20 +28,22 @@ test.describe('Carousel Visual Testing', () => {
   test('AchieveSection carousel visual test', async ({ page }) => {
     await page.goto('/');
 
-    const achieveDesktop = page.getByTestId('achieve-carousel-desktop');
+    const { carousel: achieveCarousel, isDesktop } =
+      await getAchieveCarousel(page);
     const sectionHeading = page.getByRole('heading', {
       level: 2,
       name: 'How We Aim to Achieve Our Mission',
     });
-    const firstSlideTitle = achieveDesktop.getByRole('heading', {
-      level: 3,
-      name: achieveTitle,
-    });
+    const firstSlideTitle = getAchieveTitleLocator(
+      achieveCarousel,
+      achieveTitle,
+      isDesktop
+    );
 
     await sectionHeading.scrollIntoViewIfNeeded();
     await expect(firstSlideTitle).toBeVisible();
 
-    await achieveDesktop.screenshot({
+    await achieveCarousel.screenshot({
       path: 'e2e/screenshots/achieve-carousel-full.png',
     });
   });
@@ -58,12 +82,12 @@ test.describe('Carousel Visual Testing', () => {
       });
       await page.goto('/');
 
-      const achieveDesktop = page.getByTestId('achieve-carousel-desktop');
+      const { carousel: achieveCarousel } = await getAchieveCarousel(page);
       const sectionHeading = page.getByRole('heading', {
         level: 2,
         name: 'How We Aim to Achieve Our Mission',
       });
-      const firstSlideTitle = achieveDesktop.getByRole('heading', {
+      const firstSlideTitle = achieveCarousel.getByRole('heading', {
         level: 3,
         name: achieveTitle,
       });
@@ -71,7 +95,7 @@ test.describe('Carousel Visual Testing', () => {
       await sectionHeading.scrollIntoViewIfNeeded();
       await expect(firstSlideTitle).toBeVisible();
 
-      await achieveDesktop.screenshot({
+      await achieveCarousel.screenshot({
         path: `e2e/screenshots/${viewport.screenshot}`,
       });
     }

@@ -46,6 +46,6 @@
       }
     }
   },
-  "postCreateCommand": "npm install && npx playwright install --with-deps chromium",
+  "postCreateCommand": "npm install && npx playwright install --with-deps",
   "remoteUser": "node"
 }

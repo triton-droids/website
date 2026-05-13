@@ -6,7 +6,7 @@ A React + Vite + Tailwind CSS website for Triton Droids, UCSD's humanoid robotic
 
 ### Prerequisites
 
-- Node.js 20+ 
+- Node.js 20+
 - npm or yarn
 
 ### Installation
@@ -50,7 +50,18 @@ npm run test:e2e:ui
 
 # Run visual tests only
 npm run test:e2e:visual
+
+# Run only Desktop Chrome
+npx playwright test --project="Desktop Chrome"
+
+# Run only Mobile Chrome (Pixel 7)
+npx playwright test --project="Mobile Chrome (Pixel 7)"
+
+# Run only Mobile Safari (iPhone 13)
+npx playwright test --project="Mobile Safari (iPhone 13)"
 ```
+
+Configured Playwright projects: `Desktop Chrome`, `Mobile Chrome (Pixel 7)`, and `Mobile Safari (iPhone 13)`.
 
 For detailed information about the testing setup, see [Testing Documentation](./docs/testing.md).
 
@@ -113,12 +124,14 @@ Comprehensive documentation is available in the [`docs/`](./docs/) folder:
 This project uses a consistent typography system through reusable components. For detailed documentation, see [Typography Documentation](./docs/typography.md).
 
 **Available Components:**
+
 - `HeroHeading` - For main page hero sections (h1)
 - `SectionHeading` - For major section titles (h2)
 - `CardTitle` - For card and subsection headings (h3)
 - `BodyText` - For paragraphs with size variants (`sm`, `base`, `lg`)
 
 **Quick Example:**
+
 ```tsx
 import { HeroHeading, SectionHeading, BodyText } from '../components/Typography';
 
