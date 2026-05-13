@@ -1,81 +1,48 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Join Carousel All Slides', () => {
-  test('Capture all 4 slides of Join carousel with highlighting', async ({
-    page,
-  }) => {
+  test('Capture all 4 slides and assert navigation works', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-
     await page.goto('/join');
-    await page
-      .locator('h2:has-text("Why join Triton Droids?")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector('h3:has-text("Real world impact")', {
-      timeout: 10000,
+
+    const joinCarousel = page.getByTestId('why-join-carousel');
+    const sectionHeading = joinCarousel.getByRole('heading', {
+      level: 2,
+      name: 'Why join Triton Droids?',
     });
-    await page.waitForTimeout(1000);
+    const nextButton = joinCarousel.getByRole('button', { name: 'Next slide' });
+    const slideTitles = [
+      'Real world impact',
+      'Hands-on experience',
+      'Jobs, internships, and more',
+      'Life long connections',
+    ];
+    const slideScreenshots = [
+      'join-slide-1-real-world-impact.png',
+      'join-slide-2-hands-on.png',
+      'join-slide-3-jobs.png',
+      'join-slide-4-connections.png',
+    ];
 
-    // Slide 1: Real world impact
-    let card = page
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Real world impact")'),
-      })
-      .first();
-    await card.screenshot({
-      path: 'e2e/screenshots/join-slide-1-real-world-impact.png',
-    });
-    console.log('Slide 1 captured');
+    await sectionHeading.scrollIntoViewIfNeeded();
 
-    // Click next for Slide 2
-    let nextButton = page.locator('button[aria-label="Next slide"]').first();
-    await nextButton.click();
-    await page.waitForTimeout(1500);
+    for (let index = 0; index < slideTitles.length; index += 1) {
+      const title = joinCarousel.getByRole('heading', {
+        level: 3,
+        name: slideTitles[index],
+      });
+      const activeSlide = joinCarousel.getByTestId(
+        `why-join-slide-${index + 1}`
+      );
 
-    // Slide 2: Hands-on experience
-    card = page
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Hands-on experience")'),
-      })
-      .first();
-    await card.screenshot({
-      path: 'e2e/screenshots/join-slide-2-hands-on.png',
-    });
-    console.log('Slide 2 captured');
+      await expect(title).toBeVisible();
+      await activeSlide.screenshot({
+        path: `e2e/screenshots/${slideScreenshots[index]}`,
+      });
 
-    // Click next for Slide 3
-    nextButton = page.locator('button[aria-label="Next slide"]').first();
-    await nextButton.click();
-    await page.waitForTimeout(1500);
-
-    // Slide 3: Jobs, internships, and more
-    card = page
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Jobs, internships")'),
-      })
-      .first();
-    await card.screenshot({ path: 'e2e/screenshots/join-slide-3-jobs.png' });
-    console.log('Slide 3 captured');
-
-    // Click next for Slide 4
-    nextButton = page.locator('button[aria-label="Next slide"]').first();
-    await nextButton.click();
-    await page.waitForTimeout(1500);
-
-    // Slide 4: Life long connections
-    card = page
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Life long connections")'),
-      })
-      .first();
-    await card.screenshot({
-      path: 'e2e/screenshots/join-slide-4-connections.png',
-    });
-    console.log('Slide 4 captured');
-
-    console.log('All 4 Join carousel slides captured with highlighting!');
+      if (index < slideTitles.length - 1) {
+        await nextButton.click();
+      }
+    }
   });
 });

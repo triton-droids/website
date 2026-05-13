@@ -1,90 +1,65 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Carousel Close-up Screenshots', () => {
   test('Take close-up screenshots of carousel cards', async ({ page }) => {
-    // Set viewport to desktop size for best typography view
     await page.setViewportSize({ width: 1920, height: 1080 });
 
-    // AchieveSection carousel
     await page.goto('/');
-    await page
-      .locator('h2:has-text("How We Aim to Achieve Our Mission")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
-    await page.waitForTimeout(1000);
 
-    // Get the actual card element (the dark container with content)
-    const achieveCard = page
-      .getByTestId('achieve-carousel-desktop')
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
-      })
-      .first();
+    const achieveDesktop = page.getByTestId('achieve-carousel-desktop');
+    const achieveHeading = page.getByRole('heading', {
+      level: 2,
+      name: 'How We Aim to Achieve Our Mission',
+    });
+    const firstAchieveTitle = achieveDesktop.getByRole('heading', {
+      level: 3,
+      name: "Leveraging UCSD's Unique Assets",
+    });
+    const firstAchieveSlide = achieveDesktop.getByTestId('achieve-slide-1');
 
-    await achieveCard.screenshot({
+    await achieveHeading.scrollIntoViewIfNeeded();
+    await expect(firstAchieveTitle).toBeVisible();
+
+    await firstAchieveSlide.screenshot({
       path: 'e2e/screenshots/achieve-card-closeup.png',
     });
 
-    console.log('AchieveSection card close-up saved');
-
-    // WhyJoinCarousel
     await page.goto('/join');
-    await page
-      .locator('h2:has-text("Why join Triton Droids?")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector('h3:has-text("Real world impact")', {
-      timeout: 10000,
+    const joinCarousel = page.getByTestId('why-join-carousel');
+    const joinHeading = joinCarousel.getByRole('heading', {
+      level: 2,
+      name: 'Why join Triton Droids?',
     });
-    await page.waitForTimeout(1000);
+    const firstJoinTitle = joinCarousel.getByRole('heading', {
+      level: 3,
+      name: 'Real world impact',
+    });
+    const firstJoinSlide = joinCarousel.getByTestId('why-join-slide-1');
 
-    const joinCard = page
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Real world impact")'),
-      })
-      .first();
-
-    await joinCard.screenshot({
+    await joinHeading.scrollIntoViewIfNeeded();
+    await expect(firstJoinTitle).toBeVisible();
+    await firstJoinSlide.screenshot({
       path: 'e2e/screenshots/join-card-closeup.png',
     });
 
-    console.log('WhyJoinCarousel card close-up saved');
-
-    // Test clicking next button to see another slide
     await page.goto('/');
-    await page
-      .locator('h2:has-text("How We Aim to Achieve Our Mission")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
-    await page.waitForTimeout(1000);
 
-    // Click the next arrow (desktop carousel; mobile also has Next in DOM)
-    const nextButton = page
-      .getByTestId('achieve-carousel-desktop')
-      .locator('button[aria-label="Next slide"]');
+    const nextButton = achieveDesktop.getByRole('button', {
+      name: 'Next slide',
+    });
+    const secondSlideTitle = achieveDesktop.getByRole('heading', {
+      level: 3,
+      name: 'Focus on Equity and Global Impact',
+    });
+    const secondSlide = achieveDesktop.getByTestId('achieve-slide-2');
+
+    await achieveHeading.scrollIntoViewIfNeeded();
+    await expect(firstAchieveTitle).toBeVisible();
     await nextButton.click();
-    await page.waitForTimeout(1000);
+    await expect(secondSlideTitle).toBeVisible();
 
-    // Screenshot the second slide
-    const secondSlideCard = page
-      .getByTestId('achieve-carousel-desktop')
-      .locator('div[class*="bg-[#2A2B2D]"]')
-      .filter({
-        has: page.locator('h3:has-text("Focus on Equity")'),
-      })
-      .first();
-
-    await secondSlideCard.screenshot({
+    await secondSlide.screenshot({
       path: 'e2e/screenshots/achieve-card-slide2.png',
     });
-
-    console.log('Second slide screenshot saved');
   });
 });
