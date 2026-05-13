@@ -18,7 +18,10 @@ function WhyJoinSlide({ slide }: { slide: Slide }) {
 
   return (
     <div className="w-full">
-      <div className="w-full bg-[#2A2B2D] rounded-[28px] lg:rounded-[40px] flex min-h-[20rem] md:min-h-[36rem] flex-col items-center justify-center text-center gap-6 md:gap-8 px-7 py-10 sm:px-10 sm:py-12 md:px-12 md:py-12 max-w-[1050px] mx-auto">
+      <div
+        className="w-full bg-[#2A2B2D] rounded-[28px] lg:rounded-[40px] flex min-h-[20rem] md:min-h-[36rem] flex-col items-center justify-center text-center gap-6 md:gap-8 px-7 py-10 sm:px-10 sm:py-12 md:px-12 md:py-12 max-w-[1050px] mx-auto"
+        data-testid={`why-join-slide-${slide.id}`}
+      >
         <h3 className="text-[20px] sm:text-2xl md:text-[28px] lg:text-[32px] text-main-text leading-[120%] font-normal max-w-xl mx-auto px-2 text-center">
           {slide.title}
         </h3>
@@ -119,7 +122,10 @@ const slides: Slide[] = [
 
 export default function WhyJoinCarousel() {
   return (
-    <section className="flex flex-col gap-8 md:gap-10 lg:gap-16 xl:gap-20 items-center w-full">
+    <section
+      className="flex flex-col gap-8 md:gap-10 lg:gap-16 xl:gap-20 items-center w-full"
+      data-testid="why-join-carousel"
+    >
       <div className="w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
         <SectionHeading className="w-full text-left text-2xl leading-tight sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
           Why join Triton Droids?

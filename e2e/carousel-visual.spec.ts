@@ -1,108 +1,79 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Carousel Visual Testing', () => {
+  const achieveTitle = "Leveraging UCSD's Unique Assets";
+
   test('AchieveSection carousel visual test', async ({ page }) => {
     await page.goto('/');
 
-    // Scroll to the carousel section
-    await page
-      .locator('h2:has-text("How We Aim to Achieve Our Mission")')
-      .scrollIntoViewIfNeeded();
-
-    // Wait for carousel to be visible
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
-    await page.waitForTimeout(1000); // Wait for animations
-
-    // Take screenshot of the carousel
-    const carousel = page
-      .locator('div')
-      .filter({
-        has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
-      })
-      .first();
-    await carousel.screenshot({
-      path: 'e2e/screenshots/achieve-carousel-full.png',
+    const achieveDesktop = page.getByTestId('achieve-carousel-desktop');
+    const sectionHeading = page.getByRole('heading', {
+      level: 2,
+      name: 'How We Aim to Achieve Our Mission',
+    });
+    const firstSlideTitle = achieveDesktop.getByRole('heading', {
+      level: 3,
+      name: achieveTitle,
     });
 
-    console.log('AchieveSection carousel screenshot saved');
+    await sectionHeading.scrollIntoViewIfNeeded();
+    await expect(firstSlideTitle).toBeVisible();
+
+    await achieveDesktop.screenshot({
+      path: 'e2e/screenshots/achieve-carousel-full.png',
+    });
   });
 
   test('WhyJoinCarousel visual test', async ({ page }) => {
     await page.goto('/join');
 
-    // Scroll to the carousel section
-    await page
-      .locator('h2:has-text("Why join Triton Droids?")')
-      .scrollIntoViewIfNeeded();
-
-    // Wait for carousel to be visible
-    await page.waitForSelector('h3:has-text("Real world impact")', {
-      timeout: 10000,
+    const joinCarousel = page.getByTestId('why-join-carousel');
+    const sectionHeading = joinCarousel.getByRole('heading', {
+      level: 2,
+      name: 'Why join Triton Droids?',
     });
-    await page.waitForTimeout(1000); // Wait for animations
+    const firstSlideTitle = joinCarousel.getByRole('heading', {
+      level: 3,
+      name: 'Real world impact',
+    });
 
-    // Take screenshot of the carousel
-    const carousel = page
-      .locator('div')
-      .filter({ has: page.locator('h3:has-text("Real world impact")') })
-      .first();
-    await carousel.screenshot({
+    await sectionHeading.scrollIntoViewIfNeeded();
+    await expect(firstSlideTitle).toBeVisible();
+
+    await joinCarousel.getByTestId('why-join-slide-1').screenshot({
       path: 'e2e/screenshots/why-join-carousel-full.png',
     });
-
-    console.log('WhyJoinCarousel screenshot saved');
   });
 
   test('Carousel typography at different viewport sizes', async ({ page }) => {
-    // Test at desktop size (1920x1080)
-    await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/');
+    const viewports = [
+      { width: 1920, height: 1080, screenshot: 'achieve-carousel-desktop.png' },
+      { width: 768, height: 1024, screenshot: 'achieve-carousel-tablet.png' },
+    ];
 
-    await page
-      .locator('h2:has-text("How We Aim to Achieve Our Mission")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
-    await page.waitForTimeout(1000);
+    for (const viewport of viewports) {
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
+      await page.goto('/');
 
-    const carousel = page
-      .locator('div')
-      .filter({
-        has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
-      })
-      .first();
-    await carousel.screenshot({
-      path: 'e2e/screenshots/achieve-carousel-desktop.png',
-    });
+      const achieveDesktop = page.getByTestId('achieve-carousel-desktop');
+      const sectionHeading = page.getByRole('heading', {
+        level: 2,
+        name: 'How We Aim to Achieve Our Mission',
+      });
+      const firstSlideTitle = achieveDesktop.getByRole('heading', {
+        level: 3,
+        name: achieveTitle,
+      });
 
-    // Test at tablet size (768x1024)
-    await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/');
+      await sectionHeading.scrollIntoViewIfNeeded();
+      await expect(firstSlideTitle).toBeVisible();
 
-    await page
-      .locator('h2:has-text("How We Aim to Achieve Our Mission")')
-      .scrollIntoViewIfNeeded();
-    await page.waitForSelector(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")',
-      { timeout: 10000 }
-    );
-    await page.waitForTimeout(1000);
-
-    const carouselTablet = page
-      .locator('div')
-      .filter({
-        has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
-      })
-      .first();
-    await carouselTablet.screenshot({
-      path: 'e2e/screenshots/achieve-carousel-tablet.png',
-    });
-
-    console.log('Responsive screenshots saved');
+      await achieveDesktop.screenshot({
+        path: `e2e/screenshots/${viewport.screenshot}`,
+      });
+    }
   });
 });

@@ -145,12 +145,13 @@ export default function AchieveSection() {
             className="mx-auto w-full max-w-[min(100%,1400px)]"
             containerClassName="!max-w-none"
             slideClassName="min-w-0 flex-[0_0_92%] lg:flex-[0_0_88%] xl:flex-[0_0_84%] 2xl:flex-[0_0_80%] px-2 sm:px-3 lg:px-4"
-            renderSlide={(slide, _index, tweenValue) => {
+            renderSlide={(slide, index, tweenValue) => {
               const scale = 0.85 + tweenValue * 0.15;
               const opacity = 0.3 + tweenValue * 0.7;
 
               return (
                 <div
+                  data-testid={`achieve-slide-${index + 1}`}
                   className="min-h-0 w-full overflow-hidden py-1 origin-center transition-transform duration-150 ease-out"
                   style={{
                     transform: `scale(${scale})`,

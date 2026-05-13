@@ -5,16 +5,14 @@ test.describe('Carousel Typography', () => {
     await page.goto('/');
 
     const desktopAchieve = page.getByTestId('achieve-carousel-desktop');
+    const title = desktopAchieve.getByRole('heading', {
+      level: 3,
+      name: "Leveraging UCSD's Unique Assets",
+    });
 
-    // Wait for desktop carousel to be visible (mobile + desktop both mount; target md+ view)
-    await expect(
-      desktopAchieve.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
-    ).toBeVisible({ timeout: 10000 });
+    await expect(title).toBeVisible();
 
     // Check title typography
-    const title = desktopAchieve.locator(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")'
-    );
     await expect(title).toBeVisible();
 
     const titleStyles = await title.evaluate((el) => {
@@ -38,8 +36,8 @@ test.describe('Carousel Typography', () => {
     expect(titleStyles.fontWeight).toBe('400');
 
     // Check bullet point typography
-    const bulletPoint = desktopAchieve.locator(
-      'li span:has-text("Expert Faculty Collaboration")'
+    const bulletPoint = desktopAchieve.getByText(
+      'Expert Faculty Collaboration'
     );
     await expect(bulletPoint).toBeVisible();
 
@@ -67,13 +65,13 @@ test.describe('Carousel Typography', () => {
   test('WhyJoinCarousel has correct typography', async ({ page }) => {
     await page.goto('/join');
 
-    // Wait for carousel to be visible
-    await page.waitForSelector('h3:has-text("Real world impact")', {
-      timeout: 10000,
+    const joinCarousel = page.getByTestId('why-join-carousel');
+    const title = joinCarousel.getByRole('heading', {
+      level: 3,
+      name: 'Real world impact',
     });
 
     // Check title typography
-    const title = page.locator('h3:has-text("Real world impact")').first();
     await expect(title).toBeVisible();
 
     const titleStyles = await title.evaluate((el) => {
@@ -97,9 +95,14 @@ test.describe('Carousel Typography', () => {
     expect(titleStyles.fontWeight).toBe('400');
 
     // Check description typography
-    const description = page
-      .locator('p:has-text("you won\'t just be tinkering")')
-      .first();
+    const firstJoinSlide = joinCarousel.getByTestId('why-join-slide-1');
+    const descriptionToggle = firstJoinSlide.getByRole('button', {
+      name: 'Show description',
+    });
+    await expect(descriptionToggle).toBeVisible();
+    await descriptionToggle.click();
+
+    const description = firstJoinSlide.getByText("you won't just be tinkering");
     await expect(description).toBeVisible();
 
     const descriptionStyles = await description.evaluate((el) => {
@@ -128,11 +131,18 @@ test.describe('Carousel Typography', () => {
     await page.goto('/');
 
     const desktopAchieve = page.getByTestId('achieve-carousel-desktop');
+    const slideOne = desktopAchieve.getByTestId('achieve-slide-1');
+    const slideTwo = desktopAchieve.getByTestId('achieve-slide-2');
+    const nextButton = desktopAchieve.getByRole('button', {
+      name: 'Next slide',
+    });
 
     // Wait for desktop carousel
-    await expect(
-      desktopAchieve.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")')
-    ).toBeVisible({ timeout: 10000 });
+    const firstSlideTitle = desktopAchieve.getByRole('heading', {
+      level: 3,
+      name: "Leveraging UCSD's Unique Assets",
+    });
+    await expect(firstSlideTitle).toBeVisible();
 
     // Take a screenshot for visual verification
     await page.screenshot({
@@ -141,17 +151,8 @@ test.describe('Carousel Typography', () => {
     });
 
     // Check that text doesn't overflow the card
-    const card = desktopAchieve
-      .locator('div')
-      .filter({
-        has: page.locator('h3:has-text("Leveraging UCSD\'s Unique Assets")'),
-      })
-      .first();
-    const cardBox = await card.boundingBox();
-    const title = desktopAchieve.locator(
-      'h3:has-text("Leveraging UCSD\'s Unique Assets")'
-    );
-    const titleBox = await title.boundingBox();
+    const cardBox = await slideOne.boundingBox();
+    const titleBox = await firstSlideTitle.boundingBox();
 
     if (cardBox && titleBox) {
       // Title should be contained within the card
@@ -161,11 +162,34 @@ test.describe('Carousel Typography', () => {
       );
     }
 
+    // Assert navigation actually changes visible content
+    await nextButton.click();
+    const secondSlideTitle = desktopAchieve.getByRole('heading', {
+      level: 3,
+      name: 'Focus on Equity and Global Impact',
+    });
+    await expect(secondSlideTitle).toBeVisible();
+    await expect(slideTwo).toBeVisible();
+
     // Test Why Join carousel
     await page.goto('/join');
-    await page.waitForSelector('h3:has-text("Real world impact")', {
-      timeout: 10000,
+    const joinCarousel = page.getByTestId('why-join-carousel');
+    const joinTitle = joinCarousel.getByRole('heading', {
+      level: 3,
+      name: 'Real world impact',
     });
+    await expect(joinTitle).toBeVisible();
+
+    const joinNextButton = joinCarousel.getByRole('button', {
+      name: 'Next slide',
+    });
+    await joinNextButton.click();
+    await expect(
+      joinCarousel.getByRole('heading', {
+        level: 3,
+        name: 'Hands-on experience',
+      })
+    ).toBeVisible();
 
     await page.screenshot({
       path: 'e2e/screenshots/why-join-carousel.png',
