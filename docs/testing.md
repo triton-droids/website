@@ -38,7 +38,7 @@ Our test suite covers:
 
 - **Total Tests**: 9
 - **Test Files**: 5
-- **Browser Coverage**: Chromium
+- **Browser Coverage**: Desktop Chrome, Mobile Chrome (Pixel 7), Mobile Safari (iPhone 13)
 - **Execution Time**: ~9 seconds locally
 - **Screenshots Generated**: 15+ visual regression captures
 
@@ -56,7 +56,7 @@ Our test suite covers:
 **Configuration**
 
 - **.gitignore**: `test-results/`, `playwright-report/`, `e2e/screenshots/`
-- **.devcontainer/devcontainer.json**: Playwright VS Code extension; `postCreateCommand` runs `npm install && npx playwright install --with-deps chromium`
+- **.devcontainer/devcontainer.json**: Playwright VS Code extension; `postCreateCommand` runs `npm install && npx playwright install --with-deps`
 - **.github/workflows/ci.yml**: `test` job installs Playwright browsers, runs E2E tests, uploads reports/screenshots on failure; runs on PRs, pushes to main, manual dispatch
 
 **NPM Scripts** (package.json)
@@ -84,10 +84,10 @@ The Playwright dependencies are automatically installed when you run:
 npm install
 ```
 
-To install Playwright browsers (if not already installed):
+To install Playwright browsers used by this project (if not already installed):
 
 ```bash
-npx playwright install chromium
+npx playwright install chromium webkit
 ```
 
 ### Dev Container
@@ -107,6 +107,11 @@ npm run test:e2e:ui
 
 # Run visual tests only
 npm run test:e2e:visual
+
+# Run a specific Playwright project
+npx playwright test --project="Desktop Chrome"
+npx playwright test --project="Mobile Chrome (Pixel 7)"
+npx playwright test --project="Mobile Safari (iPhone 13)"
 
 # Run specific test file
 npx playwright test carousel-typography.spec.ts
@@ -128,6 +133,14 @@ Tests generate:
 - **Screenshots**: Stored in `e2e/screenshots/` (gitignored)
 - **Test results**: Stored in `test-results/` (gitignored)
 - **HTML reports**: Stored in `playwright-report/` (gitignored)
+
+### Project Matrix
+
+Configured Playwright projects:
+
+- `Desktop Chrome`
+- `Mobile Chrome (Pixel 7)`
+- `Mobile Safari (iPhone 13)`
 
 ## Test Structure
 
@@ -270,14 +283,17 @@ test('Works on different viewport sizes', async ({ page }) => {
 ### Best Practices
 
 1. **Use data-testid attributes** for stable selectors:
+
    ```tsx
    <button data-testid="submit-button">Submit</button>
    ```
+
    ```typescript
    await page.getByTestId('submit-button').click();
    ```
 
 2. **Wait for elements** before interacting:
+
    ```typescript
    await page.waitForSelector('text=Loading...', { state: 'hidden' });
    ```
@@ -285,6 +301,7 @@ test('Works on different viewport sizes', async ({ page }) => {
 3. **Use Playwright's auto-waiting**: Most actions automatically wait for elements to be ready
 
 4. **Group related tests** in describe blocks:
+
    ```typescript
    test.describe('Carousel', () => {
      test.describe('Typography', () => {
@@ -298,6 +315,7 @@ test('Works on different viewport sizes', async ({ page }) => {
    ```
 
 5. **Clean up after tests**: Use hooks if needed
+
    ```typescript
    test.beforeEach(async ({ page }) => {
      // Setup before each test
@@ -319,23 +337,23 @@ test('Works on different viewport sizes', async ({ page }) => {
 ### GitHub Actions Jobs
 
 1. **Build Job** (existing) - Checkout, install deps, lint, build production bundle
-2. **Test Job** - Checkout, install deps, install Playwright browsers, run E2E tests; on failure uploads HTML report and screenshots as artifacts
+2. **Test Job** - Checkout, install deps, install Playwright browsers, run E2E tests; on failure uploads HTML report, screenshots, and `test-results/` artifacts
 
 ### CI Configuration
 
-- Chromium only (for speed)
+- Desktop + mobile project matrix (`Desktop Chrome`, `Mobile Chrome (Pixel 7)`, `Mobile Safari (iPhone 13)`)
 - Retries on failure (2 retries in CI)
 - Single worker in CI for stability
 - Artifact retention: 7 days
 
 ### Local vs CI Behavior
 
-| Feature | Local | CI |
-|---------|-------|-----|
-| Retries | 0 | 2 |
-| Workers | CPU cores | 1 |
-| Screenshots | Always | On failure |
-| Dev server | Reuse if running | Fresh start |
+| Feature     | Local            | CI          |
+| ----------- | ---------------- | ----------- |
+| Retries     | 0                | 2           |
+| Workers     | CPU cores        | 1           |
+| Screenshots | Always           | On failure  |
+| Dev server  | Reuse if running | Fresh start |
 
 ## Troubleshooting
 
@@ -346,8 +364,9 @@ test('Works on different viewport sizes', async ({ page }) => {
 **Error**: `Executable doesn't exist at /path/to/browser`
 
 **Solution**:
+
 ```bash
-npx playwright install chromium
+npx playwright install chromium webkit
 ```
 
 #### 2. Port already in use
@@ -361,6 +380,7 @@ npx playwright install chromium
 **Error**: `Test timeout of 30000ms exceeded`
 
 **Solution**:
+
 - Increase timeout in test:
   ```typescript
   test('slow test', async ({ page }) => {
@@ -380,6 +400,7 @@ npx playwright install chromium
 **Error**: `TimeoutError: locator.click: Timeout 30000ms exceeded`
 
 **Solution**:
+
 - Use Playwright Inspector to debug:
   ```bash
   npx playwright test --debug
@@ -392,6 +413,7 @@ npx playwright install chromium
 #### 5. Screenshots don't match
 
 Visual differences can occur due to:
+
 - Font rendering differences
 - Timing issues (animations)
 - Browser/OS differences
@@ -407,6 +429,7 @@ npx playwright test --debug
 ```
 
 This opens the Playwright Inspector where you can:
+
 - Step through each action
 - Inspect the DOM
 - View screenshots
@@ -421,6 +444,7 @@ npx playwright show-report
 ```
 
 This provides:
+
 - Test results overview
 - Screenshots and traces
 - Detailed error messages
