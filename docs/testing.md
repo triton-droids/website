@@ -336,7 +336,7 @@ test('Works on different viewport sizes', async ({ page }) => {
 
 ### GitHub Actions Jobs
 
-1. **Build Job** (existing) - Checkout, install deps, lint, build production bundle
+1. **Build Job** (existing) - Checkout, install deps, lint, typecheck, format check, build production bundle, enforce bundle size budgets (`npm run size:check`)
 2. **Test Job** - Checkout, install deps, install Playwright browsers, run E2E tests; on failure uploads HTML report, screenshots, and `test-results/` artifacts
 
 ### CI Configuration

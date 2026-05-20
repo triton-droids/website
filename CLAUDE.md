@@ -13,6 +13,8 @@ npm run format        # Prettier format
 npm run typecheck     # TypeScript check (tsc --noEmit)
 npm run test:e2e      # Playwright e2e tests
 npm run test:e2e:ui   # Playwright interactive UI
+npm run size          # Build + enforce bundle size budgets
+npm run size:check    # Check budgets against existing dist/
 ```
 
 ## Project Structure

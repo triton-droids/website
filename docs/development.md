@@ -13,17 +13,20 @@ This guide covers development setup, conventions, and best practices for the Tri
 ### Initial Setup
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd website
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -44,8 +47,37 @@ The application will be available at `http://localhost:5173`
 - **`npm run test:e2e`** - Run end-to-end tests with Playwright
 - **`npm run test:e2e:ui`** - Run tests with interactive UI
 - **`npm run test:e2e:visual`** - Run visual regression tests only
+- **`npm run size`** - Build production output and verify bundle size budgets
+- **`npm run size:check`** - Run bundle size budgets against an existing `dist/` (used in CI after `npm run build`)
 
 For detailed testing documentation, see [Testing Guide](./testing.md).
+
+### Bundle size budgets
+
+Production JavaScript and CSS bundles are checked with [size-limit](https://github.com/ai/size-limit) so pull requests cannot grow the main entry assets without an intentional budget update.
+
+**Run locally** (builds first, then checks):
+
+```bash
+npm run size
+```
+
+**Check an existing build** (same command CI runs after `npm run build`):
+
+```bash
+npm run build
+npm run size:check
+```
+
+Budgets are defined in `package.json` under `size-limit`. Limits use **gzip transfer size** for the hashed Vite entry files (`dist/assets/index-*.js` and `dist/assets/index-*.css`).
+
+**Update budgets** when a change legitimately increases bundle size:
+
+1. Run `npm run size` and note the reported sizes.
+2. Raise the corresponding `limit` in `package.json` with modest headroom (roughly 5–15% above the new gzip size).
+3. Include the budget change in your PR description so reviewers know the increase was intentional.
+
+CI runs `npm run size:check` in the build job and fails the workflow when any limit is exceeded.
 
 ### Code Quality
 
@@ -58,6 +90,7 @@ npm run lint
 ```
 
 Common issues are automatically fixable:
+
 ```bash
 npm run lint:fix
 ```
@@ -65,11 +98,13 @@ npm run lint:fix
 #### Formatting
 
 Code is formatted with Prettier. Format all files:
+
 ```bash
 npm run format
 ```
 
 Check formatting without making changes:
+
 ```bash
 npm run format:check
 ```
@@ -102,6 +137,7 @@ src/
 - Avoid `any` types - use proper typing
 
 **Example:**
+
 ```tsx
 interface ComponentProps {
   title: string;
@@ -109,7 +145,11 @@ interface ComponentProps {
   className?: string;
 }
 
-export default function Component({ title, description, className = '' }: ComponentProps) {
+export default function Component({
+  title,
+  description,
+  className = '',
+}: ComponentProps) {
   return <div className={className}>{title}</div>;
 }
 ```
@@ -121,6 +161,7 @@ export default function Component({ title, description, className = '' }: Compon
 - Use descriptive, semantic names
 
 **Examples:**
+
 - ✅ `HeroSection.tsx` → `HeroSection`
 - ✅ `JoinCTASection.tsx` → `JoinCTASection`
 - ❌ `hero.tsx` → `Hero`
@@ -140,15 +181,15 @@ export default function Component({ title, description, className = '' }: Compon
 - Use responsive prefixes (`md:`, `lg:`, `xl:`)
 
 **Example:**
+
 ```tsx
-<div className="flex flex-col md:flex-row gap-4 md:gap-6">
-  {/* Content */}
-</div>
+<div className="flex flex-col md:flex-row gap-4 md:gap-6">{/* Content */}</div>
 ```
 
 #### Custom Colors
 
 Use color tokens from `tailwind.config.js`:
+
 - `bg-main-bg` - Main background
 - `text-main-text` - Main text color
 - `text-muted-text` - Muted text
@@ -158,6 +199,7 @@ Use color tokens from `tailwind.config.js`:
 #### Typography
 
 **Always use Typography components** instead of raw HTML:
+
 - `HeroHeading` for h1
 - `SectionHeading` for h2
 - `CardTitle` for h3
@@ -172,6 +214,7 @@ See [Typography Documentation](./typography.md) for details.
 - Use responsive Tailwind classes
 
 **Breakpoints:**
+
 - `md:` - 768px and up (tablets)
 - `lg:` - 1024px and up (desktops)
 - `xl:` - 1280px and up (large desktops)
@@ -191,9 +234,11 @@ The project uses React Router for client-side routing.
 
 1. Create a page component in `src/pages/`
 2. Add route in `src/App.tsx`:
+
 ```tsx
 <Route path="/new-page" element={<NewPage />} />
 ```
+
 3. Add navigation link in `src/components/Header.tsx` if needed
 
 ## Dev Container
@@ -207,6 +252,7 @@ The project includes a Dev Container configuration for VS Code.
 3. Or use Command Palette: `Dev Containers: Reopen in Container`
 
 The container automatically:
+
 - Sets up the development environment
 - Installs dependencies
 - Configures the workspace
@@ -223,6 +269,7 @@ The container automatically:
 ### Commit Messages
 
 Use clear, descriptive commit messages:
+
 - ✅ `feat: add typography system components`
 - ✅ `fix: resolve carousel animation issue`
 - ✅ `docs: update development guide`

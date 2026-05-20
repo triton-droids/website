@@ -13,6 +13,8 @@ npm run lint:fix      # Auto-fix lint issues
 npm run format        # Prettier
 npm run typecheck     # tsc --noEmit
 npm run test:e2e      # Playwright e2e tests
+npm run size          # Build + enforce bundle size budgets
+npm run size:check    # Check budgets against existing dist/
 ```
 
 ## Project Structure
