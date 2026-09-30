@@ -8,6 +8,7 @@ The Join page provides information about joining Triton Droids, including team d
 ## Overview
 
 The Join page is designed to attract new members and provide comprehensive information about:
+
 - Why to join Triton Droids
 - The recruitment process
 - Available teams and roles
@@ -20,11 +21,13 @@ The Join page is designed to attract new members and provide comprehensive infor
 **Location:** `src/pages/Join/components/JoinHeroSection.tsx`
 
 The hero section featuring:
+
 - Large heading: "Join the Team"
 - Team presentation image from Figma
 - Full-width responsive image container
 
 **Features:**
+
 - Responsive image sizing and rounded corners
 - Image positioned from Figma asset
 
@@ -34,6 +37,8 @@ The hero section featuring:
 
 Call-to-action section encouraging visitors to apply or learn more.
 
+Reads recruitment details from `src/data/recruitment.ts` (shared with the Home page's `RecruitmentSection`). When `RECRUITMENT_OPEN` is `false`, the application buttons are hidden and a "closed" message is shown.
+
 ### WhyJoinCarousel
 
 **Location:** `src/pages/Join/components/WhyJoinCarousel.tsx`
@@ -41,6 +46,7 @@ Call-to-action section encouraging visitors to apply or learn more.
 An interactive carousel highlighting the benefits of joining Triton Droids. Uses the `Carousel` component to showcase reasons to join.
 
 **Features:**
+
 - Smooth carousel transitions
 - Multiple benefit slides
 - Visual presentation of advantages
@@ -52,6 +58,7 @@ An interactive carousel highlighting the benefits of joining Triton Droids. Uses
 An interactive section explaining the recruitment process, likely featuring step-by-step information about how to join.
 
 **Features:**
+
 - Step-by-step process visualization
 - Interactive elements for engagement
 
@@ -66,6 +73,7 @@ Overview section introducing the various teams within Triton Droids.
 **Location:** `src/pages/Join/components/HumanoidTeamsSection.tsx`
 
 Detailed information about teams working on the Humanoid Robot project, including:
+
 - Mechanical Engineering
 - Electrical Engineering
 - Embedded Systems
@@ -82,6 +90,7 @@ Information about teams working on the Triton Pupper project, with similar team 
 **Location:** `src/pages/Join/components/InternalOpsSection.tsx`
 
 Information about internal operations teams such as:
+
 - Business/Operations
 - Design
 - Marketing

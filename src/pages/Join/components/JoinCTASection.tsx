@@ -1,18 +1,12 @@
 import { SectionHeading, BodyText } from '../../../components/Typography';
-
-/** Set to false when software team applications are not running */
-const SOFTWARE_APPLICATIONS_OPEN = true;
-
-const SOFTWARE_APPLICATION_FORMS = [
-  {
-    label: 'Machine Learning',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLScthp04-A62N6FrYu92x6nY3jxRrwE3rep7e50SiFL4Hc1kZg/viewform',
-  },
-  {
-    label: 'Embedded Systems',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSctltE5l48yu2NIdaKxaaAmugnm5V3NXVRjNLDyBRjv1NfJ5A/viewform',
-  },
-] as const;
+import {
+  RECRUITMENT_OPEN,
+  RECRUITMENT_SEASON,
+  APPLICATION_DEADLINE,
+  GBM_DATE,
+  GBM_TIME,
+  APPLICATION_FORMS,
+} from '../../../data/recruitment';
 
 export default function JoinCTASection() {
   return (
@@ -28,13 +22,22 @@ export default function JoinCTASection() {
           size="base"
           className="text-white w-full text-left font-normal md:font-light"
         >
-          {SOFTWARE_APPLICATIONS_OPEN ? (
+          {RECRUITMENT_OPEN ? (
             <>
               Thanks for your interest!{' '}
               <span className="text-accent">
-                Software applications are now open for Machine Learning and
-                Embedded Systems teams.
+                {RECRUITMENT_SEASON} member applications are now open for the
+                Engineering and Operations teams.
+              </span>{' '}
+              Applications are due{' '}
+              <span className="text-accent font-bold">
+                {APPLICATION_DEADLINE}
               </span>
+              . Come to our GBM on{' '}
+              <span className="font-bold">
+                {GBM_DATE} {GBM_TIME}
+              </span>{' '}
+              for more information!
             </>
           ) : (
             <>
@@ -48,9 +51,9 @@ export default function JoinCTASection() {
         </BodyText>
       </div>
 
-      {SOFTWARE_APPLICATIONS_OPEN && (
+      {RECRUITMENT_OPEN && (
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-4 w-full max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[148px]">
-          {SOFTWARE_APPLICATION_FORMS.map(({ label, href }) => (
+          {APPLICATION_FORMS.map(({ label, href }) => (
             <a
               key={href}
               href={href}
