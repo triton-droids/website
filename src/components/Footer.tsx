@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-col justify-start items-start gap-3 md:gap-6">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/tritondroids?srtk=ZDNlZDc0MzIxNw=="
               target="_blank"
               rel="noopener noreferrer"
               className="justify-start text-neutral-100 text-sm md:text-base font-normal font-sans hover:text-accent transition-colors cursor-pointer"
@@ -72,7 +72,7 @@ export default function Footer() {
               Instagram
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/triton-droids/home/"
               target="_blank"
               rel="noopener noreferrer"
               className="justify-start text-neutral-100 text-sm md:text-base font-normal font-sans hover:text-accent transition-colors cursor-pointer"
@@ -80,7 +80,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://linktr.ee"
+              href="https://linktr.ee/tritondroids?utm_source=linktree_profile_share&ltsid=301239a1-865c-4765-9b14-2151edfa689f"
               target="_blank"
               rel="noopener noreferrer"
               className="justify-start text-neutral-100 text-sm md:text-base font-normal font-sans hover:text-accent transition-colors cursor-pointer"
@@ -88,7 +88,7 @@ export default function Footer() {
               Linktree
             </a>
             <a
-              href="https://discord.com"
+              href="https://discord.gg/wZVcWfhfn9"
               target="_blank"
               rel="noopener noreferrer"
               className="justify-start text-neutral-100 text-sm md:text-base font-normal font-sans hover:text-accent transition-colors cursor-pointer"
