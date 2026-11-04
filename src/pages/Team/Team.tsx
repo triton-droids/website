@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { teamMembers } from '../../data/teamMembers';
 import TeamMemberCard from '../../components/TeamMemberCard';
 import {
@@ -21,9 +21,25 @@ const GRID_TEAM_LEADS =
 
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-
+  const lastActiveIdRef = useRef<string | null>(null);
   const executives = teamMembers.filter((m) => m.category === 'executive');
   const teamLeads = teamMembers.filter((m) => m.category === 'team-lead');
+
+  // Toggle member selection and keep track of the last active card
+  const handleToggleMember = (member: TeamMember) => {
+    lastActiveIdRef.current = member.id;
+    setSelectedMember((prev) => (prev?.id === member.id ? null : member));
+  };
+
+  // Restore focus to the card trigger when closing the modal
+  useEffect(() => {
+    if (!selectedMember && lastActiveIdRef.current) {
+      const trigger = document.getElementById(
+        `member-card-trigger-${lastActiveIdRef.current}`
+      );
+      trigger?.focus();
+    }
+  }, [selectedMember]);
 
   // Handle ESC key to close expanded card
   useEffect(() => {
@@ -31,6 +47,7 @@ export default function Team() {
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        lastActiveIdRef.current = selectedMember.id;
         setSelectedMember(null);
       }
     };
@@ -73,11 +90,7 @@ export default function Team() {
               <TeamMemberCard
                 key={member.id}
                 member={member}
-                onClick={() =>
-                  setSelectedMember(
-                    selectedMember?.id === member.id ? null : member
-                  )
-                }
+                onClick={() => handleToggleMember(member)}
                 isExpanded={selectedMember?.id === member.id}
               />
             ))}
@@ -95,11 +108,7 @@ export default function Team() {
               <TeamMemberCard
                 key={member.id}
                 member={member}
-                onClick={() =>
-                  setSelectedMember(
-                    selectedMember?.id === member.id ? null : member
-                  )
-                }
+                onClick={() => handleToggleMember(member)}
                 isExpanded={selectedMember?.id === member.id}
               />
             ))}
