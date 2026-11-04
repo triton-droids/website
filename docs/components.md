@@ -13,35 +13,36 @@ See [Typography Documentation](./typography.md) for detailed information about t
 ### Layout Components
 
 #### `Layout`
+
 Main layout wrapper that includes Header and Footer.
 
 **Location:** `src/components/Layout.tsx`
 
 **Usage:**
+
 ```tsx
 import Layout from '../components/Layout';
 
 function App() {
-  return (
-    <Layout>
-      {/* Page content */}
-    </Layout>
-  );
+  return <Layout>{/* Page content */}</Layout>;
 }
 ```
 
 #### `Header`
+
 Site navigation header with logo, navigation links, and dropdown menus.
 
 **Location:** `src/components/Header.tsx`
 
 **Features:**
+
 - Responsive navigation
 - Dropdown menus for nested navigation
 - Active route highlighting
 - Donate button
 
 #### `Footer`
+
 Site footer with links, social media, and organization information.
 
 **Location:** `src/components/Footer.tsx`
@@ -49,11 +50,13 @@ Site footer with links, social media, and organization information.
 ### Carousel Component
 
 #### `Carousel`
+
 A flexible, reusable carousel component built with Embla Carousel.
 
 **Location:** `src/components/Carousel.tsx`
 
 **Features:**
+
 - Smooth scrolling with tween animations
 - Customizable slide rendering
 - Optional arrow buttons
@@ -62,21 +65,31 @@ A flexible, reusable carousel component built with Embla Carousel.
 - Loop support
 
 **Props:**
+
 ```tsx
 interface CarouselProps<T> {
-  slides: T[];                    // Array of slide data
-  className?: string;              // Container className
-  slideClassName?: string;         // Individual slide className
-  containerClassName?: string;     // Inner container className
+  slides: T[]; // Array of slide data
+  className?: string; // Container className
+  slideClassName?: string; // Individual slide className
+  containerClassName?: string; // Inner container className
   renderSlide: (slide: T, index: number, tweenValue: number) => ReactNode;
-  renderArrowButton?: (direction: 'left' | 'right', onClick: () => void, disabled: boolean) => ReactNode;
-  renderPagination?: (total: number, selectedIndex: number, onDotClick: (index: number) => void) => ReactNode;
-  showArrows?: boolean;            // Default: true
-  showPagination?: boolean;         // Default: true
+  renderArrowButton?: (
+    direction: 'left' | 'right',
+    onClick: () => void,
+    disabled: boolean
+  ) => ReactNode;
+  renderPagination?: (
+    total: number,
+    selectedIndex: number,
+    onDotClick: (index: number) => void
+  ) => ReactNode;
+  showArrows?: boolean; // Default: true
+  showPagination?: boolean; // Default: true
 }
 ```
 
 **Usage Example:**
+
 ```tsx
 import Carousel from '../components/Carousel';
 
@@ -96,24 +109,55 @@ const slides = [
       </div>
     );
   }}
-/>
+/>;
 ```
 
 **Used in:**
+
 - `AchieveSection` - Mission achievement carousel
 - `WhyJoinCarousel` - Reasons to join carousel
 
 ### Navigation Components
 
 #### `NavDropdown`
+
 Dropdown menu component for navigation items.
 
 **Location:** `src/components/NavDropdown.tsx`
 
 **Features:**
+
 - Hover-triggered dropdowns
 - Smooth animations
 - Keyboard navigation support
+
+### Team Components
+
+#### `TeamMemberCard`
+
+Card component for displaying executive board members and team leads.
+
+**Location:** `src/components/TeamMemberCard.tsx`
+
+**Features:**
+
+- **Executive Card**: Static layout displaying photo/initials, role, name, bio, and LinkedIn link.
+- **Team Lead Card**: Collapsible card with an accessible expanded dialog view (`role="dialog"`).
+- **Accessibility & Focus**:
+  - Valid semantic dialog structure with a dedicated accessible close button.
+  - Dynamically sets `aria-describedby` only when `member.bio` exists (preventing dangling ARIA references).
+  - Full keyboard navigation (`Enter`/`Space` to expand, `Escape` or Close button to collapse).
+  - Automatically restores focus to the trigger card button on collapse.
+
+**Props:**
+
+```tsx
+interface TeamMemberCardProps {
+  member: TeamMember;
+  onClick: () => void;
+  isExpanded?: boolean;
+}
+```
 
 ## Page-Specific Components
 
@@ -161,6 +205,7 @@ For detailed information about each page and its components, see the [Pages Docu
 ### Responsive Design
 
 All components use Tailwind's responsive breakpoints:
+
 - Mobile-first approach
 - Breakpoints: `md:`, `lg:`, `xl:`, `2xl:`
 - Consistent spacing and sizing scales

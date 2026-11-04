@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ channel: 'chrome' });
-
 test.describe('Team Lead Card Accessibility and Expand Flow', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/team');
