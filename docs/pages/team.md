@@ -11,76 +11,31 @@ The Team page displays information about the organization's members, organized i
 
 1. **Executive Board** - Leadership team
 2. **Team Leads** - Project and department leaders
-3. **Robothon Chairs** - Event organizers
 
 ## Structure
 
 ### Hero Section
 
 The page opens with:
-- Large heading: "MEET THE TEAM"
-- Descriptive paragraph about the team members
-- Team photo (placeholder image)
+
+- `<HeroHeading>Meet The Team</HeroHeading>`
+- `<BodyText size="lg">` descriptive paragraph about the team members
+- Team photo (`team-hero.webp`)
 
 ### Executive Board Section
 
-Displays members of the executive board with their roles and information.
+Displays members of the executive board with their roles, photos, bios, and LinkedIn profiles using `TeamMemberCard` (rendered via `ExecutiveCard`).
 
 ### Team Leads Section
 
-Shows team leads for various projects and departments.
+Shows team leads for various engineering subteams and operations:
 
-### Robothon Chairs Section
+- Displayed in a responsive 2-column (mobile) to 3-column (desktop) grid.
+- Cards can be clicked or activated with keyboard (`Enter`/`Space`) to view an expanded profile modal (`role="dialog"`).
+- Keyboard accessible: pressing `Escape` or clicking the close button collapses the card and returns focus to the triggering card button.
 
-Features chairs responsible for organizing Robothon events.
+## Accessibility & Focus Management
 
-## Current Implementation
-
-```tsx
-export default function Team() {
-  return (
-    <>
-      <h1 className="text-8xl font-bold">MEET THE TEAM</h1>
-      <p className="text-xl mt-4">
-        Meet our talented team! Each member brings unique skills and
-        experiences, contributing to our collective success. Learn more about
-        their backgrounds and expertise below.
-      </p>
-      <img alt="Team photo" />
-
-      <hr className="border-muted-text/20 my-8" />
-
-      <section className="executives">
-        <h2 className="text-5xl font-bold">Executive Board</h2>
-      </section>
-
-      <hr className="border-muted-text/20 my-8" />
-
-      <section className="team-leads">
-        <h2 className="text-5xl font-bold">Team Leads</h2>
-      </section>
-
-      <hr className="border-muted-text/20 my-8" />
-
-      <section className="robothon-chairs">
-        <h2 className="text-5xl font-bold">Robothon Chairs</h2>
-      </section>
-    </>
-  );
-}
-```
-
-## Notes
-
-- Currently uses raw HTML elements instead of Typography components
-- Sections are structured but content is placeholder
-- Team member cards/components should be added
-- Consider using Typography components for consistency
-
-## Future Enhancements
-
-- Replace raw HTML with Typography components
-- Add team member cards with photos and bios
-- Implement filtering or search functionality
-- Add social media links for team members
-- Responsive grid layout for team members
+- **Semantic Dialog**: Expanded cards use `<div role="dialog" aria-modal="true">` with a dedicated accessible close button.
+- **Dynamic Descriptions**: `aria-describedby` is only bound when `member.bio` contains non-empty text, avoiding dangling ARIA references.
+- **Focus Restoration**: A `lastActiveIdRef` tracks which card button was triggered, restoring keyboard focus directly back to the card trigger upon closing.
