@@ -104,15 +104,23 @@ export default function TeamMemberCard({
   const nameId = `member-name-${member.id}`;
   const bioId = `member-bio-${member.id}`;
   const isExecutive = member.category === 'executive';
+  const hasBio = Boolean(member.bio && member.bio.trim().length > 0);
 
   // Executives: static layout per mobile Figma (no expand / no hover scale)
   if (isExecutive) {
     return <ExecutiveCard member={member} />;
   }
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+      onClick();
+    }
+  };
+
+  const handleDialogKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      e.stopPropagation();
       onClick();
     }
   };
@@ -120,19 +128,18 @@ export default function TeamMemberCard({
   // Expanded profile view (team leads only)
   if (isExpanded) {
     return (
-      <button
-        type="button"
+      <div
         className="rounded-card cursor-pointer flex flex-col bg-main-bg w-full text-left overflow-hidden col-span-full focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-main-bg"
         style={{
           boxShadow:
             '0 0 40px rgba(254, 206, 0, 0.2), 0 0 80px rgba(0, 0, 0, 0.5)',
         }}
         onClick={onClick}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleDialogKeyDown}
         role="dialog"
         aria-modal="true"
         aria-labelledby={nameId}
-        aria-describedby={bioId}
+        aria-describedby={hasBio ? bioId : undefined}
         id={modalId}
       >
         <section
@@ -165,13 +172,34 @@ export default function TeamMemberCard({
                 <LinkedInIcon />
               </span>
             )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClick();
+              }}
+              className="text-muted-text hover:text-main-text ml-auto p-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
+              aria-label={`Close ${member.name}'s profile`}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
           </div>
 
           <p className="text-[10px] font-bold uppercase tracking-wider mb-1 text-accent">
             {member.role}
           </p>
 
-          {member.bio && (
+          {hasBio && (
             <div
               id={bioId}
               className="flex-1 min-h-0 flex flex-col overflow-hidden"
@@ -184,7 +212,7 @@ export default function TeamMemberCard({
         </section>
 
         <section className="w-full bg-main-bg rounded-b-card px-6 py-4" />
-      </button>
+      </div>
     );
   }
 
@@ -198,6 +226,8 @@ export default function TeamMemberCard({
       aria-haspopup="dialog"
       aria-controls={modalId}
       aria-label={`View ${member.name}'s profile`}
+      aria-expanded={isExpanded}
+      id={`member-card-trigger-${member.id}`}
     >
       <section
         className="w-full rounded-t-card overflow-hidden bg-main-bg relative"
