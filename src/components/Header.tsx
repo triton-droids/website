@@ -96,6 +96,29 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!openDropdown && !mobileMenuOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (openDropdown) {
+          const triggerId = `nav-dropdown-trigger-${openDropdown.toLowerCase().replace(/\s+/g, '-')}`;
+          setOpenDropdown(null);
+          requestAnimationFrame(() => {
+            document.getElementById(triggerId)?.focus();
+          });
+        }
+        if (mobileMenuOpen) {
+          setMobileMenuOpen(false);
+          setMobileExpandedCategory(null);
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [openDropdown, mobileMenuOpen]);
+
   const isActive = (path: string): boolean => {
     if (path === '/') {
       return location.pathname === '/';
@@ -230,6 +253,7 @@ export default function Header() {
                         prev === item.label ? null : item.label
                       )
                     }
+                    aria-expanded={mobileExpandedCategory === item.label}
                     className="flex gap-4 items-center px-4 py-4 w-full min-w-0 text-left text-main-text text-base"
                   >
                     <span className="flex-1">{item.label}</span>
