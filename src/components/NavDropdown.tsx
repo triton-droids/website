@@ -13,6 +13,14 @@ interface NavDropdownProps {
   onItemClick: () => void;
 }
 
+const getNavDropdownIds = (label: string) => {
+  const slug = label.toLowerCase().replace(/\s+/g, '-');
+  return {
+    menuId: `nav-dropdown-menu-${slug}`,
+    triggerId: `nav-dropdown-trigger-${slug}`,
+  };
+};
+
 export default function NavDropdown({
   label,
   dropdown,
@@ -20,6 +28,8 @@ export default function NavDropdown({
   onToggle,
 }: NavDropdownProps) {
   const location = useLocation();
+
+  const { menuId, triggerId } = getNavDropdownIds(label);
 
   const isActive = (path: string): boolean => {
     if (path === '/') {
@@ -31,8 +41,12 @@ export default function NavDropdown({
   return (
     <div className="relative">
       <button
+        id={triggerId}
         type="button"
         onClick={onToggle}
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
         className={`flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-200 ease-out ${
           isOpen
             ? 'bg-zinc-800 text-main-text'
@@ -74,6 +88,7 @@ export function DropdownMenu({
   onItemClick: () => void;
 }) {
   const location = useLocation();
+  const { menuId } = getNavDropdownIds(label);
 
   const isActive = (path: string): boolean => {
     if (path === '/') {
@@ -85,7 +100,12 @@ export function DropdownMenu({
   if (!isOpen) return null;
 
   return (
-    <div className="px-8 pb-4">
+    <div
+      id={menuId}
+      role="region"
+      aria-label={`${label} submenu`}
+      className="px-8 pb-4"
+    >
       <div className="flex gap-6 justify-center">
         {dropdown.map((dropdownItem) => (
           <Link
