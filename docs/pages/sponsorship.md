@@ -8,6 +8,7 @@ The Sponsorship page provides information about supporting Triton Droids through
 ## Overview
 
 The Sponsorship page encourages donations and sponsorships by explaining:
+
 - How donations directly fund the project
 - Sponsorship tier levels
 - Current sponsors
@@ -18,6 +19,7 @@ The Sponsorship page encourages donations and sponsorships by explaining:
 ### Hero Section
 
 **Features:**
+
 - Heading: "Fund a Droid. Make a Difference"
 - Description explaining how donations fund components, tools, and materials
 - Emphasizes student experience and skill development
@@ -25,6 +27,7 @@ The Sponsorship page encourages donations and sponsorships by explaining:
 ### Sponsorship Information Section
 
 **Features:**
+
 - Two-column layout (text and image)
 - Heading: "No contribution is too small"
 - Information about sponsorship tiers
@@ -37,12 +40,17 @@ The Sponsorship page encourages donations and sponsorships by explaining:
 ### Current Sponsors Section
 
 **Features:**
+
 - Heading: "Current Sponsors"
 - "view all" link (placeholder)
 - Logo grid displaying sponsor logos:
   - HEIDENHAIN
   - Ansys
   - Onshape
+  - Steelbot
+  - ENCOS
+  - Robstride Dynamics
+  - HIM Robotics
 - Responsive logo containers with consistent sizing
 
 ## Component Structure
@@ -67,16 +75,21 @@ export default function Sponsorship() {
 ## Typography Usage
 
 The page properly uses Typography components:
+
 - `HeroHeading` for main page title
 - `SectionHeading` for section titles
 - `BodyText` for paragraph content
 
 ## Assets
 
-- `build-cost.png` - Estimated build cost visualization
-- `heidenhain.png` - HEIDENHAIN sponsor logo
-- `ansys.png` - Ansys sponsor logo
-- `onshape.png` - Onshape sponsor logo
+- `build-cost.svg` - Estimated build cost visualization
+- `heidenhain.svg` - HEIDENHAIN sponsor logo
+- `ansys.svg` - Ansys sponsor logo
+- `onshape.svg` - Onshape sponsor logo
+- `encos.svg` - ENCOS sponsor logo
+- `him.svg` - HIM Robotics sponsor logo
+- `robstride.svg` - Robstride Dynamics sponsor logo
+- `steelbot.svg` - Steelbot sponsor logo
 
 ## Styling
 
@@ -88,10 +101,12 @@ The page properly uses Typography components:
 ## Call-to-Action Buttons
 
 Two primary action buttons:
+
 1. **Sponsorship Package** - Blue button (`bg-blue-500`)
 2. **Donate Now** - Yellow/accent button (`bg-yellow-400`)
 
 Both buttons feature:
+
 - Responsive padding and text sizing
 - Hover effects (background/text color swap)
 - Border transitions
