@@ -22,6 +22,7 @@ The Home page is composed of five main sections that introduce visitors to Trito
 **Location:** `src/pages/Home/components/HeroSection.tsx`
 
 The main hero section featuring:
+
 - Large hero heading: "Engineering What Comes Next"
 - Descriptive subtitle about building autonomous humanoid robots
 - Background image with blend mode effects
@@ -30,6 +31,7 @@ The main hero section featuring:
   - "Join Us" (links to `/join` route)
 
 **Features:**
+
 - Responsive background image positioning
 - Full-width layout with max-width constraint
 - Responsive typography and spacing
@@ -45,6 +47,7 @@ A three-column card layout displaying the organization's core values:
 3. **Our Focus** - Bridging the tech gap with $2 trillion potential impact
 
 **Features:**
+
 - Three responsive cards with icons
 - Accent color highlights for key phrases
 - Responsive grid layout (stacks on mobile, horizontal on desktop)
@@ -61,6 +64,7 @@ An interactive carousel showcasing how Triton Droids aims to achieve its mission
 4. **Ethical AI and Value Based Partnerships** - Inclusive design and partnerships
 
 **Features:**
+
 - Smooth carousel transitions with scale and opacity animations
 - Each slide contains an image and bullet points with highlighted text
 - Responsive image and content layout
@@ -76,6 +80,7 @@ An interactive project showcase featuring three main projects:
 3. **RoboCup** - Participation in RoboCup 2027 competition
 
 **Features:**
+
 - Interactive project selector with icons
 - Active project indicator (blue icon and underline)
 - Project card with description and image
@@ -87,6 +92,8 @@ An interactive project showcase featuring three main projects:
 **Location:** `src/pages/Home/components/RecruitmentSection.tsx`
 
 A banner section displaying current recruitment status and call-to-action.
+
+Recruitment details (open/closed flag, season, deadline, GBM info, application form links) live in `src/data/recruitment.ts` and are shared with the Join page's `JoinCTASection`. Set `RECRUITMENT_OPEN = false` to show the closed state on both pages.
 
 ## Component Structure
 
