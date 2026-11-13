@@ -4,7 +4,7 @@ import heidenhainLogo from '../../assets/sponsors/heidenhain.svg';
 import ansysLogo from '../../assets/sponsors/ansys.svg';
 import onshapeLogo from '../../assets/sponsors/onshape.svg';
 import engineeringDudesLogo from '../../assets/sponsors/engineering_dudes.svg';
-import steelbotLogo from '../../assets/sponsors/steelbot.svg';
+import steelbotLogo from '../../assets/sponsors/Steelbot.svg';
 import encosLogo from '../../assets/sponsors/encos.svg';
 import himLogo from '../../assets/sponsors/him.svg';
 import robstrideLogo from '../../assets/sponsors/robstride.svg';
