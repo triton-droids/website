@@ -4,7 +4,10 @@ import heidenhainLogo from '../../assets/sponsors/heidenhain.svg';
 import ansysLogo from '../../assets/sponsors/ansys.svg';
 import onshapeLogo from '../../assets/sponsors/onshape.svg';
 import engineeringDudesLogo from '../../assets/sponsors/engineering_dudes.svg';
-
+import steelbotLogo from '../../assets/sponsors/Steelbot.svg';
+import encosLogo from '../../assets/sponsors/encos.svg';
+import himLogo from '../../assets/sponsors/him.svg';
+import robstrideLogo from '../../assets/sponsors/robstride.svg';
 import {
   HeroHeading,
   SectionHeading,
@@ -26,6 +29,26 @@ const sponsors = [
   {
     logo: onshapeLogo,
     alt: 'onshape',
+    maxHeight: 'max-h-20',
+  },
+  {
+    logo: steelbotLogo,
+    alt: 'Steelbot',
+    maxHeight: 'max-h-[120px]',
+  },
+  {
+    logo: encosLogo,
+    alt: 'Encos',
+    maxHeight: 'max-h-[120px]',
+  },
+  {
+    logo: himLogo,
+    alt: 'HIM Robotics',
+    maxHeight: 'max-h-[120px]',
+  },
+  {
+    logo: robstrideLogo,
+    alt: 'Robstride Dynamics',
     maxHeight: 'max-h-20',
   },
 ];
