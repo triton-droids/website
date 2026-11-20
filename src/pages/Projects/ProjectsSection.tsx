@@ -42,7 +42,7 @@ const projects: ProjectData[] = [
     iconGray: pupperIconGray,
     title: 'Learning Projects',
     description:
-      'Learning projects at Triton Droids give members hands-on experience with robotics. More details coming soon.',
+      'Learning projects give members hands-on robotics experience on smaller platforms that feed into the humanoid: the Triton Pupper quadruped, ARCTOS and SO101 robot arms for teleoperation and VLA work, and the MiniAloha dual-arm mobile base.',
     image: pupperImage,
     link: '/projects/learning-projects',
   },
