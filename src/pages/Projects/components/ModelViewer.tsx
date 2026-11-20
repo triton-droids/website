@@ -39,6 +39,8 @@ export default function ModelViewer({
         <model-viewer
           src={modelUrl}
           alt={alt}
+          loading="lazy"
+          {...(fallbackImage && { poster: fallbackImage })}
           {...(orientation && { orientation })}
           {...(cameraOrbit && { 'camera-orbit': cameraOrbit })}
           {...(cameraTarget && { 'camera-target': cameraTarget })}
