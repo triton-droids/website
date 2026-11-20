@@ -6,7 +6,7 @@ import SEO from '../../components/SEO';
 import functionIcon from '../../assets/projects/icons/function-icon.svg';
 import approachIcon from '../../assets/projects/icons/approach-icon.svg';
 import progressIcon from '../../assets/projects/icons/progress-icon.svg';
-import lowerBodyModel from '../../assets/models/1.26.26 Lower Body.glb';
+import lowerBodyModel from '../../assets/models/lower-body-optimized.glb';
 import galleryImage1 from '../../assets/projects/humanoid-gallery/gallery-1.jpg';
 import galleryImage2 from '../../assets/projects/humanoid-gallery/gallery-2.jpg';
 import galleryImage3 from '../../assets/projects/humanoid-gallery/gallery-3.jpg';

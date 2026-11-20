@@ -6,6 +6,9 @@ declare module 'react' {
       'model-viewer': HTMLAttributes<HTMLElement> & {
         src?: string;
         alt?: string;
+        loading?: 'auto' | 'lazy' | 'eager';
+        reveal?: 'auto' | 'interaction' | 'manual';
+        orientation?: string;
         'camera-controls'?: boolean;
         'auto-rotate'?: boolean;
         'auto-rotate-delay'?: string;
