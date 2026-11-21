@@ -25,7 +25,8 @@ src/pages/Projects/
       ├── ProjectHeroSection.tsx
       ├── ProjectDetailCard.tsx
       ├── ProjectGallery.tsx
-      └── ModelViewer.tsx
+      ├── ModelViewer.tsx
+      └── TeamSize.tsx
 ```
 
 ## Components
@@ -54,6 +55,26 @@ Image carousel using `embla-carousel-react` with:
 ### ModelViewer
 
 Placeholder for 3D model integration (Three.js, model-viewer, or Sketchfab).
+
+### TeamSize
+
+Static "Active Members" section: a heading with the total, then one card per team (icon, name, member count).
+
+- 4 columns from `xl` (1280px), 2 columns below
+- A team without a `count` shows `--`; the heading total (accent color) shows `--` until every team has a count
+- `title` defaults to `Active Members`
+
+```tsx
+import TeamSize from './components/TeamSize';
+import mechanicalIcon from '../../assets/humanoid/mechanical-icon.svg';
+
+<TeamSize
+  teams={[
+    { id: 'mechanical', name: 'Mechanical', icon: mechanicalIcon, count: 12 },
+    // ...
+  ]}
+/>;
+```
 
 ## Related Components
 
