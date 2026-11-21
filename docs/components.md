@@ -185,6 +185,7 @@ For detailed information about each page and its components, see the [Pages Docu
 - **`ProjectDetailCard`** - Reusable card for Rationale, Function, Approach, Progress
 - **`ProjectGallery`** - Image carousel using Embla Carousel
 - **`ModelViewer`** - 3D model viewer placeholder
+- **`TeamSize`** - "Active Members" total with a member-count card per team
 
 ### Join Page Components
 
